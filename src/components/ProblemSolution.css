@@ -1,0 +1,55 @@
+.problem-solution {
+    padding: 100px 20px;
+}
+
+.ps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.ps-card {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ps-card h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.ps-card .highlight {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.ps-card p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.ps-metric {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ps-metric .value {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.ps-metric .label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 968px) {
+    .ps-grid {
+        grid-template-columns: 1fr;
+    }
+}
