@@ -3,20 +3,20 @@ import './FAQ.css';
 
 const faqs = [
     {
-        question: "Do the AI agents sound robotic?",
-        answer: "No. We use state-of-the-art voice synthesis that captures human-like nuances, tone, and pacing. Most people can't tell they're talking to an AI."
+        question: "Won't calling 6 times annoy my leads?",
+        answer: "Data shows that 93% of leads are contacted by the 6th attempt. We are persistent but polite. In Real Estate, being 'annoyingly helpful' is better than being forgotten."
     },
     {
-        question: "How fast can you deploy an agent?",
-        answer: "Standard deployment takes 5-7 business days. This includes training the AI on your specific business knowledge and integrating it with your CRM."
+        question: "Does it integrate with my CRM?",
+        answer: "Yes. We integrate seamlessly with major Real Estate CRMs like Follow Up Boss, kvCORE, LionDesk, and HubSpot to sync leads and appointments automatically."
     },
     {
-        question: "Which industries do you specialize in?",
-        answer: "We focus on high-stakes, lead-driven industries including Real Estate, Healthcare, and Finance, where speed-to-lead is critical for conversion."
+        question: "Can it answer questions about specific properties?",
+        answer: "Stellar is an expert at qualification and appointment setting. For complex property details, it can take a detailed message or live-transfer the hot lead directly to your mobile."
     },
     {
-        question: "Can the AI handle complex objections?",
-        answer: "Yes. Our agents are trained on your specific sales scripts and common objections, allowing them to pivot and keep the conversation moving toward a booking."
+        question: "Do the agents sound human?",
+        answer: "Yes. We select the most professional, warm, and hyper-realistic voices specifically for this industry. Most callers never realize they are speaking to an AI at all."
     }
 ];
 

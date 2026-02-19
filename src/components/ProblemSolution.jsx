@@ -6,30 +6,28 @@ const ProblemSolution = () => {
         <section className="problem-solution">
             <div className="container ps-grid">
                 <div className="ps-card challenge glass-card">
-                    <h2 className="text-gradient">THE CHALLENGE</h2>
-                    <p className="highlight">Leads go cold in minutes.</p>
+                    <h2 className="text-gradient">THE PROBLEM</h2>
+                    <p className="highlight">Missed calls cost you deals.</p>
                     <p>
-                        In Real Estate, Healthcare, and Finance, speed is everything.
-                        Most opportunities are lost simply because no one followed up
-                        within the first 5 minutes.
+                        You're on the job site or in a meeting. You miss a call.
+                        By the time you call back, they've already called the next guy on Google.
                     </p>
                     <div className="ps-metric">
-                        <span className="value">80%</span>
-                        <span className="label">of leads go cold without instant follow-up</span>
+                        <span className="value">64%</span>
+                        <span className="label">of leads go with the first sales agent who answers</span>
                     </div>
                 </div>
 
                 <div className="ps-card solution glass-card">
-                    <h2 className="text-gradient">OUR SOLUTION</h2>
-                    <p className="highlight">Instant response, zero lag.</p>
+                    <h2 className="text-gradient">THE FIX</h2>
+                    <p className="highlight">Instant Qualification.</p>
                     <p>
-                        Our AI voice agents instantly respond, re-engage, and book
-                        appointments automatically. You get more connected
-                        conversations — without hiring or chasing.
+                        Stellar answers instantly, vets the lead for budget and timeline,
+                        and books the call on your calendar. You only talk to serious buyers.
                     </p>
                     <div className="ps-metric">
-                        <span className="value">10x</span>
-                        <span className="label">increase in booking rates compared to manual</span>
+                        <span className="value">100%</span>
+                        <span className="label">response rate, 24/7/365</span>
                     </div>
                 </div>
             </div>

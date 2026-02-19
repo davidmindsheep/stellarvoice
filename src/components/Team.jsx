@@ -6,13 +6,13 @@ const team = [
         name: 'Gary Sarco',
         role: 'CEO & Founder',
         image: 'https://www.stellarvoiceagents.com/garysarco.jpg',
-        bio: 'Visionary leader in AI automation with a focus on revolutionary sales technology.'
+        bio: 'Visionary leader helping construction and real estate firms scale through AI automation.'
     },
     {
         name: 'David Taylor',
         role: 'Co-Founder',
         image: 'https://www.stellarvoiceagents.com/davidtaylor.jpg',
-        bio: 'Expert in conversational AI and client relations, ensuring the highest agent performance.'
+        bio: 'Expert in maximizing lead conversion rates for high-volume brokerage teams.'
     }
 ];
 

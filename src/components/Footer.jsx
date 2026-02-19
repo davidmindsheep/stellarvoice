@@ -7,7 +7,7 @@ const Footer = () => {
             <div className="container">
                 <div className="footer-grid">
                     <div className="footer-brand">
-                        <h2 className="logo text-gradient">STELLAR VOICE</h2>
+                        <h2 className="logo text-gradient-light">STELLAR VOICE</h2>
                         <p>Modernizing lead engagement with high-performance AI voice agents.</p>
                     </div>
 

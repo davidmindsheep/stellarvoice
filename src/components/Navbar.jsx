@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ onBookClick }) => {
     return (
         <nav className="navbar glass-card">
             <div className="nav-container">
@@ -15,7 +15,7 @@ const Navbar = () => {
                     <li><a href="#faq">FAQ</a></li>
                 </ul>
                 <div className="nav-cta">
-                    <button className="btn-primary small">Book a Call</button>
+                    <button className="btn-primary small" onClick={onBookClick}>Book a Call</button>
                 </div>
             </div>
         </nav>

@@ -73,10 +73,10 @@
 
 .btn-secondary {
     background: transparent;
-    color: white;
+    color: var(--primary);
     padding: 14px 32px;
     border-radius: 50px;
-    border: 1px solid var(--glass-border);
+    border: 1px solid var(--primary);
     font-weight: 600;
     font-size: 1.1rem;
     backdrop-filter: var(--glass-blur);

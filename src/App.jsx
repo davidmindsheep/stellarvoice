@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -8,14 +8,20 @@ import Features from './components/Features'
 import FAQ from './components/FAQ'
 import Team from './components/Team'
 import Footer from './components/Footer'
+import BookingModal from './components/BookingModal'
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <div className="app-container">
-      <Navbar />
+      <Navbar onBookClick={openModal} />
 
       <main>
-        <Hero />
+        <Hero onBookClick={openModal} />
         <Demos />
         <ProblemSolution />
         <Features />
@@ -24,6 +30,7 @@ function App() {
       </main>
 
       <Footer />
+      <BookingModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   )
 }

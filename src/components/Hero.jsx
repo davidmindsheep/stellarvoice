@@ -1,36 +1,35 @@
 import React from 'react';
 import './Hero.css';
 
-const Hero = () => {
+const Hero = ({ onBookClick }) => {
     return (
         <section className="hero">
             <div className="hero-bg-glow"></div>
             <img src="https://www.stellarvoiceagents.com/background.png" className="hero-bg-image" alt="" />
             <div className="container hero-content">
                 <h1 className="hero-title text-gradient">
-                    NEVER LET A <br /> LEAD GO COLD AGAIN.
+                    Automate Your Construction <br /> & Real Estate Lead Intake
                 </h1>
                 <p className="hero-subtitle">
-                    Your 24/7 AI Sales Team That Never Sleeps, <br />
-                    Never Quits, and Always Closes.
+                    Stop chasing tire-kickers. Let AI qualify every inbound call 24/7, booking only the serious leads directly to your calendar.
                 </p>
                 <div className="hero-cta-group">
-                    <button className="btn-primary">Get Started Now</button>
-                    <button className="btn-secondary">Watch Demo</button>
+                    <button className="btn-primary" onClick={onBookClick}>Get More Leads</button>
+                    <button className="btn-secondary">Hear Samples</button>
                 </div>
 
                 <div className="hero-stats glass-card">
                     <div className="stat-item">
+                        <h3>&lt; 5m</h3>
+                        <p>Response Time</p>
+                    </div>
+                    <div className="stat-item">
+                        <h3>21x</h3>
+                        <p>More Conversions</p>
+                    </div>
+                    <div className="stat-item">
                         <h3>24/7</h3>
-                        <p>Coverage</p>
-                    </div>
-                    <div className="stat-item">
-                        <h3>&lt; 5s</h3>
-                        <p>Speed-to-Lead</p>
-                    </div>
-                    <div className="stat-item">
-                        <h3>100%</h3>
-                        <p>Automated</p>
+                        <p>Lead Coverage</p>
                     </div>
                 </div>
             </div>

@@ -1,25 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
 
 :root {
-  /* Color Palette */
-  --bg-deep: #0a0118;
-  --bg-dark: #12022b;
-  --primary: #7868f8;
-  --primary-glow: rgba(120, 104, 248, 0.4);
-  --secondary: #b168f8;
-  --accent: #00d2ff;
-  --text-main: #ffffff;
-  --text-muted: rgba(255, 255, 255, 0.7);
+  /* Color Palette - Stellar Voice Brand */
+  --bg-deep: #f3f4fa;
+  /* Light Lavender-Blue */
+  --bg-dark: #0f172a;
+  /* Deep Navy for contrast sections */
+  --primary: #25005D;
+  /* Deep Indigo - Primary Brand Color */
+  --primary-glow: rgba(37, 0, 93, 0.25);
+  --secondary: #1a0b38;
+  /* Darker Purple/Indigo */
+  --accent: #06b6d4;
+  /* Cyan/Teal - Highlights & Buttons */
+
+  --text-main: #1e293b;
+  /* Slate 800 */
+  --text-light: #f8fafc;
+  /* For dark backgrounds */
+  --text-muted: #64748b;
+  /* Slate 500 */
 
   /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-blur: blur(12px);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-blur: blur(20px);
+  --glass-shadow: 0 8px 32px 0 rgba(37, 0, 93, 0.1);
 
   /* Spacing & Sizing */
-  --container-width: 1200px;
-  --section-padding: 100px 20px;
+  --container-width: 1280px;
+  --section-padding: 120px 24px;
 }
 
 * {
@@ -94,6 +104,13 @@ button {
 }
 
 .text-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, #5b21b6 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-light {
   background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
   background-clip: text;
   -webkit-background-clip: text;

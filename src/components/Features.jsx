@@ -4,32 +4,32 @@ import './Features.css';
 const features = [
     {
         title: 'Instant Speed-to-Lead',
-        description: 'Calls new leads within seconds of form submission, engaging them while they’re still hot.',
+        description: 'We call new inquiries within seconds. Be the first agent to make contact and secure 35-50% of the business automatically.',
         icon: 'https://www.stellarvoiceagents.com/whyusicons/Staff.png'
     },
     {
-        title: 'Consistent Follow-up',
-        description: 'Never miss a lead again: your AI calls, texts, or re-tries automatically until contact is made.',
+        title: 'Persistent Follow-up',
+        description: 'Most sales agents quit after 1 call. Stellar calls 6+ times, reaching the 93% of leads that others miss.',
         icon: 'https://www.stellarvoiceagents.com/whyusicons/New%20Message.png'
     },
     {
-        title: 'Smart Qualification',
-        description: 'Separate the closers from the tire-kickers. Each call asks 4-5 custom questions to identify serious intent.',
+        title: 'No More Tire Kickers',
+        description: 'Stop driving to sites for unqualified leads. Stellar vets every caller for budget and timeline before they get to you.',
         icon: 'https://www.stellarvoiceagents.com/whyusicons/Settings.png'
     },
     {
-        title: '24/7 Coverage',
-        description: 'Provide instant responses even at 3 AM. Your automated sales team never takes a holiday.',
+        title: '24/7 Site Coverage',
+        description: 'Whether they call at 2 PM or 2 AM, your "always-on" agent is ready to answer questions and book estimates.',
         icon: 'https://www.stellarvoiceagents.com/whyusicons/Clock.png'
     },
     {
-        title: 'Human-Grade Voice',
-        description: 'Uncannily human interaction that builds trust and rapport without the robotic feel.',
+        title: 'Perfect Pre-Qualification',
+        description: 'We ask the hard questions: Budget, Timeline, and Financing. You obtain a full profile before you ever pick up the phone.',
         icon: 'https://www.stellarvoiceagents.com/whyusicons/Audio%20Wave.png'
     },
     {
-        title: 'Conversion Analytics',
-        description: 'Track every interaction and outcome with data-driven insights to optimize your sales funnel.',
+        title: 'Scale Without Hiring',
+        description: 'Handle 10 leads or 10,000. Stellar scales instantly to meet demand without the overhead of expanding your team.',
         icon: 'https://www.stellarvoiceagents.com/whyusicons/Bar%20Chart.png'
     }
 ];
