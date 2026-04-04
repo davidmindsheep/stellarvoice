@@ -1,0 +1,9 @@
+.industries-section { padding: var(--section-padding); }
+.industries-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.industry-card { padding: 24px; text-align: center; transition: transform 0.3s ease; }
+.industry-card:hover { transform: translateY(-4px); }
+.industry-icon { font-size: 2rem; display: block; margin-bottom: 12px; }
+.industry-card h4 { font-size: 1rem; margin-bottom: 8px; }
+.industry-card p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; }
+@media (max-width: 900px) { .industries-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .industries-grid { grid-template-columns: 1fr; max-width: 300px; margin: 0 auto; } }
