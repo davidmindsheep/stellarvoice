@@ -1,11 +1,12 @@
 .hero {
     position: relative;
-    min-height: 100vh;
+    min-height: auto;
+    max-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 120px 20px 80px;
+    padding: 80px 20px 40px;
 }
 .hero-bg-glow {
     position: absolute;
@@ -89,7 +90,7 @@
     gap: 16px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     animation: fadeInUp 1.2s ease-out;
 }
 .btn-secondary {
@@ -128,7 +129,7 @@
 .stat-item p { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
 .stat-divider { width: 1px; height: 40px; background: var(--glass-border); margin: 0 16px; }
 @media (max-width: 768px) {
-    .hero { padding: 100px 20px 60px; }
+    .hero { padding: 80px 20px 40px; }
     .hero-stats { flex-direction: column; gap: 16px; padding: 20px; }
     .stat-divider { width: 40px; height: 1px; margin: 0; }
 }

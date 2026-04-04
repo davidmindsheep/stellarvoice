@@ -4,7 +4,7 @@
 .quote-mark { font-size: 4rem; color: var(--primary); opacity: 0.3; line-height: 1; position: absolute; top: 16px; left: 24px; }
 .testimonial-text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 24px; padding-top: 24px; font-style: italic; }
 .testimonial-author { display: flex; align-items: center; gap: 12px; }
-.author-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+.author-avatar { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--primary); flex-shrink: 0; }
 .testimonial-author strong { display: block; font-size: 0.9rem; }
 .testimonial-author span { color: var(--text-muted); font-size: 0.8rem; }
 @media (max-width: 900px) { .testimonials-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; } }

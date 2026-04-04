@@ -1,11 +1,13 @@
 import React from 'react';
 import './Products.css';
+import useScrollReveal, { useCardReveal } from '../hooks/useScrollReveal';
+import { Bot, Zap, PhoneOutgoing } from 'lucide-react';
 
 const products = [
     {
         name: 'AI Receptionist',
-        tagline: 'Your 24/7 Front Desk That Never Misses a Call.',
-        icon: '\ud83e\udd16',
+        tagline: 'Every inbound call answered in under 1 second. Day or night.',
+        Icon: Bot,
         features: [
             'Answers every inbound call instantly, day or night',
             'Blocks spam and sales calls \u2014 only real customers get through',
@@ -17,7 +19,7 @@ const products = [
     {
         name: 'ClosedLoop Callback',
         tagline: 'Form Fill to Phone Call in Under 5 Seconds.',
-        icon: '\u26a1',
+        Icon: Zap,
         features: [
             'Instant callback when someone fills out your web form',
             'Catches leads while they are still on your website',
@@ -29,7 +31,7 @@ const products = [
     {
         name: 'ClosedLoop Outbound',
         tagline: 'Turn Your Database Into Booked Appointments.',
-        icon: '\ud83d\udcde',
+        Icon: PhoneOutgoing,
         features: [
             'AI-powered outbound calls to your existing contacts',
             'Re-engage cold leads that never converted',
@@ -41,15 +43,21 @@ const products = [
 ];
 
 const Products = () => {
+    const titleRef = useScrollReveal();
+    const gridRef = useCardReveal();
     return (
-        <section id="products" className="products-section">
+        <section id="products" className="products-section bg-alt bg-glow">
             <div className="container">
-                <h2 className="section-title text-gradient">Our Products</h2>
-                <p className="section-subtitle">Three powerful AI voice solutions, each designed to capture revenue you are currently leaving on the table.</p>
-                <div className="products-grid">
+                <div ref={titleRef} className="reveal">
+                    <h2 className="section-title text-gradient">Our Products</h2>
+                    <p className="section-subtitle">Three AI voice products. One goal: make sure you never lose a lead to slow response time again.</p>
+                </div>
+                <div className="products-grid" ref={gridRef}>
                     {products.map((product, index) => (
-                        <div key={index} className="product-card glass-card" style={{'--card-accent': product.color}}>
-                            <div className="product-icon">{product.icon}</div>
+                        <div key={index} className="product-card glass-card reveal-card" style={{'--card-accent': product.color}}>
+                            <div className="product-icon-wrap" style={{background: `${product.color}20`}}>
+                                <product.Icon size={28} strokeWidth={1.5} color={product.color} />
+                            </div>
                             <h3 className="product-name">{product.name}</h3>
                             <p className="product-tagline">{product.tagline}</p>
                             <ul className="product-features">

@@ -15,12 +15,12 @@ const Hero = () => {
                 ))}
             </div>
             <div className="container hero-content">
-                <div className="hero-badge">AI-Powered Voice Automation</div>
+                <div className="hero-badge">Trusted by 15+ Businesses Across 8 Industries</div>
                 <h1 className="hero-title text-gradient">
-                    AI Voice Agents That Call, Qualify & Book — So You Don't Have To.
+                    AI Voice Agents That Call, Qualify & Book &mdash; So You Don't Have To.
                 </h1>
                 <p className="hero-subtitle">
-                    From the moment a lead fills out your form to the appointment in your calendar — our AI handles it all, 24/7. No missed calls. No cold leads. No manual follow-up.
+                    Our AI calls your leads in under 5 seconds, qualifies them with your questions, and books straight to your calendar. 24/7. No missed calls. No cold leads.
                 </p>
                 <div className="hero-cta-group">
                     <a href="#demos" className="btn-primary">Hear a Live Demo</a>

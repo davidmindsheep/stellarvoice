@@ -14,7 +14,7 @@
   --glass-blur: blur(12px);
   --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   --container-width: 1200px;
-  --section-padding: 100px 20px;
+  --section-padding: 60px 20px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -86,4 +86,41 @@ section { padding: var(--section-padding); }
   max-width: 600px;
   margin: -10px auto 50px;
   line-height: 1.6;
+}
+
+/* Scroll-triggered reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered card animations */
+.reveal-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-card:nth-child(2) { transition-delay: 0.1s; }
+.reveal-card:nth-child(3) { transition-delay: 0.2s; }
+.reveal-card:nth-child(4) { transition-delay: 0.3s; }
+.reveal-card:nth-child(5) { transition-delay: 0.15s; }
+.reveal-card:nth-child(6) { transition-delay: 0.25s; }
+.reveal-card:nth-child(7) { transition-delay: 0.2s; }
+.reveal-card:nth-child(8) { transition-delay: 0.3s; }
+
+/* Alternating section backgrounds */
+.bg-alt {
+  background-color: var(--bg-dark);
+}
+.bg-glow {
+  background: radial-gradient(ellipse at center, rgba(120,104,248,0.08) 0%, transparent 70%);
 }

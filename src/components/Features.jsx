@@ -1,24 +1,32 @@
 import React from 'react';
 import './Features.css';
+import useScrollReveal, { useCardReveal } from '../hooks/useScrollReveal';
+import { DollarSign, Headphones, MessageSquare, Eye, Layers, Rocket } from 'lucide-react';
 
 const features = [
-    { title: 'Instant Speed-to-Lead', description: 'Calls new leads within seconds of form submission, engaging them while they are still on your website.', icon: '\u26a1' },
-    { title: 'Consistent Follow-up', description: 'Never miss a lead again. Your AI calls, texts, or re-tries automatically until contact is made.', icon: '\ud83d\udd04' },
-    { title: 'Smart Qualification', description: 'Separate closers from tire-kickers. Each call asks 4-5 custom questions to identify serious intent.', icon: '\ud83c\udfaf' },
-    { title: '24/7 Coverage', description: 'Your AI sales team never sleeps, never takes holidays, and provides instant responses even at 3 AM.', icon: '\ud83c\udf19' },
-    { title: 'Human-Grade Voice', description: 'Uncannily natural interaction that builds trust and rapport \u2014 most callers cannot tell it is AI.', icon: '\ud83d\udde3\ufe0f' },
-    { title: 'Conversion Analytics', description: 'Track every call, outcome, and insight. See exactly what drives bookings and optimize your funnel.', icon: '\ud83d\udcca' }
+    { title: 'No Per-Minute Billing', description: 'Flat monthly plans. No surprise charges after a 12-minute call. You know exactly what you pay.', Icon: DollarSign },
+    { title: 'White-Glove Setup', description: 'We build your agent for you. No prompt engineering or tech skills needed. Just tell us about your business.', Icon: Headphones },
+    { title: 'Real Objection Handling', description: "Our agents don't just read scripts. They pivot, handle pushback, and keep the conversation moving toward a booking.", Icon: MessageSquare },
+    { title: 'Full Transparency', description: 'Every call recorded, transcribed, and scored. You hear exactly what your AI is saying to your leads.', Icon: Eye },
+    { title: 'Multi-Channel Follow-up', description: 'Not just calls. SMS, email, and voicemail drops \u2014 all from one platform.', Icon: Layers },
+    { title: 'Live in 5\u20137 Days', description: 'Most agencies take weeks. We go from kickoff to live calls in under a week.', Icon: Rocket }
 ];
 
 const Features = () => {
+    const titleRef = useScrollReveal();
+    const gridRef = useCardReveal();
     return (
         <section id="features" className="features-section">
             <div className="container">
-                <h2 className="section-title text-gradient">Why Choose Stellar?</h2>
-                <div className="features-grid">
+                <div ref={titleRef} className="reveal">
+                    <h2 className="section-title text-gradient">What Makes Stellar Different</h2>
+                </div>
+                <div className="features-grid" ref={gridRef}>
                     {features.map((feature, index) => (
-                        <div key={index} className="feature-card glass-card">
-                            <div className="feature-icon">{feature.icon}</div>
+                        <div key={index} className="feature-card glass-card reveal-card">
+                            <div className="feature-icon-wrap">
+                                <feature.Icon size={24} strokeWidth={1.5} color="var(--primary)" />
+                            </div>
                             <h3>{feature.title}</h3>
                             <p>{feature.description}</p>
                         </div>
