@@ -5,7 +5,7 @@ import useScrollReveal from '../hooks/useScrollReveal';
 const ProblemSolution = () => {
     const ref = useScrollReveal();
     return (
-        <section className="problem-solution" ref={ref} style={{opacity: 0, transform: 'translateY(30px)', transition: 'opacity 0.7s ease, transform 0.7s ease'}}>
+        <section className="problem-solution reveal" ref={ref}>
             <div className="container ps-grid">
                 <div className="ps-card challenge glass-card">
                     <h2 className="text-gradient">THE PROBLEM</h2>
