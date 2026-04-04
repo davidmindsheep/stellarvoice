@@ -1,0 +1,7 @@
+.how-section { padding: var(--section-padding); }
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; position: relative; }
+.step-card { text-align: center; padding: 20px; position: relative; }
+.step-number { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px; }
+.step-card h3 { font-size: 1.3rem; margin-bottom: 12px; }
+.step-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+@media (max-width: 768px) { .steps-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; } }

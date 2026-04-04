@@ -1,36 +1,37 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import Demos from './components/Demos'
 import ProblemSolution from './components/ProblemSolution'
+import Products from './components/Products'
+import HowItWorks from './components/HowItWorks'
+import Demos from './components/Demos'
 import Features from './components/Features'
-import FAQ from './components/FAQ'
+import Industries from './components/Industries'
+import Testimonials from './components/Testimonials'
 import Team from './components/Team'
+import FAQ from './components/FAQ'
+import CTABanner from './components/CTABanner'
 import Footer from './components/Footer'
-import BookingModal from './components/BookingModal'
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
   return (
     <div className="app-container">
-      <Navbar onBookClick={openModal} />
-
+      <Navbar />
       <main>
-        <Hero onBookClick={openModal} />
-        <Demos />
+        <Hero />
         <ProblemSolution />
+        <Products />
+        <HowItWorks />
+        <Demos />
         <Features />
-        <FAQ />
+        <Industries />
+        <Testimonials />
         <Team />
+        <FAQ />
+        <CTABanner />
       </main>
-
       <Footer />
-      <BookingModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   )
 }
