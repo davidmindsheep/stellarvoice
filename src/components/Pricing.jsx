@@ -2,6 +2,7 @@ import React from 'react';
 import './Pricing.css';
 import useScrollReveal, { useCardReveal } from '../hooks/useScrollReveal';
 import { Bot, Zap, PhoneOutgoing } from 'lucide-react';
+import { openCalendly } from '../lib/calendly';
 
 const plans = [
     {
@@ -58,7 +59,7 @@ const Pricing = () => {
                                     <li key={j}><span className="check" style={{color: plan.color}}>✓</span> {f}</li>
                                 ))}
                             </ul>
-                            <a href="https://calendly.com/garysarco1/30min" target="_blank" rel="noopener noreferrer" className="btn-primary">Get a Custom Quote</a>
+                            <button type="button" onClick={() => openCalendly()} className="btn-primary">Get a Custom Quote</button>
                         </div>
                     ))}
                 </div>

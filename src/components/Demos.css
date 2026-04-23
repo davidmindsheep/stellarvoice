@@ -5,7 +5,11 @@
     position: relative;
     overflow: hidden;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
 }
+.demo-description { flex-grow: 1; }
+.waveform { margin-top: auto; }
 .demo-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(37, 0, 93, 0.12); }
 .demo-card.is-playing { border-color: var(--electric-violet); box-shadow: 0 0 30px rgba(120, 104, 248, 0.25); }
 .industry-tag {
@@ -27,7 +31,7 @@
     text-transform: uppercase;
     letter-spacing: 0.04em;
 }
-.demo-description { color: #555; font-size: 0.9rem; line-height: 1.55; margin-bottom: 20px; }
+.demo-description { color: #555; font-size: 0.9rem; line-height: 1.55; margin-bottom: 20px; flex-grow: 1; }
 .waveform { display: flex; align-items: center; justify-content: center; gap: 3px; height: 40px; margin-bottom: 20px; }
 .bar { width: 3px; height: 8px; background: var(--electric-violet); border-radius: 2px; opacity: 0.4; transition: all 0.3s ease; }
 .is-playing .bar { animation: wave 0.8s ease-in-out infinite alternate; opacity: 1; }

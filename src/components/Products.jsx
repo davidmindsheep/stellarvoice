@@ -2,6 +2,7 @@ import React from 'react';
 import './Products.css';
 import useScrollReveal, { useCardReveal } from '../hooks/useScrollReveal';
 import { Bot, Zap, PhoneOutgoing } from 'lucide-react';
+import { openCalendly } from '../lib/calendly';
 
 const products = [
     {
@@ -65,7 +66,7 @@ const Products = () => {
                                     <li key={i}><span className="check">✓</span> {feature}</li>
                                 ))}
                             </ul>
-                            <a href="https://calendly.com/garysarco1/30min" target="_blank" rel="noopener noreferrer" className="product-cta">Learn More →</a>
+                            <button type="button" onClick={() => openCalendly()} className="product-cta">Learn More →</button>
                         </div>
                     ))}
                 </div>

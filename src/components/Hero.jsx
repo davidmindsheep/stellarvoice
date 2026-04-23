@@ -1,5 +1,6 @@
 import React from 'react';
 import './Hero.css';
+import { openCalendly } from '../lib/calendly';
 
 const Hero = ({ onOpenCalculator }) => {
     return (
@@ -14,7 +15,7 @@ const Hero = ({ onOpenCalculator }) => {
                 </p>
                 <div className="hero-cta-group">
                     <button type="button" onClick={onOpenCalculator} className="btn-primary">Take the 30-Sec Test</button>
-                    <a href="https://calendly.com/garysarco1/30min" target="_blank" rel="noopener noreferrer" className="btn-secondary">Book a Demo</a>
+                    <button type="button" onClick={() => openCalendly()} className="btn-secondary">Book a Demo</button>
                 </div>
 
                 <div className="hero-stats">
