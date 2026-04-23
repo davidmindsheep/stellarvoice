@@ -12,7 +12,7 @@ const team = [
     {
         name: 'David Taylor',
         role: 'Co-Founder & CTO',
-        image: 'https://api.dicebear.com/7.x/initials/svg?seed=DavidTaylor&backgroundColor=25005D&textColor=ffffff',
+        image: '/davidtaylor.jpg',
         bio: "David runs the technical engine behind Stellar. As CEO of Mindsheep Marketing and co-founder of AI to the World, he's spent years building AI-powered systems that work at scale. His job: make sure your voice agent sounds human, integrates seamlessly, and never goes down."
     }
 ];
