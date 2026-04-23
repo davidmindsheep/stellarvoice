@@ -184,37 +184,39 @@ export default function Calculator({ onClose }) {
     };
 
     return (
-        <div className="calc-overlay" role="dialog" aria-modal="true" aria-label="Revenue calculator">
-            <button className="calc-close" onClick={onClose} aria-label="Close calculator">×</button>
-            <div className="calc-progress-track" aria-hidden={state.stage === 'start'}>
-                <div className="calc-progress-bar" style={{ width: `${Math.round(progress * 100)}%` }} role="progressbar" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100} />
-            </div>
-
-            <main className="calc-main">
-                <div className="calc-card">
-                    {state.stage === 'start' && (
-                        <div className="calc-slide" key="start">
-                            <StartScreen onStart={() => dispatch({ type: 'start' })} />
-                        </div>
-                    )}
-
-                    {state.stage === 'quiz' && q && (
-                        <div className="calc-slide" key={q.id}>
-                            {q.kind === 'choice' ? (
-                                <QuestionCard question={q} onSelect={(opt) => handleAnswer(q.id, opt.id)} />
-                            ) : (
-                                <TextInputCard question={q} onSubmit={(val) => handleAnswer(q.id, val)} />
-                            )}
-                        </div>
-                    )}
-
-                    {state.stage === 'result' && (
-                        <div className="calc-slide" key="result">
-                            <ResultScreen result={calculate(state.answers)} />
-                        </div>
-                    )}
+        <div className="calc-overlay" role="dialog" aria-modal="true" aria-label="Revenue calculator" onClick={onClose}>
+            <div className="calc-modal" onClick={(e) => e.stopPropagation()}>
+                <button className="calc-close" onClick={onClose} aria-label="Close calculator">×</button>
+                <div className="calc-progress-track" aria-hidden={state.stage === 'start'}>
+                    <div className="calc-progress-bar" style={{ width: `${Math.round(progress * 100)}%` }} role="progressbar" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100} />
                 </div>
-            </main>
+
+                <main className="calc-main">
+                    <div className="calc-card">
+                        {state.stage === 'start' && (
+                            <div className="calc-slide" key="start">
+                                <StartScreen onStart={() => dispatch({ type: 'start' })} />
+                            </div>
+                        )}
+
+                        {state.stage === 'quiz' && q && (
+                            <div className="calc-slide" key={q.id}>
+                                {q.kind === 'choice' ? (
+                                    <QuestionCard question={q} onSelect={(opt) => handleAnswer(q.id, opt.id)} />
+                                ) : (
+                                    <TextInputCard question={q} onSubmit={(val) => handleAnswer(q.id, val)} />
+                                )}
+                            </div>
+                        )}
+
+                        {state.stage === 'result' && (
+                            <div className="calc-slide" key="result">
+                                <ResultScreen result={calculate(state.answers)} />
+                            </div>
+                        )}
+                    </div>
+                </main>
+            </div>
         </div>
     );
 }

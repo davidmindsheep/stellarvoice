@@ -1,14 +1,18 @@
-/* Full-screen overlay quiz. Uses brand tokens from index.css. */
+/* Pop-up modal quiz. Uses brand tokens from index.css. */
 
 .calc-overlay {
     position: fixed;
     inset: 0;
     z-index: 2000;
-    background: linear-gradient(180deg, var(--pale-lavender) 0%, var(--white) 60%);
+    background: rgba(37, 0, 93, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: calcFadeIn 0.2s ease;
     overflow-y: auto;
-    animation: calcFadeIn 0.25s ease;
 }
 
 @keyframes calcFadeIn {
@@ -16,20 +20,39 @@
     to { opacity: 1; }
 }
 
+.calc-modal {
+    position: relative;
+    width: 100%;
+    max-width: 580px;
+    max-height: calc(100vh - 40px);
+    background: linear-gradient(180deg, var(--pale-lavender) 0%, var(--white) 60%);
+    border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(37, 0, 93, 0.35);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: calcSlideUp 0.28s ease;
+}
+
+@keyframes calcSlideUp {
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 .calc-close {
     position: absolute;
-    top: 18px;
-    right: 18px;
+    top: 14px;
+    right: 14px;
     background: var(--white);
     border: 1px solid var(--glass-border);
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 999px;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     line-height: 1;
     color: var(--deep-purple);
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(37, 0, 93, 0.1);
+    box-shadow: 0 4px 12px rgba(37, 0, 93, 0.15);
     z-index: 10;
     transition: all 0.2s ease;
 }
@@ -39,12 +62,11 @@
 }
 
 .calc-progress-track {
-    position: sticky;
-    top: 0;
+    position: relative;
     height: 4px;
     width: 100%;
     background: var(--pale-lavender);
-    z-index: 5;
+    flex-shrink: 0;
 }
 .calc-progress-bar {
     height: 100%;
@@ -57,12 +79,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 60px 20px 40px;
+    padding: 40px 28px 32px;
+    overflow-y: auto;
 }
 
 .calc-card {
     width: 100%;
-    max-width: 520px;
 }
 
 /* === Start Screen === */
@@ -330,7 +352,13 @@
 }
 
 @media (max-width: 600px) {
-    .calc-main { padding: 50px 16px 30px; }
+    .calc-overlay { padding: 0; }
+    .calc-modal {
+        max-height: 100vh;
+        height: 100vh;
+        border-radius: 0;
+    }
+    .calc-main { padding: 40px 18px 28px; }
     .calc-hero-panel { padding: 28px 20px; }
     .calc-roi { padding: 18px; }
 }
