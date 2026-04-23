@@ -18,7 +18,7 @@ export default function CalculatorCTA({ onOpen }) {
                         </p>
                     </div>
                     <button className="calc-cta-btn" onClick={(e) => { e.stopPropagation(); onOpen(); }}>
-                        Find My Number →
+                        Take The Quiz →
                     </button>
                 </div>
             </div>
