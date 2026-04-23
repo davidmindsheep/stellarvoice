@@ -1,20 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
 :root {
-  --bg-deep: #0a0118;
-  --bg-dark: #12022b;
-  --primary: #7868f8;
-  --primary-glow: rgba(120, 104, 248, 0.4);
-  --secondary: #b168f8;
-  --accent: #00d2ff;
-  --text-main: #ffffff;
-  --text-muted: rgba(255, 255, 255, 0.7);
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-blur: blur(12px);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  /* === Stellar Voice Agents Brand Kit v1.0 === */
+  --deep-purple: #25005D;
+  --electric-violet: #7868F8;
+  --royal-purple: #473D92;
+  --violet-hover: #6A5AF5;
+  --pale-lavender: #F5F2FF;
+  --off-white: #F3F3F3;
+  --near-black: #1A1A1A;
+  --white: #FFFFFF;
+
+  /* Aliases (preserve compatibility with existing component CSS) */
+  --primary: var(--deep-purple);
+  --primary-glow: rgba(120, 104, 248, 0.25);
+  --secondary: var(--electric-violet);
+  --accent: var(--electric-violet);
+  --bg-deep: var(--white);
+  --bg-dark: var(--off-white);
+  --text-main: var(--near-black);
+  --text-muted: #555;
+
+  /* Signature gradient */
+  --hero-gradient: linear-gradient(180deg, #473D92 0%, #7868F8 55%, rgba(95, 83, 197, 0.25) 100%);
+  --gradient-soft: linear-gradient(180deg, #473D92 0%, #7868F8 40%, rgba(95, 83, 197, 0.15) 80%, transparent 100%);
+
+  /* Cards (light theme — formerly glassmorphic) */
+  --glass-bg: #FFFFFF;
+  --glass-border: #EAE6F5;
+  --glass-blur: blur(0);
+  --glass-shadow: 0 4px 18px rgba(37, 0, 93, 0.06);
+
+  /* Sizing */
   --container-width: 1200px;
-  --section-padding: 60px 20px;
+  --section-padding: 80px 20px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,47 +44,67 @@ html {
 }
 
 body {
-  font-family: 'Outfit', sans-serif;
-  background-color: var(--bg-deep);
-  color: var(--text-main);
-  line-height: 1.6;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--white);
+  color: var(--near-black);
+  line-height: 1.55;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
-a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--deep-purple);
+}
+
+a { text-decoration: none; color: inherit; transition: color 0.2s ease; }
 ul { list-style: none; }
 button { cursor: pointer; border: none; outline: none; font-family: inherit; }
 
-.container { max-width: var(--container-width); margin: 0 auto; padding: 0 20px; }
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
 
+/* Card surface (formerly glassmorphic) — now light */
 .glass-card {
   background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
-  border-radius: 24px;
+  border-radius: 16px;
   box-shadow: var(--glass-shadow);
 }
 
+/* Primary CTA — Deep Purple, uppercase, pill */
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: white;
+  display: inline-block;
+  background: var(--deep-purple);
+  color: var(--white);
   padding: 14px 32px;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  box-shadow: 0 4px 15px var(--primary-glow);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  box-shadow: 0 4px 14px rgba(37, 0, 93, 0.18);
+  transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
 }
 
 .btn-primary:hover {
+  background: var(--violet-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--primary-glow);
+  box-shadow: 0 6px 20px rgba(120, 104, 248, 0.35);
 }
 
+/* Headline gradient text — purple-to-violet on light */
 .text-gradient {
-  background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
+  background: linear-gradient(135deg, var(--deep-purple) 0%, var(--electric-violet) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -75,20 +114,21 @@ section { padding: var(--section-padding); }
 
 .section-title {
   text-align: center;
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: 16px;
+  color: var(--deep-purple);
 }
 
 .section-subtitle {
   text-align: center;
-  color: var(--text-muted);
+  color: #555;
   font-size: 1.05rem;
-  max-width: 600px;
-  margin: -10px auto 50px;
+  max-width: 640px;
+  margin: -4px auto 48px;
   line-height: 1.6;
 }
 
-/* Scroll-triggered reveal animations */
+/* Scroll reveal animations (preserved from existing) */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -99,7 +139,6 @@ section { padding: var(--section-padding); }
   transform: translateY(0);
 }
 
-/* Staggered card animations */
 .reveal-card {
   opacity: 0;
   transform: translateY(24px);
@@ -117,10 +156,15 @@ section { padding: var(--section-padding); }
 .reveal-card:nth-child(7) { transition-delay: 0.2s; }
 .reveal-card:nth-child(8) { transition-delay: 0.3s; }
 
-/* Alternating section backgrounds */
+/* Alternating section backgrounds — brand-aligned */
 .bg-alt {
-  background-color: var(--bg-dark);
+  background-color: var(--off-white);
 }
 .bg-glow {
-  background: radial-gradient(ellipse at center, rgba(120,104,248,0.08) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(120, 104, 248, 0.06) 0%, transparent 70%);
+}
+.bg-alt.bg-glow {
+  background:
+    radial-gradient(ellipse at center, rgba(120, 104, 248, 0.06) 0%, transparent 70%),
+    var(--off-white);
 }

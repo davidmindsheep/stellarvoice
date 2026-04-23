@@ -7,11 +7,11 @@ const CTABanner = () => {
     return (
         <section className="cta-banner-section">
             <div className="container cta-banner-content reveal" ref={ref}>
-                <h2 className="text-gradient">Ready to Never Miss a Lead Again?</h2>
-                <p>Book a free 30-minute strategy call. Gary will map out exactly how AI voice agents would work for your business &mdash; with a custom demo using your real scripts.</p>
+                <h2>Never lose another lead.</h2>
+                <p>Book a 30-minute demo with Gary and hear exactly how AI voice agents can engage, qualify, and book appointments for your team — 24/7.</p>
                 <div className="cta-banner-buttons">
-                    <a href="https://calendly.com/garysarco1/30min" target="_blank" rel="noopener noreferrer" className="btn-primary">Book a Strategy Call</a>
-                    <a href="#demos" className="btn-secondary">Listen to Demos First</a>
+                    <a href="https://calendly.com/garysarco1/30min" target="_blank" rel="noopener noreferrer" className="btn-primary">Book a Demo</a>
+                    <a href="#demos" className="btn-secondary">Hear a Live Call</a>
                 </div>
             </div>
         </section>

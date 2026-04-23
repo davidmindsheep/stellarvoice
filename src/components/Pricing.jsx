@@ -9,21 +9,21 @@ const plans = [
         price: '$297',
         Icon: Bot,
         features: ['Unlimited inbound calls', 'CRM integration', 'Call recordings & transcripts'],
-        color: '#7868f8'
+        color: '#25005D'
     },
     {
         name: 'ClosedLoop Callback',
         price: '$497',
         Icon: Zap,
         features: ['Form-to-call in <5 seconds', 'Google & Meta Ads integration', 'Custom qualification scripts'],
-        color: '#b168f8'
+        color: '#7868F8'
     },
     {
         name: 'ClosedLoop Outbound',
         price: '$697',
         Icon: PhoneOutgoing,
         features: ['AI outbound campaigns', 'Database re-engagement', 'Detailed call analytics'],
-        color: '#00d2ff'
+        color: '#473D92'
     }
 ];
 
@@ -34,14 +34,14 @@ const Pricing = () => {
         <section id="pricing" className="pricing-section bg-alt bg-glow">
             <div className="container">
                 <div ref={titleRef} className="reveal">
-                    <h2 className="section-title text-gradient">Simple, Transparent Pricing</h2>
+                    <h2 className="section-title">Simple, Transparent Pricing</h2>
                     <p className="section-subtitle">No per-minute charges. No hidden fees. Just results.</p>
                 </div>
                 <div className="pricing-grid" ref={gridRef}>
                     {plans.map((plan, i) => (
                         <div key={i} className="pricing-card glass-card reveal-card" style={{'--card-accent': plan.color}}>
-                            <div className="pricing-icon-wrap" style={{background: `${plan.color}20`}}>
-                                <plan.Icon size={24} strokeWidth={1.5} color={plan.color} />
+                            <div className="pricing-icon-wrap" style={{background: `${plan.color}15`}}>
+                                <plan.Icon size={28} strokeWidth={1.75} color={plan.color} />
                             </div>
                             <h3 className="pricing-name">{plan.name}</h3>
                             <div className="pricing-amount">
@@ -51,10 +51,10 @@ const Pricing = () => {
                             </div>
                             <ul className="pricing-features">
                                 {plan.features.map((f, j) => (
-                                    <li key={j}><span className="check" style={{color: plan.color}}>\u2713</span> {f}</li>
+                                    <li key={j}><span className="check" style={{color: plan.color}}>✓</span> {f}</li>
                                 ))}
                             </ul>
-                            <a href="https://calendly.com/garysarco1/30min" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{textDecoration: 'none', display: 'block', textAlign: 'center', fontSize: '0.95rem', padding: '12px 24px'}}>Get a Custom Quote</a>
+                            <a href="https://calendly.com/garysarco1/30min" target="_blank" rel="noopener noreferrer" className="btn-primary">Get a Custom Quote</a>
                         </div>
                     ))}
                 </div>

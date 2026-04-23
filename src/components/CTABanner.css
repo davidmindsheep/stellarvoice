@@ -1,5 +1,61 @@
-.cta-banner-section { padding: 60px 20px; background: linear-gradient(135deg, rgba(120,104,248,0.15), rgba(177,104,248,0.1)); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); }
-.cta-banner-content { text-align: center; max-width: 650px; margin: 0 auto; }
-.cta-banner-content h2 { font-size: clamp(1.5rem, 3.5vw, 2.2rem); margin-bottom: 16px; }
-.cta-banner-content p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 32px; line-height: 1.6; }
+.cta-banner-section {
+    padding: 100px 20px;
+    background: var(--hero-gradient);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-banner-content { text-align: center; max-width: 720px; margin: 0 auto; position: relative; z-index: 2; }
+
+.cta-banner-content h2 {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    color: var(--white);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 18px;
+    font-weight: 900;
+    -webkit-text-fill-color: var(--white);
+    background: none;
+}
+
+.cta-banner-content p {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 1.05rem;
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
 .cta-banner-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+.cta-banner-section .btn-primary {
+    background: var(--white);
+    color: var(--deep-purple);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.18);
+}
+
+.cta-banner-section .btn-primary:hover {
+    background: var(--off-white);
+    color: var(--deep-purple);
+}
+
+.cta-banner-section .btn-secondary {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.cta-banner-section .btn-secondary:hover {
+    border-color: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}

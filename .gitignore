@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local dev config
+.claude/
+
+# Brand kit source material (lives in Google Drive)
+_brandkit/

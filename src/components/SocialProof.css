@@ -1,14 +1,13 @@
 .social-proof {
-    padding: 30px 20px;
-    background: rgba(120,104,248,0.06);
-    border-top: 1px solid rgba(255,255,255,0.06);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 28px 20px;
+    background: var(--pale-lavender);
+    border-bottom: 1px solid var(--glass-border);
 }
 .social-proof-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 900px;
+    max-width: 980px;
     margin: 0 auto;
     gap: 24px;
 }
@@ -19,14 +18,18 @@
     text-align: center;
 }
 .proof-value {
-    font-size: 1.5rem;
-    font-weight: 800;
+    font-size: 1.6rem;
+    font-weight: 900;
     letter-spacing: -0.02em;
+    color: var(--deep-purple);
 }
 .proof-label {
-    font-size: 0.8rem;
-    color: var(--text-muted);
+    font-size: 0.78rem;
+    color: var(--royal-purple);
     margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
 }
 @media (max-width: 600px) {
     .social-proof-inner { flex-wrap: wrap; justify-content: center; gap: 20px; }
