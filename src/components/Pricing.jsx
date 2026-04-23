@@ -36,6 +36,10 @@ const Pricing = () => {
                 <div ref={titleRef} className="reveal">
                     <h2 className="section-title">Simple, Transparent Pricing</h2>
                     <p className="section-subtitle">No per-minute charges. No hidden fees. Just results.</p>
+                    <div className="pricing-promo">
+                        <span className="promo-badge">Free Setup</span>
+                        <span className="promo-text">White-glove agent build, normally $1,500 — included free<sup>*</sup></span>
+                    </div>
                 </div>
                 <div className="pricing-grid" ref={gridRef}>
                     {plans.map((plan, i) => (
@@ -59,6 +63,7 @@ const Pricing = () => {
                     ))}
                 </div>
                 <p className="pricing-note">All plans include a 14-day pilot. Cancel anytime.</p>
+                <p className="pricing-fineprint"><sup>*</sup>Free setup applies to plans with a 3-month minimum commitment. Month-to-month available at standard setup rate.</p>
             </div>
         </section>
     );

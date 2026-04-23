@@ -20,7 +20,7 @@ const Testimonials = () => {
                 <div className="testimonials-grid" ref={gridRef}>
                     {testimonials.map((t, i) => (
                         <div key={i} className="testimonial-card glass-card reveal-card">
-                            <div className="quote-mark">\u201C</div>
+                            <div className="quote-mark">&ldquo;</div>
                             <p className="testimonial-text">{t.quote}</p>
                             <div className="testimonial-author">
                                 <img className="author-avatar" src={`https://api.dicebear.com/7.x/initials/svg?seed=${t.seed}&backgroundColor=7868f8`} alt={t.name} />

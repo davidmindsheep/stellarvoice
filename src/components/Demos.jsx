@@ -2,8 +2,11 @@ import React, { useState, useRef } from 'react';
 import './Demos.css';
 
 const demoAgents = [
-    { industry: 'Solar Energy', name: 'Celestial Solar \u2014 High Bill', status: 'ClosedLoop Callback Demo', audio: '/audio/agent1.mp3', description: 'AI calls a homeowner who submitted a form about reducing their electricity bill.' },
-    { industry: 'Solar Energy', name: 'Celestial Solar \u2014 EV Owner', status: 'ClosedLoop Callback Demo', audio: '/audio/agent2.mp3', description: 'AI qualifies a Tesla owner interested in home solar and EV charging.' },
+    { industry: 'Real Estate', name: 'Easy Start Homes', status: 'ClosedLoop Callback Demo', audio: '/audio/agent-realestate.mp3', description: 'AI calls a homebuyer who enquired about a listing, qualifies budget and timeline, books the showing.' },
+    { industry: 'Insurance', name: 'Juliet — Life Insurance', status: 'ClosedLoop Callback Demo', audio: '/audio/agent-insurance.mp3', description: 'AI engages a life insurance lead, asks about coverage needs and dependants, books the consult.' },
+    { industry: 'Marketing', name: 'Plush Marketing', status: 'AI Receptionist Demo', audio: '/audio/agent-marketing.mp3', description: 'AI receptionist handles a discovery call for a marketing agency, qualifies fit, schedules a strategy session.' },
+    { industry: 'Solar Energy', name: 'Celestial Solar — High Bill', status: 'ClosedLoop Callback Demo', audio: '/audio/agent1.mp3', description: 'AI calls a homeowner who submitted a form about reducing their electricity bill.' },
+    { industry: 'Solar Energy', name: 'Celestial Solar — EV Owner', status: 'ClosedLoop Callback Demo', audio: '/audio/agent2.mp3', description: 'AI qualifies a Tesla owner interested in home solar and EV charging.' },
     { industry: 'Bookkeeping', name: 'Details Matter Advisory', status: 'AI Receptionist Demo', audio: '/audio/agent3.mp3', description: 'AI receptionist handles an inbound call for a bookkeeping firm.' }
 ];
 
@@ -26,8 +29,8 @@ const Demos = () => {
     return (
         <section id="demos" className="demos-section">
             <div className="container">
-                <h2 className="section-title text-gradient">Hear Our Agents In Action</h2>
-                <p className="section-subtitle">These are real AI voice demos we built for actual clients. Press play and judge for yourself.</p>
+                <h2 className="section-title">Hear Our Agents In Action</h2>
+                <p className="section-subtitle">Real AI voice demos across real estate, insurance, marketing, solar, and bookkeeping. Press play and judge for yourself.</p>
                 <div className="demos-grid">
                     {demoAgents.map((agent, index) => (
                         <div key={index} className={`demo-card glass-card ${playing === index ? 'is-playing' : ''}`}>
@@ -41,7 +44,7 @@ const Demos = () => {
                             </div>
                             <audio ref={el => audioRefs.current[index] = el} src={agent.audio} onEnded={handleEnded} preload="none" />
                             <button className="play-button" onClick={() => togglePlay(index)}>
-                                <span className="icon">{playing === index ? '\u23f8' : '\u25b6'}</span>
+                                <span className="icon">{playing === index ? '⏸' : '▶'}</span>
                                 {playing === index ? 'Pause' : 'Listen to Demo'}
                             </button>
                         </div>
