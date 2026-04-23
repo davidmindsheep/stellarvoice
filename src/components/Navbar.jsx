@@ -15,7 +15,7 @@ const Navbar = ({ onOpenCalculator }) => {
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="nav-container">
                 <div className="logo">
-                    <img src="https://www.stellarvoiceagents.com/logo.webp" alt="Stellar Voice Agents" style={{ height: '36px' }} />
+                    <img src="/logo.webp" alt="Stellar Voice Agents" style={{ height: '36px' }} />
                 </div>
                 <button className={`hamburger ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
                     <span></span><span></span><span></span>

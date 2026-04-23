@@ -7,7 +7,7 @@ const Footer = () => {
             <div className="container">
                 <div className="footer-grid">
                     <div className="footer-brand">
-                        <img src="https://www.stellarvoiceagents.com/logo.webp" alt="Stellar Voice Agents" style={{ height: '36px', marginBottom: '12px' }} />
+                        <img src="/footer-logo.png" alt="Stellar Voice Agents" style={{ height: '36px', marginBottom: '12px' }} />
                         <p>AI voice agents that call, qualify, and book appointments 24/7 for lead-driven businesses.</p>
                     </div>
                     <div className="footer-links">
