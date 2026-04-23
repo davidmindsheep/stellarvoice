@@ -8,8 +8,124 @@
 //   REPLY_TO_EMAIL        — optional, where client replies should land (default = first internal email)
 
 import { Resend } from 'resend';
-import { calculate } from '../../src/calculator/calc.js';
-import { QUESTIONS } from '../../src/calculator/questions.js';
+
+// Inlined from src/calculator/questions.js + calc.js
+// (Vercel serverless functions only bundle files inside api/, can't import from src/)
+const QUESTIONS = {
+    pain: { id: 'pain', kind: 'choice', prompt: "What's costing you the most right now?", options: [
+        { id: 'missed', label: "I'm missing calls and losing potential customers" },
+        { id: 'speed', label: 'Leads are going cold before I can get back to them' },
+        { id: 'afterHours', label: 'After-hours enquiries are slipping through the cracks' },
+        { id: 'timeDrain', label: "I'm spending too much time on calls instead of growing" }
+    ]},
+    missedVolume: { id: 'missedVolume', kind: 'choice', prompt: 'Roughly how many calls do you miss in an average week?', options: [
+        { id: 'few', label: '1–5 a week', meta: { weekly: 3 } },
+        { id: 'some', label: '5–15 a week', meta: { weekly: 10 } },
+        { id: 'lots', label: '15–30 a week', meta: { weekly: 22 } },
+        { id: 'tons', label: '30+ a week', meta: { weekly: 40 } }
+    ]},
+    responseTime: { id: 'responseTime', kind: 'choice', prompt: 'How long does it take to call a new lead back?', options: [
+        { id: 'under5', label: 'Under 5 minutes', meta: { lift: 1.0 } },
+        { id: 'under1h', label: 'Within an hour', meta: { lift: 1.3 } },
+        { id: 'sameDay', label: 'Same day', meta: { lift: 1.8 } },
+        { id: 'nextDay', label: 'Next day or later', meta: { lift: 2.2 } },
+        { id: 'patchy', label: "Honestly, it's patchy", meta: { lift: 2.0 } }
+    ]},
+    leadVolume: { id: 'leadVolume', kind: 'choice', prompt: 'How many web or form leads come in each month?', options: [
+        { id: 'xs', label: 'Under 20', meta: { monthly: 10 } },
+        { id: 's', label: '20–50', meta: { monthly: 35 } },
+        { id: 'm', label: '50–100', meta: { monthly: 75 } },
+        { id: 'l', label: '100+', meta: { monthly: 150 } }
+    ]},
+    afterHoursChannel: { id: 'afterHoursChannel', kind: 'choice', prompt: 'What kind of after-hours enquiries are you missing?', options: [
+        { id: 'calls', label: 'Phone calls' }, { id: 'forms', label: 'Website forms' }, { id: 'both', label: 'Both, honestly' }
+    ]},
+    afterHoursConversion: { id: 'afterHoursConversion', kind: 'choice', prompt: 'If you got through first thing the next day, do they still buy?', options: [
+        { id: 'yes', label: 'Yes, most of them', meta: { retention: 0.7 } },
+        { id: 'half', label: 'About half', meta: { retention: 0.45 } },
+        { id: 'few', label: 'Only a few — they shop around', meta: { retention: 0.2 } },
+        { id: 'unsure', label: 'Not sure', meta: { retention: 0.4 } }
+    ]},
+    callsHandledBy: { id: 'callsHandledBy', kind: 'choice', prompt: 'Who handles the phones today?', options: [
+        { id: 'me', label: 'Mostly me' }, { id: 'receptionist', label: 'A receptionist or admin' },
+        { id: 'shared', label: 'Whoever is free' }, { id: 'voicemail', label: 'Voicemail, mostly' }
+    ]},
+    hoursOnPhone: { id: 'hoursOnPhone', kind: 'choice', prompt: 'How many hours a week does your team burn on the phone?', options: [
+        { id: 'light', label: 'Under 5 hrs', meta: { hours: 3 } },
+        { id: 'medium', label: '5–15 hrs', meta: { hours: 10 } },
+        { id: 'heavy', label: '15–30 hrs', meta: { hours: 22 } },
+        { id: 'buried', label: '30+ hrs', meta: { hours: 40 } }
+    ]},
+    customerValue: { id: 'customerValue', kind: 'choice', prompt: "What's one customer worth to you on average?", options: [
+        { id: 'xs', label: 'Under $500', meta: { value: 350 } },
+        { id: 's', label: '$500 – $1,500', meta: { value: 1000 } },
+        { id: 'm', label: '$1,500 – $5,000', meta: { value: 3000 } },
+        { id: 'l', label: '$5,000 – $15,000', meta: { value: 9000 } },
+        { id: 'xl', label: '$15,000+', meta: { value: 25000 } }
+    ]},
+    industry: { id: 'industry', kind: 'choice', prompt: "What's your industry?", options: [
+        { id: 'realEstate', label: 'Real Estate' }, { id: 'health', label: 'Health / clinic' },
+        { id: 'finance', label: 'Finance / advisory' }, { id: 'trades', label: 'Trades / home services' },
+        { id: 'auto', label: 'Auto / retail' }, { id: 'professional', label: 'Professional services' },
+        { id: 'other', label: 'Something else' }
+    ]},
+    businessName: { id: 'businessName', kind: 'text', prompt: 'Last two — what should we call your business?' },
+    contact: { id: 'contact', kind: 'text', prompt: 'Where should we send your results?' }
+};
+
+const SVA_MONTHLY_FEE = 600;
+
+function meta(answers, qid) {
+    const q = QUESTIONS[qid];
+    const answerId = answers[qid];
+    if (!q?.options || !answerId) return {};
+    return q.options.find(o => o.id === answerId)?.meta ?? {};
+}
+
+function calculate(answers) {
+    const value = Number(meta(answers, 'customerValue').value ?? 1500);
+    const weeklyMissed = Number(meta(answers, 'missedVolume').weekly ?? 0);
+    const missedCallsMonthly = weeklyMissed * 4.33 * 0.60 * 0.40 * 0.30 * value;
+
+    const monthlyLeads = Number(meta(answers, 'leadVolume').monthly ?? 0);
+    const lift = Number(meta(answers, 'responseTime').lift ?? 0);
+    const speedUplift = Math.max(0, lift - 1.0) * 0.10;
+    const speedToLeadMonthly = monthlyLeads * speedUplift * value;
+
+    const channel = answers.afterHoursChannel;
+    const retention = Number(meta(answers, 'afterHoursConversion').retention ?? 0);
+    const baselineWeeklyCalls = weeklyMissed || 15;
+    const afterHoursShare = channel === 'both' ? 0.35 : 0.25;
+    const afterHoursMonthly = channel
+        ? baselineWeeklyCalls * 4.33 * afterHoursShare * retention * 0.30 * value
+        : 0;
+
+    const hoursOnPhone = Number(meta(answers, 'hoursOnPhone').hours ?? 0);
+    const timeSavedMonthly = hoursOnPhone * 4.33 * 45 * 0.6;
+
+    const monthlyRevenue = missedCallsMonthly + speedToLeadMonthly + afterHoursMonthly + timeSavedMonthly;
+    const drivers = [
+        ['missedCallsMonthly', missedCallsMonthly, 'Missed calls we engage, qualify, and book'],
+        ['speedToLeadMonthly', speedToLeadMonthly, 'Web leads reached under 60 seconds'],
+        ['afterHoursMonthly', afterHoursMonthly, 'After-hours enquiries captured'],
+        ['timeSavedMonthly', timeSavedMonthly, 'Hours your team gets back']
+    ];
+    const primary = drivers.reduce((a, b) => (b[1] > a[1] ? b : a));
+
+    return {
+        monthlyRevenue: Math.round(monthlyRevenue),
+        annualRevenue: Math.round(monthlyRevenue * 12),
+        roiMultiple: Math.round((monthlyRevenue / SVA_MONTHLY_FEE) * 100) / 100,
+        primaryDriverLabel: primary[2],
+        breakdown: {
+            missedCallsMonthly: Math.round(missedCallsMonthly),
+            speedToLeadMonthly: Math.round(speedToLeadMonthly),
+            afterHoursMonthly: Math.round(afterHoursMonthly),
+            timeSavedMonthly: Math.round(timeSavedMonthly)
+        },
+        sva: { monthlyFee: SVA_MONTHLY_FEE }
+    };
+}
 
 const fmt = (n) =>
     new Intl.NumberFormat('en-US', {
