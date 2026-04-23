@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ onOpenCalculator }) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
@@ -28,7 +28,11 @@ const Navbar = () => {
                     <li><a href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a></li>
                 </ul>
                 <div className="nav-cta">
-                    <a href="https://calendly.com/garysarco1/30min" target="_blank" rel="noopener noreferrer" className="btn-primary small">Book a Demo</a>
+                    {onOpenCalculator ? (
+                        <button type="button" onClick={onOpenCalculator} className="btn-primary small">Take the Test</button>
+                    ) : (
+                        <a href="https://calendly.com/garysarco1/30min" target="_blank" rel="noopener noreferrer" className="btn-primary small">Book a Demo</a>
+                    )}
                 </div>
             </div>
         </nav>

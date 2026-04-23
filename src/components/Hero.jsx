@@ -1,7 +1,7 @@
 import React from 'react';
 import './Hero.css';
 
-const Hero = () => {
+const Hero = ({ onOpenCalculator }) => {
     return (
         <section id="hero" className="hero">
             <div className="hero-content container">
@@ -13,8 +13,8 @@ const Hero = () => {
                     AI voice agents that engage, qualify, and book appointments 24/7 — for Real Estate, Health, and Finance.
                 </p>
                 <div className="hero-cta-group">
-                    <a href="https://calendly.com/garysarco1/30min" target="_blank" rel="noopener noreferrer" className="btn-primary">Book a Demo</a>
-                    <a href="#demos" className="btn-secondary">Hear a Live Call</a>
+                    <button type="button" onClick={onOpenCalculator} className="btn-primary">Take the 30-Sec Test</button>
+                    <a href="https://calendly.com/garysarco1/30min" target="_blank" rel="noopener noreferrer" className="btn-secondary">Book a Demo</a>
                 </div>
 
                 <div className="hero-stats">
