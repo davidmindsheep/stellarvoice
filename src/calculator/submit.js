@@ -1,7 +1,5 @@
-// Lead capture. v1: console-log + optional webhook env var.
-// TODO(david): wire LEAD_WEBHOOK_URL to HubSpot / Airtable / Make.
-
-const WEBHOOK_URL = import.meta.env.VITE_LEAD_WEBHOOK_URL;
+// POSTs the completed quiz to the Vercel Serverless Function which
+// fans out two emails via Resend (internal alert + client confirmation).
 
 export async function submitLead(answers) {
     const payload = {
@@ -10,19 +8,20 @@ export async function submitLead(answers) {
         source: 'stellarvoice-website-quiz'
     };
 
-    console.log('[calculator] new lead', payload);
-
-    if (!WEBHOOK_URL) return { ok: true, stubbed: true };
-
     try {
-        const res = await fetch(WEBHOOK_URL, {
+        const res = await fetch('/api/calculator/submit', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
         });
-        return { ok: res.ok };
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+            console.error('[calculator] submit failed', res.status, data);
+            return { ok: false, status: res.status };
+        }
+        return { ok: true, ...data };
     } catch (err) {
-        console.error('[calculator] submit failed', err);
+        console.error('[calculator] submit error', err);
         return { ok: false, error: String(err) };
     }
 }
