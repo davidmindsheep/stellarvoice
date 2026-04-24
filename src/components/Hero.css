@@ -2,10 +2,10 @@
     position: relative;
     min-height: 92vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     overflow: hidden;
-    padding: 140px 20px 100px;
+    padding: 150px 20px 100px;
     background: var(--hero-gradient);
     color: var(--white);
 }
@@ -164,7 +164,7 @@
 }
 
 @media (max-width: 768px) {
-    .hero { padding: 120px 20px 80px; min-height: 85vh; }
+    .hero { padding: 110px 20px 70px; min-height: 85vh; }
     .hero-stats { flex-direction: column; gap: 16px; padding: 20px; }
     .stat-item { padding: 0; }
     .stat-divider { width: 60%; height: 1px; }
