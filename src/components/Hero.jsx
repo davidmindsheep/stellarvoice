@@ -6,7 +6,6 @@ const Hero = ({ onOpenCalculator }) => {
     return (
         <section id="hero" className="hero">
             <div className="hero-content container">
-                <div className="hero-eyebrow">AI Voice Agents · Real Estate · Health · Finance</div>
                 <h1 className="hero-title">
                     Never lose<br />another lead.
                 </h1>
