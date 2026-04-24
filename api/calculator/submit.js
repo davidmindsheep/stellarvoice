@@ -208,7 +208,7 @@ function buildClientHtml(answers, result) {
         <a href="https://calendly.com/garysarco1/30min" style="display:inline-block;background:#25005D;color:#fff;padding:16px 36px;border-radius:999px;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;font-size:14px;text-decoration:none">Book a Demo with Gary →</a>
       </div>
 
-      <p style="margin:0;font-size:13px;color:#777;line-height:1.55">Estimates use the SVA pillar metrics: 3× speed-to-lead, 80% follow-up consistency, +45% coverage uplift. We'll tune them to your actual data on the call.</p>
+      <p style="margin:0;font-size:13px;color:#777;line-height:1.55">Estimates use the SVA pillar metrics: 3× speed-to-lead, +120% qualified leads, +45% coverage uplift. We'll tune them to your actual data on the call.</p>
     </div>
     <div style="padding:18px 24px;background:#F3F3F3;text-align:center;font-size:12px;color:#888">
       Stellar Voice Agents · stellarvoiceagents.com

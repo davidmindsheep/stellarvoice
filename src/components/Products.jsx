@@ -7,37 +7,37 @@ import { openCalendly } from '../lib/calendly';
 const products = [
     {
         name: 'AI Receptionist',
-        tagline: 'Every inbound call answered in under 1 second. Day or night.',
+        tagline: 'Your 24/7 front desk. Never miss a call.',
         Icon: Bot,
         features: [
-            'Answers every inbound call instantly, day or night',
-            'Blocks spam and sales calls — only real customers get through',
-            'Routes calls intelligently based on intent',
-            'Provides call summaries and transcripts'
+            'Answers every incoming call instantly, day or night',
+            'Qualifies each caller against your custom questions',
+            'Books the appointment straight into your calendar',
+            'Delivers call summaries and transcripts to your team'
         ],
         color: '#25005D'
     },
     {
-        name: 'ClosedLoop Callback',
-        tagline: 'Form Fill to Phone Call in Under 5 Seconds.',
+        name: 'ClosedLoop',
+        tagline: 'Instant lead response. Seconds, not hours.',
         Icon: Zap,
         features: [
-            'Instant callback when someone fills out your web form',
-            'Catches leads while they are still on your website',
-            'Integrates with Google Ads, Meta Ads, and any CRM',
-            'Custom qualification questions on every call'
+            'The moment someone responds to your ad, we call them',
+            'Beats every competitor to the phone — engage while hot',
+            'Qualifies them on the call against your criteria',
+            'Books them into your calendar before they shop around'
         ],
         color: '#7868F8'
     },
     {
-        name: 'ClosedLoop Outbound',
-        tagline: 'Turn Your Database Into Booked Appointments.',
+        name: 'Dead Lead Revival',
+        tagline: 'Your old database, worth real money again.',
         Icon: PhoneOutgoing,
         features: [
-            'AI-powered outbound calls to your existing contacts',
-            'Re-engage cold leads that never converted',
-            'Automated campaign scheduling and management',
-            'Detailed analytics on every conversation'
+            'We call your aged-lead database on your behalf',
+            'Identifies who\'s ready to move — now',
+            'Puts re-activated prospects back on your calendar',
+            'Full analytics on every conversation'
         ],
         color: '#473D92'
     }

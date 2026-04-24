@@ -154,7 +154,7 @@ function ResultScreen({ result }) {
             </a>
 
             <p className="calc-fineprint">
-                Estimates based on your answers plus the SVA pillar metrics: 3× speed-to-lead, 80% follow-up consistency, +45% coverage uplift. On a demo we'll tune them to your actual data.
+                Estimates based on your answers plus the SVA pillar metrics: 3× speed-to-lead, +120% qualified leads, +45% coverage uplift. On a demo we'll tune them to your actual data.
             </p>
         </div>
     );

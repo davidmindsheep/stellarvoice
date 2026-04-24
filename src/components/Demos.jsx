@@ -2,12 +2,12 @@ import React, { useState, useRef } from 'react';
 import './Demos.css';
 
 const demoAgents = [
-    { industry: 'Solar Energy', name: 'Celestial Solar — High Bill', status: 'ClosedLoop Callback Demo', audio: '/audio/agent1.mp3', description: 'AI calls a homeowner who submitted a form about reducing their electricity bill.' },
-    { industry: 'Solar Energy', name: 'Celestial Solar — EV Owner', status: 'ClosedLoop Callback Demo', audio: '/audio/agent2.mp3', description: 'AI qualifies a Tesla owner interested in home solar and EV charging.' },
-    { industry: 'Insurance', name: 'Juliet — Life Insurance', status: 'ClosedLoop Callback Demo', audio: '/audio/agent-insurance.mp3', description: 'AI engages a life insurance lead, asks about coverage needs and dependants, books the consult.' },
+    { industry: 'Solar Energy', name: 'Celestial Solar — High Bill', status: 'ClosedLoop Demo', audio: '/audio/agent1.mp3', description: 'AI calls a homeowner who submitted a form about reducing their electricity bill.' },
+    { industry: 'Solar Energy', name: 'Celestial Solar — EV Owner', status: 'ClosedLoop Demo', audio: '/audio/agent2.mp3', description: 'AI qualifies a Tesla owner interested in home solar and EV charging.' },
+    { industry: 'Insurance', name: 'Juliet — Life Insurance', status: 'ClosedLoop Demo', audio: '/audio/agent-insurance.mp3', description: 'AI engages a life insurance lead, asks about coverage needs and dependants, books the consult.' },
     { industry: 'Marketing', name: 'Plush Marketing', status: 'AI Receptionist Demo', audio: '/audio/agent-marketing.mp3', description: 'AI receptionist handles a discovery call for a marketing agency, qualifies fit, schedules a strategy session.' },
     { industry: 'Bookkeeping', name: 'Details Matter Advisory', status: 'AI Receptionist Demo', audio: '/audio/agent3.mp3', description: 'AI receptionist handles an inbound call for a bookkeeping firm.' },
-    { industry: 'Real Estate', name: 'Easy Start Homes', status: 'ClosedLoop Callback Demo', audio: '/audio/agent-realestate.mp3', description: 'AI calls a homebuyer who enquired about a listing, qualifies budget and timeline, books the showing.' }
+    { industry: 'Real Estate', name: 'Easy Start Homes', status: 'ClosedLoop Demo', audio: '/audio/agent-realestate.mp3', description: 'AI calls a homebuyer who enquired about a listing, qualifies budget and timeline, books the showing.' }
 ];
 
 const Demos = () => {

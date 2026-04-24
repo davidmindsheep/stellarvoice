@@ -25,8 +25,8 @@ const Footer = () => {
                         <h4>Products</h4>
                         <ul>
                             <li><a href="#products">AI Receptionist</a></li>
-                            <li><a href="#products">ClosedLoop Callback</a></li>
-                            <li><a href="#products">ClosedLoop Outbound</a></li>
+                            <li><a href="#products">ClosedLoop</a></li>
+                            <li><a href="#products">Dead Lead Revival</a></li>
                         </ul>
                     </div>
                     <div className="footer-contact">

@@ -1,14 +1,14 @@
 import React from 'react';
 import './Features.css';
 import useScrollReveal, { useCardReveal } from '../hooks/useScrollReveal';
-import { DollarSign, Headphones, MessageSquare, Eye, Layers, Rocket } from 'lucide-react';
+import { DollarSign, Headphones, MessageSquare, Eye, Mic, Rocket } from 'lucide-react';
 
 const features = [
     { title: 'No Per-Minute Billing', description: 'Flat monthly plans. No surprise charges after a 12-minute call. You know exactly what you pay.', Icon: DollarSign },
     { title: 'White-Glove Setup', description: 'We build your agent for you. No prompt engineering or tech skills needed. Just tell us about your business.', Icon: Headphones },
     { title: 'Real Objection Handling', description: "Our agents don't just read scripts. They pivot, handle pushback, and keep the conversation moving toward a booking.", Icon: MessageSquare },
     { title: 'Full Transparency', description: 'Every call recorded, transcribed, and scored. You hear exactly what your AI is saying to your leads.', Icon: Eye },
-    { title: 'Multi-Channel Follow-up', description: 'Not just calls. SMS, email, and voicemail drops — all from one platform.', Icon: Layers },
+    { title: 'Human-Sounding Voice', description: 'Natural voices that adapt tone and intent. Most callers can\'t tell they\'re talking to an AI.', Icon: Mic },
     { title: 'Live in 5–7 Days', description: 'Most agencies take weeks. We go from kickoff to live calls in under a week.', Icon: Rocket }
 ];
 

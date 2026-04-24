@@ -7,23 +7,26 @@ import { openCalendly } from '../lib/calendly';
 const plans = [
     {
         name: 'AI Receptionist',
-        price: '$297',
+        price: '$597',
+        unit: '/mo',
         Icon: Bot,
-        features: ['Unlimited inbound calls', 'CRM integration', 'Call recordings & transcripts'],
+        features: ['2 agents — one for calls, one for text', 'Unlimited inbound calls', 'CRM integration, recordings & transcripts'],
         color: '#25005D'
     },
     {
-        name: 'ClosedLoop Callback',
-        price: '$497',
+        name: 'ClosedLoop',
+        price: '$10',
+        unit: '/lead',
         Icon: Zap,
-        features: ['Form-to-call in <5 seconds', 'Google & Meta Ads integration', 'Custom qualification scripts'],
+        features: ['Form-to-call in under 5 seconds', 'Google & Meta Ads integration', 'Custom qualification scripts on every call'],
         color: '#7868F8'
     },
     {
-        name: 'ClosedLoop Outbound',
-        price: '$697',
+        name: 'Dead Lead Revival',
+        price: '$10',
+        unit: '/lead',
         Icon: PhoneOutgoing,
-        features: ['AI outbound campaigns', 'Database re-engagement', 'Detailed call analytics'],
+        features: ['We work your aged-lead database', 'Qualifies and re-books ready-to-move prospects', 'Detailed call analytics'],
         color: '#473D92'
     }
 ];
@@ -36,7 +39,7 @@ const Pricing = () => {
             <div className="container">
                 <div ref={titleRef} className="reveal">
                     <h2 className="section-title">Simple, Transparent Pricing</h2>
-                    <p className="section-subtitle">No per-minute charges. No hidden fees. Just results.</p>
+                    <p className="section-subtitle">No hidden fees. Just results.</p>
                     <div className="pricing-promo">
                         <span className="promo-badge">Free Setup</span>
                         <span className="promo-text">White-glove agent build, normally $1,500 — included free<sup>*</sup></span>
@@ -50,9 +53,9 @@ const Pricing = () => {
                             </div>
                             <h3 className="pricing-name">{plan.name}</h3>
                             <div className="pricing-amount">
-                                <span className="from">from</span>
+                                <span className="from">starting</span>
                                 <span className="price">{plan.price}</span>
-                                <span className="period">/mo</span>
+                                <span className="period">{plan.unit}</span>
                             </div>
                             <ul className="pricing-features">
                                 {plan.features.map((f, j) => (
@@ -64,7 +67,7 @@ const Pricing = () => {
                     ))}
                 </div>
                 <p className="pricing-note">All plans include a 14-day pilot. Cancel anytime.</p>
-                <p className="pricing-fineprint"><sup>*</sup>Free setup applies to plans with a 3-month minimum commitment. Month-to-month available at standard setup rate.</p>
+                <p className="pricing-fineprint"><sup>*</sup>Free setup applies to plans with a 3-month minimum commitment. Set up fee and add-ons not included in the listed prices.</p>
             </div>
         </section>
     );

@@ -25,8 +25,8 @@ const Hero = ({ onOpenCalculator }) => {
                     </div>
                     <div className="stat-divider"></div>
                     <div className="stat-item">
-                        <h3>80%</h3>
-                        <p>Follow-Up Consistency</p>
+                        <h3>+120%</h3>
+                        <p>Qualified Leads</p>
                     </div>
                     <div className="stat-divider"></div>
                     <div className="stat-item">
