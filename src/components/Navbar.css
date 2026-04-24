@@ -6,7 +6,7 @@
     width: calc(100% - 32px);
     max-width: 1180px;
     z-index: 1000;
-    padding: 18px 24px;
+    padding: 8px 28px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(12px);
@@ -17,7 +17,7 @@
 }
 
 .navbar.scrolled {
-    padding: 10px 24px;
+    padding: 6px 28px;
     border-radius: 16px;
     background: rgba(255, 255, 255, 0.98);
     box-shadow: 0 8px 28px rgba(37, 0, 93, 0.12);

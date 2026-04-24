@@ -54,14 +54,27 @@
 
 .product-cta {
     display: inline-block;
-    color: var(--deep-purple);
-    font-weight: 800;
-    font-size: 0.85rem;
+    width: 100%;
+    background: var(--deep-purple);
+    color: var(--white);
+    padding: 14px 24px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    transition: all 0.2s ease;
+    letter-spacing: 0.06em;
+    text-align: center;
+    border: none;
+    cursor: pointer;
     text-decoration: none;
+    box-shadow: 0 4px 14px rgba(37, 0, 93, 0.18);
+    transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit;
 }
-.product-cta:hover { color: var(--electric-violet); letter-spacing: 0.1em; }
+.product-cta:hover {
+    background: var(--violet-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(120, 104, 248, 0.35);
+}
 
 @media (max-width: 900px) { .products-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; } }
