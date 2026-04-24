@@ -10,7 +10,7 @@ const Hero = ({ onOpenCalculator }) => {
                     Never lose<br />another lead.
                 </h1>
                 <p className="hero-subtitle">
-                    AI voice agents that engage, qualify, and book appointments 24/7 — for Real Estate, Health, and Finance.
+                    AI voice agents that engage, qualify, and book appointments 24/7.
                 </p>
                 <div className="hero-cta-group">
                     <button type="button" onClick={onOpenCalculator} className="btn-primary">Take the 30-Sec Test</button>
