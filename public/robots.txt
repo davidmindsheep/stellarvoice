@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Crawl delay for greedy bots (in seconds)
+Crawl-delay: 1
+
+# Block API endpoints from indexing
+Disallow: /api/
+
+Sitemap: https://www.stellarvoiceagents.com/sitemap.xml
