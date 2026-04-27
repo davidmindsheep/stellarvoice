@@ -4,6 +4,7 @@ import { QUESTIONS } from '../../calculator/questions';
 import { getNextQuestion, getProgress } from '../../calculator/nextQuestion';
 import { calculate } from '../../calculator/calc';
 import { submitLead } from '../../calculator/submit';
+import { track } from '../../lib/analytics';
 
 const fmt = (n) =>
     new Intl.NumberFormat('en-US', {
@@ -41,7 +42,7 @@ function StartScreen({ onStart }) {
             <p className="calc-subhead">
                 Answer four quick questions. See exactly how much revenue is walking past your business every month — and how a voice agent would engage, qualify, and book it.
             </p>
-            <button className="calc-continue" style={{ maxWidth: 280 }} onClick={onStart}>
+            <button className="calc-continue" style={{ maxWidth: 280 }} onClick={() => { track('quiz_started'); onStart(); }}>
                 Start the test
             </button>
             <p className="calc-fineprint-small">No signup. Takes about 30 seconds.</p>
@@ -176,10 +177,25 @@ export default function Calculator({ onClose }) {
     }, [onClose]);
 
     const handleAnswer = async (id, value) => {
+        track('quiz_question_answered', { question_id: id, answer: value });
         dispatch({ type: 'answer', id, value });
         if (id === 'contact') {
             const finalAnswers = { ...state.answers, contact: value };
-            await submitLead(finalAnswers);
+            const result = calculate(finalAnswers);
+            track('quiz_completed', {
+                value: result.monthlyRevenue,
+                currency: 'USD',
+                monthly_revenue: result.monthlyRevenue,
+                annual_revenue: result.annualRevenue,
+                roi_multiple: result.roiMultiple,
+                pain: finalAnswers.pain,
+                industry: finalAnswers.industry,
+                contact_kind: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? 'email' : 'phone'
+            });
+            const submitResult = await submitLead(finalAnswers);
+            if (!submitResult.ok) {
+                track('quiz_submit_failed', { status: submitResult.status, error: submitResult.error });
+            }
         }
     };
 

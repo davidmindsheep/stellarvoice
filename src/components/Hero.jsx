@@ -14,7 +14,7 @@ const Hero = ({ onOpenCalculator }) => {
                 </p>
                 <div className="hero-cta-group">
                     <button type="button" onClick={onOpenCalculator} className="btn-primary">Take the 30-Sec Test</button>
-                    <button type="button" onClick={() => openCalendly()} className="btn-secondary">Book a Demo</button>
+                    <button type="button" onClick={() => openCalendly(undefined, 'hero')} className="btn-secondary">Book a Demo</button>
                 </div>
 
                 <div className="hero-stats">

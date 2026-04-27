@@ -66,7 +66,7 @@ const Products = () => {
                                     <li key={i}><span className="check">✓</span> {feature}</li>
                                 ))}
                             </ul>
-                            <button type="button" onClick={() => openCalendly()} className="product-cta">Learn More →</button>
+                            <button type="button" onClick={() => openCalendly(undefined, `products-${product.name}`)} className="product-cta">Learn More →</button>
                         </div>
                     ))}
                 </div>

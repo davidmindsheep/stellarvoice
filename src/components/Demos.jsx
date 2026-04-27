@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import './Demos.css';
+import { track } from '../lib/analytics';
 
 const demoAgents = [
     { industry: 'Solar Energy', name: 'Celestial Solar — High Bill', status: 'ClosedLoop Demo', audio: '/audio/agent1.mp3', description: 'AI calls a homeowner who submitted a form about reducing their electricity bill.' },
@@ -21,7 +22,11 @@ const Demos = () => {
         const audio = audioRefs.current[index];
         if (!audio) return;
         if (playing === index) { audio.pause(); setPlaying(null); }
-        else { audio.play(); setPlaying(index); }
+        else {
+            audio.play();
+            setPlaying(index);
+            track('demo_audio_played', { industry: demoAgents[index].industry, name: demoAgents[index].name });
+        }
     };
 
     const handleEnded = () => setPlaying(null);

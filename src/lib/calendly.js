@@ -2,6 +2,8 @@
 // which loads the script on first use, then overlays Calendly's iframe
 // modal on the current page (no navigation, no new tab).
 
+import { track } from './analytics';
+
 const CALENDLY_CSS = 'https://assets.calendly.com/assets/external/widget.css';
 const CALENDLY_JS = 'https://assets.calendly.com/assets/external/widget.js';
 const DEFAULT_URL = 'https://calendly.com/garysarco1/30min';
@@ -35,7 +37,8 @@ function loadAssets() {
     return loadPromise;
 }
 
-export async function openCalendly(url = DEFAULT_URL) {
+export async function openCalendly(url = DEFAULT_URL, source = 'unknown') {
+    track('book_demo_clicked', { source, calendly_url: url });
     await loadAssets();
     if (window.Calendly) {
         window.Calendly.initPopupWidget({ url });

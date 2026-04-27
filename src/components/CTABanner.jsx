@@ -11,7 +11,7 @@ const CTABanner = () => {
                 <h2>Never lose another lead.</h2>
                 <p>Book a 30-minute demo with Gary and hear exactly how AI voice agents can engage, qualify, and book appointments for your team — 24/7.</p>
                 <div className="cta-banner-buttons">
-                    <button type="button" onClick={() => openCalendly()} className="btn-primary">Book a Demo</button>
+                    <button type="button" onClick={() => openCalendly(undefined, 'cta-banner')} className="btn-primary">Book a Demo</button>
                     <a href="#demos" className="btn-secondary">Hear a Live Call</a>
                 </div>
             </div>

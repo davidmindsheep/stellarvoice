@@ -62,7 +62,7 @@ const Pricing = () => {
                                     <li key={j}><span className="check" style={{color: plan.color}}>✓</span> {f}</li>
                                 ))}
                             </ul>
-                            <button type="button" onClick={() => openCalendly()} className="btn-primary">Get a Custom Quote</button>
+                            <button type="button" onClick={() => openCalendly(undefined, `pricing-${plan.name}`)} className="btn-primary">Get a Custom Quote</button>
                         </div>
                     ))}
                 </div>
