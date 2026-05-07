@@ -62,7 +62,6 @@ const Pricing = () => {
                         </div>
                     ))}
                 </div>
-                <p className="pricing-note">All plans include a 14-day pilot. Cancel anytime.</p>
                 <p className="pricing-fineprint">Set up fee and add-ons not included in the listed prices.</p>
             </div>
         </section>
