@@ -11,8 +11,7 @@ const faqs = [
     { question: 'Does it integrate with my CRM?', answer: 'Yes. We integrate with most major CRMs, Google Ads, Meta Ads, and can connect via webhooks or Zapier. All call data, recordings, and transcripts are pushed to your system in real time.' },
     { question: 'What kind of ROI can I expect?', answer: 'Most clients see a 10x improvement in lead-to-appointment conversion because we respond in seconds instead of hours. The AI also works 24/7, capturing leads that would otherwise be lost.' },
     { question: 'Can I choose the voice and language?', answer: 'Absolutely. We offer multiple voice personas including male, female, and multilingual options. We customize tone, pacing, and script to match your brand identity.' },
-    { question: "What if the AI can't handle a question?", answer: "Our agents gracefully escalate to a human when needed. You stay in full control of the handoff rules \u2014 the AI knows when to transfer, and the lead never feels abandoned." },
-    { question: 'Can I try it before committing?', answer: 'Yes. We offer a 14-day pilot where you can hear real calls, review transcripts, and see results before signing a contract. No risk, no lock-in.' }
+    { question: "What if the AI can't handle a question?", answer: "Our agents gracefully escalate to a human when needed. You stay in full control of the handoff rules \u2014 the AI knows when to transfer, and the lead never feels abandoned." }
 ];
 
 const FAQ = () => {
