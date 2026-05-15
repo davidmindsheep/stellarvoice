@@ -10,7 +10,6 @@ import HowItWorks from '../components/HowItWorks';
 import Demos from '../components/Demos';
 import Features from '../components/Features';
 import Industries from '../components/Industries';
-import Testimonials from '../components/Testimonials';
 import Pricing from '../components/Pricing';
 import Team from '../components/Team';
 import FAQ from '../components/FAQ';
@@ -33,7 +32,6 @@ export default function HomePage() {
                 <Demos />
                 <Features />
                 <Industries />
-                <Testimonials />
                 <Pricing />
                 <Team />
                 <FAQ />

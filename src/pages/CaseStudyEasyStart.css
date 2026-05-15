@@ -323,29 +323,6 @@
     font-size: 0.82rem;
     color: #777;
 }
-.cs-transcript-toggle {
-    margin-top: 14px;
-    background: transparent;
-    border: none;
-    color: var(--electric-violet);
-    font-weight: 700;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    cursor: pointer;
-    font-family: inherit;
-}
-.cs-transcript {
-    margin-top: 16px;
-    background: var(--off-white);
-    border-radius: 12px;
-    padding: 18px 22px;
-    text-align: left;
-    color: #555;
-    font-size: 0.92rem;
-    line-height: 1.55;
-}
-
 /* ─── Pillars (Section 7) ──────────────────────────────────── */
 .cs-pillars-grid {
     display: grid;
@@ -492,49 +469,41 @@
 }
 
 /* ─── Dashboard (Section 10) ───────────────────────────────── */
-.cs-dashboard-grid {
+.cs-dashboard-features-row {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 36px;
-    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
     margin-top: 32px;
 }
-.cs-dashboard-image {
+.cs-dashboard-feature {
     background: var(--white);
-    border-radius: 16px;
     border: 1px solid var(--glass-border);
-    padding: 12px;
-    box-shadow: 0 12px 36px rgba(37, 0, 93, 0.1);
+    border-radius: 14px;
+    padding: 24px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: 0 4px 14px rgba(37, 0, 93, 0.05);
 }
-.cs-placeholder-frame {
-    aspect-ratio: 16 / 10;
-    background: linear-gradient(135deg, var(--pale-lavender) 0%, var(--off-white) 100%);
-    border-radius: 10px;
+.cs-dashboard-feature-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--pale-lavender);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--royal-purple);
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-.cs-placeholder-label { padding: 12px; text-align: center; }
-
-.cs-dashboard-features { display: flex; flex-direction: column; gap: 22px; }
-.cs-dashboard-feature {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
 }
 .cs-dashboard-feature h4 {
     margin: 0 0 6px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--deep-purple);
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.04em;
 }
 .cs-dashboard-feature p { margin: 0; font-size: 0.92rem; color: #555; line-height: 1.55; }
-@media (max-width: 900px) { .cs-dashboard-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .cs-dashboard-features-row { grid-template-columns: 1fr; max-width: 560px; margin-left: auto; margin-right: auto; } }
 
 /* ─── Hero quote (Section 12) ──────────────────────────────── */
 .cs-hero-quote {
@@ -586,4 +555,59 @@
     justify-content: center;
     gap: 16px;
     flex-wrap: wrap;
+}
+
+/* ─── Small-screen tightening ──────────────────────────────── */
+@media (max-width: 600px) {
+    .cs-hero {
+        padding: 130px 16px 70px;
+        min-height: auto;
+    }
+    .cs-section { padding: 56px 16px; }
+    .cs-snapshot-section { padding: 32px 16px 48px; }
+    .cs-hero-quote { padding: 64px 20px; }
+    .cs-cta-section { padding: 72px 20px; }
+
+    .cs-snapshot {
+        padding: 18px;
+        margin-top: -32px;
+        gap: 18px;
+    }
+    .cs-snapshot-logo { height: 80px; font-size: 0.95rem; }
+    .cs-snapshot-meta { grid-template-columns: 1fr; gap: 12px; }
+
+    .cs-prose p { font-size: 1rem; }
+    .cs-prose-lead { font-size: 1rem; }
+
+    .cs-audio-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 22px 18px;
+        gap: 14px;
+    }
+    .cs-audio-body { text-align: center; }
+
+    .cs-quote-inline {
+        padding: 18px 20px;
+    }
+    .cs-quote-inline p { font-size: 1.1rem; }
+
+    .cs-callout { padding: 16px 18px; font-size: 0.95rem; }
+
+    .cs-stat-tile { padding: 18px 12px; }
+
+    .cs-cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    .cs-cta-buttons .cs-btn-primary,
+    .cs-cta-buttons .cs-btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+
+    .cs-callerid-panel { padding: 22px 18px; }
+
+    .cs-hero-wave { display: none; }
 }

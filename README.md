@@ -1,16 +1,50 @@
-# React + Vite
+# Stellar Voice Agents — Marketing Site
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Vite + React 19 marketing site for [stellarvoiceagents.com](https://www.stellarvoiceagents.com).
+Deployed on Vercel.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Vite + React 19** — single-page site with `react-router-dom` for the home page and case studies.
+- **Vercel Serverless Function** at `api/calculator/submit.js` — receives ROI-quiz submissions and fans out two emails via Resend (internal alert + client confirmation).
+- **GTM** for analytics; **Calendly** for demo bookings (lazy-loaded).
 
-## React Compiler
+## Local development
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev      # vite dev server
+npm run lint     # eslint
+npm run build    # production build
+```
 
-## Expanding the ESLint configuration
+## Environment variables
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The serverless function needs the following set in Vercel (Project → Settings → Environment Variables). See `.env.example`.
+
+- `RESEND_API_KEY` — server-only, do NOT prefix with `VITE_`.
+- `INTERNAL_EMAILS` — comma-separated recipients for the internal lead alert.
+- `FROM_EMAIL` — verified Resend sender, e.g. `Stellar Voice Agents <hello@stellarvoiceagents.com>`.
+- `REPLY_TO_EMAIL` — optional; defaults to the first `INTERNAL_EMAILS` entry.
+- `ALLOWED_ORIGINS` — optional, comma-separated. Defaults to the production domains.
+
+## Project layout
+
+```
+api/calculator/submit.js    Resend fan-out for quiz submissions
+src/
+  pages/                    Top-level routed pages
+  components/               Section components used on the home page
+  components/Calculator/    The quiz UI (entry: Calculator.jsx)
+  calculator/               Source of truth for questions + math
+                              (also consumed by api/calculator/submit.js)
+  lib/                      analytics.js (GTM), calendly.js (lazy popup)
+  hooks/                    useScrollReveal
+public/                     Static assets (logos, audio demos, sitemap, etc.)
+```
+
+## Notable conventions
+
+- Brand calculations live in `src/calculator/calc.js`. **Don't change the constants without David.**
+- All booking CTAs go through `openCalendly()` so analytics + lazy-loading stay consistent.
+- All quiz events go through `track()` in `src/lib/analytics.js` (pushes to `window.dataLayer`).
