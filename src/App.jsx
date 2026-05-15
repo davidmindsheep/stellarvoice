@@ -1,48 +1,36 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import './App.css'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import SocialProof from './components/SocialProof'
-import CalculatorCTA from './components/Calculator/CalculatorCTA'
-import Calculator from './components/Calculator/Calculator'
-import ProblemSolution from './components/ProblemSolution'
-import Products from './components/Products'
-import HowItWorks from './components/HowItWorks'
-import Demos from './components/Demos'
-import Features from './components/Features'
-import Industries from './components/Industries'
-import Testimonials from './components/Testimonials'
-import Pricing from './components/Pricing'
-import Team from './components/Team'
-import FAQ from './components/FAQ'
-import CTABanner from './components/CTABanner'
-import Footer from './components/Footer'
+import HomePage from './pages/HomePage'
+import CaseStudyEasyStart from './pages/CaseStudyEasyStart'
+
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (hash) {
+      // Defer to allow target to render
+      const t = setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
+      }, 50);
+      return () => clearTimeout(t);
+    }
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [pathname, hash]);
+  return null;
+}
 
 function App() {
-  const [calcOpen, setCalcOpen] = useState(false)
-
   return (
-    <div className="app-container">
-      <Navbar onOpenCalculator={() => setCalcOpen(true)} />
-      <main>
-        <Hero onOpenCalculator={() => setCalcOpen(true)} />
-        <SocialProof />
-        <CalculatorCTA onOpen={() => setCalcOpen(true)} />
-        <ProblemSolution />
-        <Products />
-        <HowItWorks />
-        <Demos />
-        <Features />
-        <Industries />
-        <Testimonials />
-        <Pricing />
-        <Team />
-        <FAQ />
-        <CTABanner />
-      </main>
-      <Footer />
-      {calcOpen && <Calculator onClose={() => setCalcOpen(false)} />}
-    </div>
+    <BrowserRouter>
+      <ScrollToTop />
+      <div className="app-container">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/case-studies/easystart-homes" element={<CaseStudyEasyStart />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   )
 }
 
