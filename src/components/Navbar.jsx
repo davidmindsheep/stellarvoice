@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
+import { openCalendly } from '../lib/calendly';
 
 const Navbar = ({ onOpenCalculator }) => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -11,27 +13,30 @@ const Navbar = ({ onOpenCalculator }) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const close = () => setMenuOpen(false);
+
     return (
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="nav-container">
-                <div className="logo">
+                <Link to="/" className="logo" onClick={close}>
                     <img src="/logo.webp" alt="Stellar Voice Agents" className="logo-img" />
-                </div>
+                </Link>
                 <button className={`hamburger ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
                     <span></span><span></span><span></span>
                 </button>
                 <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
-                    <li><a href="#products" onClick={() => setMenuOpen(false)}>Products</a></li>
-                    <li><a href="#demos" onClick={() => setMenuOpen(false)}>Demos</a></li>
-                    <li><a href="#industries" onClick={() => setMenuOpen(false)}>Industries</a></li>
-                    <li><a href="#pricing" onClick={() => setMenuOpen(false)}>Pricing</a></li>
-                    <li><a href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a></li>
+                    <li><a href="/#products" onClick={close}>Products</a></li>
+                    <li><a href="/#demos" onClick={close}>Demos</a></li>
+                    <li><a href="/#industries" onClick={close}>Industries</a></li>
+                    <li><Link to="/case-studies/easystart-homes" onClick={close}>Case Study</Link></li>
+                    <li><a href="/#pricing" onClick={close}>Pricing</a></li>
+                    <li><a href="/#faq" onClick={close}>FAQ</a></li>
                 </ul>
                 <div className="nav-cta">
                     {onOpenCalculator ? (
                         <button type="button" onClick={onOpenCalculator} className="btn-primary small">Take the Test</button>
                     ) : (
-                        <a href="https://calendly.com/garysarco1/30min" target="_blank" rel="noopener noreferrer" className="btn-primary small">Book a Demo</a>
+                        <button type="button" onClick={() => openCalendly(undefined, 'navbar-case-study')} className="btn-primary small">Book a Demo</button>
                     )}
                 </div>
             </div>

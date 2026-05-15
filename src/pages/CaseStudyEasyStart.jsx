@@ -118,12 +118,6 @@ function AudioSample() {
 
 export default function CaseStudyEasyStart() {
     useEffect(() => {
-        // Page-level meta
-        const robots = document.createElement('meta');
-        robots.name = 'robots';
-        robots.content = 'noindex, nofollow';
-        document.head.appendChild(robots);
-
         const prevTitle = document.title;
         document.title = 'EasyStart Homes Case Study | Stellar Voice Agents';
 
@@ -134,7 +128,6 @@ export default function CaseStudyEasyStart() {
         track('case_study_view', { case: 'easystart-homes' });
 
         return () => {
-            document.head.removeChild(robots);
             document.title = prevTitle;
             if (desc && prevDesc) desc.setAttribute('content', prevDesc);
         };
