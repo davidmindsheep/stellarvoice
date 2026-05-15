@@ -34,10 +34,10 @@
 }
 
 @media (max-width: 600px) {
-    .logo-img { height: 64px; }
+    .logo-img { height: 44px; }
     .navbar.scrolled .logo-img { height: 36px; }
-    .navbar { padding: 14px 18px; }
-    .navbar.scrolled { padding: 8px 18px; }
+    .navbar { padding: 8px 14px; }
+    .navbar.scrolled { padding: 6px 14px; }
 }
 
 .nav-container { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
