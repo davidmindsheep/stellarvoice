@@ -10,15 +10,7 @@ import {
     Phone, MessageSquare, Mail, Upload, ListChecks, Star
 } from 'lucide-react';
 
-// ─────────────────────────────────────────────────────────────
-// Status: INTERNAL DRAFT — Denes Aldott / EasyStart Homes
-// Per the build brief: do not publicly link or index until quotes
-// and stats are approved by Denes. <meta name="robots" content="noindex,nofollow">
-// is set below. Page is reachable via direct URL only.
-//
-// Asset placeholders flagged inline as [PLACEHOLDER] — swap before launch.
-// Audio sample uses /public/audio/agent-realestate.mp3 (the real Denes call).
-// ─────────────────────────────────────────────────────────────
+const CASE_STUDY_DESCRIPTION = "How EasyStart Homes uses Stellar's ClosedLoop Outbound to call, qualify, and book up to 1 in 4 leads — with an AI voice so natural the leads don't realise.";
 
 const pilotStats = [
     { value: '60', label: 'leads contacted' },
@@ -79,7 +71,6 @@ function CadenceDot({ kind }) {
 function AudioSample() {
     const ref = useRef(null);
     const [playing, setPlaying] = useState(false);
-    const [showTranscript, setShowTranscript] = useState(false);
 
     const toggle = () => {
         const a = ref.current;
@@ -104,14 +95,6 @@ function AudioSample() {
                 </div>
                 <audio ref={ref} src="/audio/agent-realestate.mp3" onEnded={() => setPlaying(false)} preload="none" />
             </div>
-            <button className="cs-transcript-toggle" onClick={() => setShowTranscript(v => !v)}>
-                {showTranscript ? 'Hide transcript' : 'View transcript'}
-            </button>
-            {showTranscript && (
-                <div className="cs-transcript">
-                    <p><em>[Transcript pending — generate from the approved audio sample once Denes signs off.]</em></p>
-                </div>
-            )}
         </div>
     );
 }
@@ -123,7 +106,7 @@ export default function CaseStudyEasyStart() {
 
         const desc = document.querySelector('meta[name="description"]');
         const prevDesc = desc?.getAttribute('content');
-        if (desc) desc.setAttribute('content', 'A 6-month case study of how EasyStart Homes uses Stellar’s ClosedLoop Outbound to call, qualify, and book up to 1 in 4 leads — with an AI voice so natural the leads don’t realise.');
+        if (desc) desc.setAttribute('content', CASE_STUDY_DESCRIPTION);
 
         track('case_study_view', { case: 'easystart-homes' });
 
@@ -169,7 +152,6 @@ export default function CaseStudyEasyStart() {
                     <div className="container">
                         <div className="cs-snapshot">
                             <div className="cs-snapshot-logo">
-                                {/* [PLACEHOLDER] Drop /public/easystart-logo.png and replace this div */}
                                 <span>EasyStart Homes</span>
                             </div>
                             <ul className="cs-snapshot-meta">
@@ -333,34 +315,35 @@ export default function CaseStudyEasyStart() {
                 <section className="cs-section cs-section-alt">
                     <div className="container">
                         <h2 className="cs-h2 cs-h2-center">One place to upload, track, and grade every lead</h2>
-                        <div className="cs-dashboard-grid">
-                            <div className="cs-dashboard-image">
-                                {/* [PLACEHOLDER] Drop annotated dashboard screenshot at /public/easystart-dashboard.png */}
-                                <div className="cs-placeholder-frame">
-                                    <span className="cs-placeholder-label">Dashboard screenshot &mdash; pending</span>
+                        <p className="cs-prose-lead">
+                            A shared dashboard so Denes can see what the agent is doing in real time &mdash; and feed grades back in to keep tightening qualification.
+                        </p>
+                        <div className="cs-dashboard-features-row">
+                            <div className="cs-dashboard-feature">
+                                <div className="cs-dashboard-feature-icon">
+                                    <Upload size={22} color="var(--electric-violet)" />
+                                </div>
+                                <div>
+                                    <h4>Upload leads</h4>
+                                    <p>Drop in new numbers as they arrive. The system picks them up automatically.</p>
                                 </div>
                             </div>
-                            <div className="cs-dashboard-features">
-                                <div className="cs-dashboard-feature">
-                                    <Upload size={22} color="var(--electric-violet)" />
-                                    <div>
-                                        <h4>Upload leads</h4>
-                                        <p>Drop in new numbers as they arrive. The system picks them up automatically.</p>
-                                    </div>
-                                </div>
-                                <div className="cs-dashboard-feature">
+                            <div className="cs-dashboard-feature">
+                                <div className="cs-dashboard-feature-icon">
                                     <ListChecks size={22} color="var(--electric-violet)" />
-                                    <div>
-                                        <h4>Watch them run</h4>
-                                        <p>See where each lead is in the contact sequence. Listen to recordings, read written summaries.</p>
-                                    </div>
                                 </div>
-                                <div className="cs-dashboard-feature">
+                                <div>
+                                    <h4>Watch them run</h4>
+                                    <p>See where each lead is in the contact sequence. Listen to recordings, read written summaries.</p>
+                                </div>
+                            </div>
+                            <div className="cs-dashboard-feature">
+                                <div className="cs-dashboard-feature-icon">
                                     <Star size={22} color="var(--electric-violet)" />
-                                    <div>
-                                        <h4>Grade the result</h4>
-                                        <p>After speaking to a booked lead, Denes tags how good the lead actually was. That feedback loop is how we keep refining the way the voice agent qualifies.</p>
-                                    </div>
+                                </div>
+                                <div>
+                                    <h4>Grade the result</h4>
+                                    <p>After speaking to a booked lead, Denes tags how good the lead actually was. That feedback loop is how we keep refining how the voice agent qualifies.</p>
                                 </div>
                             </div>
                         </div>

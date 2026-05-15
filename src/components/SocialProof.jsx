@@ -2,9 +2,9 @@ import React from 'react';
 import './SocialProof.css';
 
 const stats = [
-    { value: '50,000+', label: 'AI Calls Made' },
-    { value: '15+', label: 'Businesses Trust Stellar' },
-    { value: '4.8s', label: 'Avg Speed-to-Lead' },
+    { value: '<5s', label: 'Form-to-Call Response' },
+    { value: '24/7', label: 'Always-On Coverage' },
+    { value: '5–7 days', label: 'From Kickoff to Live' },
     { value: '8', label: 'Industries Served' },
 ];
 

@@ -6,125 +6,45 @@
 //   INTERNAL_EMAILS       — comma-separated, e.g. "gary@svca.com,david@mindsheep.com.au"
 //   FROM_EMAIL            — verified Resend sender, e.g. "Stellar Voice Agents <hello@stellarvoiceagents.com>"
 //   REPLY_TO_EMAIL        — optional, where client replies should land (default = first internal email)
+//   ALLOWED_ORIGINS       — optional, comma-separated. Defaults to the production domain.
 
 import { Resend } from 'resend';
+import { QUESTIONS } from '../../src/calculator/questions.js';
+import { calculate } from '../../src/calculator/calc.js';
 
-// Inlined from src/calculator/questions.js + calc.js
-// (Vercel serverless functions only bundle files inside api/, can't import from src/)
-const QUESTIONS = {
-    pain: { id: 'pain', kind: 'choice', prompt: "What's costing you the most right now?", options: [
-        { id: 'missed', label: "I'm missing calls and losing potential customers" },
-        { id: 'speed', label: 'Leads are going cold before I can get back to them' },
-        { id: 'afterHours', label: 'After-hours enquiries are slipping through the cracks' },
-        { id: 'timeDrain', label: "I'm spending too much time on calls instead of growing" }
-    ]},
-    missedVolume: { id: 'missedVolume', kind: 'choice', prompt: 'Roughly how many calls do you miss in an average week?', options: [
-        { id: 'few', label: '1–5 a week', meta: { weekly: 3 } },
-        { id: 'some', label: '5–15 a week', meta: { weekly: 10 } },
-        { id: 'lots', label: '15–30 a week', meta: { weekly: 22 } },
-        { id: 'tons', label: '30+ a week', meta: { weekly: 40 } }
-    ]},
-    responseTime: { id: 'responseTime', kind: 'choice', prompt: 'How long does it take to call a new lead back?', options: [
-        { id: 'under5', label: 'Under 5 minutes', meta: { lift: 1.0 } },
-        { id: 'under1h', label: 'Within an hour', meta: { lift: 1.3 } },
-        { id: 'sameDay', label: 'Same day', meta: { lift: 1.8 } },
-        { id: 'nextDay', label: 'Next day or later', meta: { lift: 2.2 } },
-        { id: 'patchy', label: "Honestly, it's patchy", meta: { lift: 2.0 } }
-    ]},
-    leadVolume: { id: 'leadVolume', kind: 'choice', prompt: 'How many web or form leads come in each month?', options: [
-        { id: 'xs', label: 'Under 20', meta: { monthly: 10 } },
-        { id: 's', label: '20–50', meta: { monthly: 35 } },
-        { id: 'm', label: '50–100', meta: { monthly: 75 } },
-        { id: 'l', label: '100+', meta: { monthly: 150 } }
-    ]},
-    afterHoursChannel: { id: 'afterHoursChannel', kind: 'choice', prompt: 'What kind of after-hours enquiries are you missing?', options: [
-        { id: 'calls', label: 'Phone calls' }, { id: 'forms', label: 'Website forms' }, { id: 'both', label: 'Both, honestly' }
-    ]},
-    afterHoursConversion: { id: 'afterHoursConversion', kind: 'choice', prompt: 'If you got through first thing the next day, do they still buy?', options: [
-        { id: 'yes', label: 'Yes, most of them', meta: { retention: 0.7 } },
-        { id: 'half', label: 'About half', meta: { retention: 0.45 } },
-        { id: 'few', label: 'Only a few — they shop around', meta: { retention: 0.2 } },
-        { id: 'unsure', label: 'Not sure', meta: { retention: 0.4 } }
-    ]},
-    callsHandledBy: { id: 'callsHandledBy', kind: 'choice', prompt: 'Who handles the phones today?', options: [
-        { id: 'me', label: 'Mostly me' }, { id: 'receptionist', label: 'A receptionist or admin' },
-        { id: 'shared', label: 'Whoever is free' }, { id: 'voicemail', label: 'Voicemail, mostly' }
-    ]},
-    hoursOnPhone: { id: 'hoursOnPhone', kind: 'choice', prompt: 'How many hours a week does your team burn on the phone?', options: [
-        { id: 'light', label: 'Under 5 hrs', meta: { hours: 3 } },
-        { id: 'medium', label: '5–15 hrs', meta: { hours: 10 } },
-        { id: 'heavy', label: '15–30 hrs', meta: { hours: 22 } },
-        { id: 'buried', label: '30+ hrs', meta: { hours: 40 } }
-    ]},
-    customerValue: { id: 'customerValue', kind: 'choice', prompt: "What's one customer worth to you on average?", options: [
-        { id: 'xs', label: 'Under $500', meta: { value: 350 } },
-        { id: 's', label: '$500 – $1,500', meta: { value: 1000 } },
-        { id: 'm', label: '$1,500 – $5,000', meta: { value: 3000 } },
-        { id: 'l', label: '$5,000 – $15,000', meta: { value: 9000 } },
-        { id: 'xl', label: '$15,000+', meta: { value: 25000 } }
-    ]},
-    industry: { id: 'industry', kind: 'choice', prompt: "What's your industry?", options: [
-        { id: 'realEstate', label: 'Real Estate' }, { id: 'health', label: 'Health / clinic' },
-        { id: 'finance', label: 'Finance / advisory' }, { id: 'trades', label: 'Trades / home services' },
-        { id: 'auto', label: 'Auto / retail' }, { id: 'professional', label: 'Professional services' },
-        { id: 'other', label: 'Something else' }
-    ]},
-    businessName: { id: 'businessName', kind: 'text', prompt: 'Last two — what should we call your business?' },
-    contact: { id: 'contact', kind: 'text', prompt: 'Where should we send your results?' }
-};
+const DEFAULT_ALLOWED_ORIGINS = [
+    'https://stellarvoiceagents.com',
+    'https://www.stellarvoiceagents.com'
+];
 
-const SVA_MONTHLY_FEE = 600;
+const MAX_FIELD_LEN = 200;
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX = 3;
+const RATE_LIMIT_MAP_CAP = 5_000;
 
-function meta(answers, qid) {
-    const q = QUESTIONS[qid];
-    const answerId = answers[qid];
-    if (!q?.options || !answerId) return {};
-    return q.options.find(o => o.id === answerId)?.meta ?? {};
+// Per-instance sliding window. Best-effort across cold starts / concurrent
+// instances; combined with origin + honeypot it stops casual abuse without
+// adding infra.
+const rateMap = new Map();
+
+function rateLimit(ip) {
+    const now = Date.now();
+    const entry = rateMap.get(ip);
+    if (!entry || now - entry.windowStart > RATE_LIMIT_WINDOW_MS) {
+        if (rateMap.size > RATE_LIMIT_MAP_CAP) rateMap.clear();
+        rateMap.set(ip, { count: 1, windowStart: now });
+        return { allowed: true };
+    }
+    entry.count += 1;
+    if (entry.count > RATE_LIMIT_MAX) {
+        return { allowed: false, retryAfter: Math.ceil((RATE_LIMIT_WINDOW_MS - (now - entry.windowStart)) / 1000) };
+    }
+    return { allowed: true };
 }
 
-function calculate(answers) {
-    const value = Number(meta(answers, 'customerValue').value ?? 1500);
-    const weeklyMissed = Number(meta(answers, 'missedVolume').weekly ?? 0);
-    const missedCallsMonthly = weeklyMissed * 4.33 * 0.60 * 0.40 * 0.30 * value;
-
-    const monthlyLeads = Number(meta(answers, 'leadVolume').monthly ?? 0);
-    const lift = Number(meta(answers, 'responseTime').lift ?? 0);
-    const speedUplift = Math.max(0, lift - 1.0) * 0.10;
-    const speedToLeadMonthly = monthlyLeads * speedUplift * value;
-
-    const channel = answers.afterHoursChannel;
-    const retention = Number(meta(answers, 'afterHoursConversion').retention ?? 0);
-    const baselineWeeklyCalls = weeklyMissed || 15;
-    const afterHoursShare = channel === 'both' ? 0.35 : 0.25;
-    const afterHoursMonthly = channel
-        ? baselineWeeklyCalls * 4.33 * afterHoursShare * retention * 0.30 * value
-        : 0;
-
-    const hoursOnPhone = Number(meta(answers, 'hoursOnPhone').hours ?? 0);
-    const timeSavedMonthly = hoursOnPhone * 4.33 * 45 * 0.6;
-
-    const monthlyRevenue = missedCallsMonthly + speedToLeadMonthly + afterHoursMonthly + timeSavedMonthly;
-    const drivers = [
-        ['missedCallsMonthly', missedCallsMonthly, 'Missed calls we engage, qualify, and book'],
-        ['speedToLeadMonthly', speedToLeadMonthly, 'Web leads reached under 60 seconds'],
-        ['afterHoursMonthly', afterHoursMonthly, 'After-hours enquiries captured'],
-        ['timeSavedMonthly', timeSavedMonthly, 'Hours your team gets back']
-    ];
-    const primary = drivers.reduce((a, b) => (b[1] > a[1] ? b : a));
-
-    return {
-        monthlyRevenue: Math.round(monthlyRevenue),
-        annualRevenue: Math.round(monthlyRevenue * 12),
-        roiMultiple: Math.round((monthlyRevenue / SVA_MONTHLY_FEE) * 100) / 100,
-        primaryDriverLabel: primary[2],
-        breakdown: {
-            missedCallsMonthly: Math.round(missedCallsMonthly),
-            speedToLeadMonthly: Math.round(speedToLeadMonthly),
-            afterHoursMonthly: Math.round(afterHoursMonthly),
-            timeSavedMonthly: Math.round(timeSavedMonthly)
-        },
-        sva: { monthlyFee: SVA_MONTHLY_FEE }
-    };
+const ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, (c) => ESC[c]);
 }
 
 const fmt = (n) =>
@@ -134,7 +54,6 @@ const fmt = (n) =>
         maximumFractionDigits: 0
     }).format(n);
 
-// Look up the human-readable label for an answer ID
 function answerLabel(qid, answerId) {
     const q = QUESTIONS[qid];
     if (!q) return answerId;
@@ -146,16 +65,27 @@ function isProbablyEmail(s) {
     return typeof s === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
 }
 
+function isProbablyPhone(s) {
+    if (typeof s !== 'string') return false;
+    const digits = s.replace(/\D/g, '');
+    return digits.length >= 6 && digits.length <= 15;
+}
+
 function buildInternalHtml(answers, result, contactKind) {
     const breakdownRows = Object.entries(result.breakdown)
         .filter(([, v]) => v > 0)
-        .map(([k, v]) => `<li><strong>${k}:</strong> ${fmt(v)}/mo</li>`)
+        .map(([k, v]) => `<li><strong>${escapeHtml(k)}:</strong> ${fmt(v)}/mo</li>`)
         .join('');
 
     const answerRows = Object.entries(answers)
         .filter(([k]) => k !== 'contact')
-        .map(([k, v]) => `<tr><td style="padding:6px 12px 6px 0;color:#555;font-size:13px">${k}</td><td style="padding:6px 0;font-size:13px"><strong>${answerLabel(k, v)}</strong></td></tr>`)
+        .map(([k, v]) => `<tr><td style="padding:6px 12px 6px 0;color:#555;font-size:13px">${escapeHtml(k)}</td><td style="padding:6px 0;font-size:13px"><strong>${escapeHtml(answerLabel(k, v))}</strong></td></tr>`)
         .join('');
+
+    const safeContact = escapeHtml(answers.contact);
+    const contactHref = contactKind === 'email'
+        ? `mailto:${encodeURIComponent(answers.contact)}`
+        : `tel:${encodeURIComponent(answers.contact)}`;
 
     return `
 <!DOCTYPE html>
@@ -167,8 +97,8 @@ function buildInternalHtml(answers, result, contactKind) {
     </div>
     <div style="padding:24px">
       <p style="margin:0 0 4px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#473D92;font-weight:800">Contact</p>
-      <p style="margin:0 0 4px;font-size:18px;font-weight:800;color:#25005D">${answers.businessName ?? '(no name)'}</p>
-      <p style="margin:0 0 20px;font-size:15px"><a href="${contactKind === 'email' ? 'mailto:' + answers.contact : 'tel:' + answers.contact}" style="color:#7868F8;text-decoration:none">${answers.contact}</a> <span style="color:#888;font-size:12px">(${contactKind})</span></p>
+      <p style="margin:0 0 4px;font-size:18px;font-weight:800;color:#25005D">${escapeHtml(answers.businessName ?? '(no name)')}</p>
+      <p style="margin:0 0 20px;font-size:15px"><a href="${contactHref}" style="color:#7868F8;text-decoration:none">${safeContact}</a> <span style="color:#888;font-size:12px">(${escapeHtml(contactKind)})</span></p>
 
       <p style="margin:0 0 8px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#473D92;font-weight:800">Where the revenue is coming from</p>
       <ul style="margin:0 0 20px;padding-left:18px;font-size:14px;color:#1A1A1A">${breakdownRows || '<li>No primary driver — answers were minimal.</li>'}</ul>
@@ -188,7 +118,7 @@ function buildInternalHtml(answers, result, contactKind) {
 function buildClientHtml(answers, result) {
     const annual = fmt(result.annualRevenue);
     const monthly = fmt(result.monthlyRevenue);
-    const businessName = answers.businessName ?? 'your business';
+    const businessName = escapeHtml(answers.businessName ?? 'your business');
 
     return `
 <!DOCTYPE html>
@@ -217,9 +147,71 @@ function buildClientHtml(answers, result) {
 </body></html>`;
 }
 
+function getClientIp(req) {
+    const fwd = req.headers['x-forwarded-for'];
+    if (typeof fwd === 'string' && fwd.length) return fwd.split(',')[0].trim();
+    return req.headers['x-real-ip'] || req.socket?.remoteAddress || 'unknown';
+}
+
+function getAllowedOrigins() {
+    const fromEnv = (process.env.ALLOWED_ORIGINS ?? '').split(',').map((s) => s.trim()).filter(Boolean);
+    return fromEnv.length ? fromEnv : DEFAULT_ALLOWED_ORIGINS;
+}
+
+function validateAnswers(answers) {
+    if (!answers || typeof answers !== 'object') return 'Invalid payload';
+    if (!answers.contact || !answers.businessName) return 'Missing contact or businessName';
+
+    for (const [k, v] of Object.entries(answers)) {
+        if (typeof v !== 'string') return `Invalid value for ${k}`;
+        if (v.length > MAX_FIELD_LEN) return `Field ${k} too long`;
+    }
+
+    const isEmail = isProbablyEmail(answers.contact);
+    const isPhone = isProbablyPhone(answers.contact);
+    if (!isEmail && !isPhone) return 'Contact must be an email or phone number';
+
+    return null;
+}
+
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ ok: false, error: 'Method not allowed' });
+    }
+
+    // Origin check (skip if header missing — some same-origin clients omit it).
+    const origin = req.headers.origin;
+    if (origin) {
+        const allowed = getAllowedOrigins();
+        if (!allowed.includes(origin)) {
+            return res.status(403).json({ ok: false, error: 'Forbidden origin' });
+        }
+    }
+
+    // Rate limit per IP, best-effort across this instance.
+    const ip = getClientIp(req);
+    const limit = rateLimit(ip);
+    if (!limit.allowed) {
+        res.setHeader('Retry-After', String(limit.retryAfter));
+        return res.status(429).json({ ok: false, error: 'Too many requests' });
+    }
+
+    let answers;
+    try {
+        answers = req.body;
+        if (typeof answers === 'string') answers = JSON.parse(answers);
+    } catch {
+        return res.status(400).json({ ok: false, error: 'Invalid JSON' });
+    }
+
+    // Honeypot — silently accept so bots don't learn the field is filtered.
+    if (answers && typeof answers === 'object' && answers._hp) {
+        return res.status(200).json({ ok: true, accepted: false });
+    }
+
+    const validationError = validateAnswers(answers);
+    if (validationError) {
+        return res.status(400).json({ ok: false, error: validationError });
     }
 
     const apiKey = process.env.RESEND_API_KEY;
@@ -236,25 +228,12 @@ export default async function handler(req, res) {
         return res.status(500).json({ ok: false, error: 'Server email not configured' });
     }
 
-    let answers;
-    try {
-        answers = req.body;
-        if (typeof answers === 'string') answers = JSON.parse(answers);
-    } catch (e) {
-        return res.status(400).json({ ok: false, error: 'Invalid JSON' });
-    }
-
-    if (!answers || typeof answers !== 'object' || !answers.contact || !answers.businessName) {
-        return res.status(400).json({ ok: false, error: 'Missing contact or businessName' });
-    }
-
     const result = calculate(answers);
     const contactKind = isProbablyEmail(answers.contact) ? 'email' : 'phone';
 
     const resend = new Resend(apiKey);
     const subject = `[SVA] New lead — ${fmt(result.monthlyRevenue)}/mo · ${answers.businessName}`;
 
-    // Send internal + client in parallel; do not fail the request if client email can't be sent
     const internalSend = resend.emails.send({
         from: fromEmail,
         to: internalEmails,
@@ -276,10 +255,10 @@ export default async function handler(req, res) {
     const [internalRes, clientRes] = await Promise.allSettled([internalSend, clientSend]);
 
     if (internalRes.status === 'rejected') {
-        console.error('[calculator/submit] internal email failed', internalRes.reason);
+        console.error('[calculator/submit] internal email failed', String(internalRes.reason));
     }
     if (clientRes.status === 'rejected') {
-        console.error('[calculator/submit] client email failed', clientRes.reason);
+        console.error('[calculator/submit] client email failed', String(clientRes.reason));
     }
 
     return res.status(200).json({
