@@ -465,7 +465,7 @@ export default function CaseStudyEasyStart() {
                                 <li><strong>Live since</strong>January 2026</li>
                                 <li><strong>Volume</strong>50&ndash;100 leads / mo</li>
                                 <li><strong>Booking rate</strong>17&ndash;25%</li>
-                                <li><strong>Engagement</strong>~6 months</li>
+                                <li><strong>Engagement</strong>6 months</li>
                             </ul>
                         </div>
                         <p className="cs-context-line">
