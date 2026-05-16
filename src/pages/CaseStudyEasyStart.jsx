@@ -447,8 +447,13 @@ export default function CaseStudyEasyStart() {
                     <div className="container">
                         <div className="cs-snapshot">
                             <div className="cs-snapshot-id">
-                                {/* [PLACEHOLDER] Denes headshot → /public/denes-aldott.jpg */}
-                                <div className="cs-snapshot-avatar" aria-hidden="true">DA</div>
+                                <img
+                                    src="/denes-aldott.jpg"
+                                    alt="Denes Aldott"
+                                    className="cs-snapshot-avatar"
+                                    width="76"
+                                    height="76"
+                                />
                                 <div>
                                     <p className="cs-snapshot-name">Denes Aldott</p>
                                     <p className="cs-snapshot-role">Sales Consultant, EasyStart Homes</p>
