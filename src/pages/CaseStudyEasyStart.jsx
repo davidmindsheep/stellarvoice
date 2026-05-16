@@ -32,7 +32,7 @@ const pilotStats = [
     { value: '60', label: 'leads contacted' },
     { value: 'up to 6', label: 'calls per lead' },
     { value: '10', label: 'qualified bookings' },
-    { value: '~1 in 6', label: 'converted to a real conversation' },
+    { value: '1 in 6', label: 'converted to a real conversation' },
 ];
 
 const cadence = [
@@ -59,7 +59,7 @@ const liveStats = [
     { value: '50–100', label: 'leads / month' },
     { value: '17–25%', label: 'booking rate' },
     { value: '9', label: 'contact attempts per lead' },
-    { value: '~6 months', label: 'live engagement' },
+    { value: '6 months', label: 'live engagement' },
 ];
 
 const beforeAfter = [
