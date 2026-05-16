@@ -27,6 +27,9 @@ function App() {
       <div className="app-container">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/case-studies/denes-aldott" element={<CaseStudyEasyStart />} />
+          {/* Legacy slug — preserved as a client-side fallback for anyone with
+              the old link cached. Vercel also 308-redirects at the edge. */}
           <Route path="/case-studies/easystart-homes" element={<CaseStudyEasyStart />} />
         </Routes>
       </div>

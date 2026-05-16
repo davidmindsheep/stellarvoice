@@ -25,7 +25,7 @@ import {
 // Asset placeholders flagged inline as [PLACEHOLDER].
 // ─────────────────────────────────────────────────────────────
 
-const PAGE_URL = 'https://www.stellarvoiceagents.com/case-studies/easystart-homes';
+const PAGE_URL = 'https://www.stellarvoiceagents.com/case-studies/denes-aldott';
 const SHARE_TEXT = 'How Denes Aldott books 17–25% of his inbound leads with AI voice that sounds human.';
 
 const pilotStats = [

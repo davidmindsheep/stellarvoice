@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/case-studies/easystart-homes",
+      "destination": "/case-studies/denes-aldott",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
