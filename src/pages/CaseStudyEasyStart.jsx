@@ -59,7 +59,7 @@ const liveStats = [
     { value: '50–100', label: 'leads / month' },
     { value: '17–25%', label: 'booking rate' },
     { value: '9', label: 'contact attempts per lead' },
-    { value: 'almost 6 mo', label: 'live engagement' },
+    { value: '~6 months', label: 'live engagement' },
 ];
 
 const beforeAfter = [
@@ -77,7 +77,7 @@ function useCountUp(target, duration = 1200) {
     const ref = useRef(null);
 
     useEffect(() => {
-        if (typeof target !== 'number') return;
+        if (!Number.isFinite(target)) return;
         const el = ref.current;
         if (!el) return;
         const obs = new IntersectionObserver(([e]) => {
@@ -100,12 +100,24 @@ function useCountUp(target, duration = 1200) {
     return { val, ref };
 }
 
+// Parse a leading prefix (+, -, ~) + digits from a stat string like "~1 in 6"
+// or "+120%" or "50–100". parseFloat('~1') returns NaN, so we strip the prefix
+// before parsing.
+function parseLeadingNumber(value) {
+    if (typeof value !== 'string') return null;
+    const m = value.match(/^([+\-~])?(\d+(?:\.\d+)?)/);
+    if (!m) return null;
+    const numeric = parseFloat(m[2]);
+    if (!Number.isFinite(numeric)) return null;
+    return { prefix: m[1] ?? '', numeric, fullMatch: m[0] };
+}
+
 function StatTile({ value, label }) {
-    // Try to parse a leading number; if found, animate it.
-    const numMatch = typeof value === 'string' ? value.match(/^([+\-~]?\d+(?:\.\d+)?)/) : null;
-    const numeric = numMatch ? parseFloat(numMatch[1]) : null;
-    const { val, ref } = useCountUp(numeric ?? 0);
-    const displayed = numeric === null ? value : value.replace(numMatch[0], `${numMatch[0].startsWith('+') ? '+' : numMatch[0].startsWith('-') ? '-' : numMatch[0].startsWith('~') ? '~' : ''}${Math.round(val)}`);
+    const parsed = parseLeadingNumber(value);
+    const { val, ref } = useCountUp(parsed?.numeric ?? 0);
+    const displayed = parsed
+        ? value.replace(parsed.fullMatch, `${parsed.prefix}${Math.round(val)}`)
+        : value;
 
     return (
         <div className="cs-stat-tile" ref={ref}>
