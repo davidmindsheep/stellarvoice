@@ -28,3 +28,9 @@ dist-ssr
 
 # Brand kit source material (lives in Google Drive)
 _brandkit/
+
+# Vercel CLI local dir
+.vercel/
+
+# Scratch backup dir used during rebases — not committed
+_v2-backup/
