@@ -252,16 +252,11 @@
     width: 76px;
     height: 76px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--deep-purple), var(--electric-violet));
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 900;
-    font-size: 1.4rem;
-    letter-spacing: 0.04em;
+    object-fit: cover;
     flex-shrink: 0;
     box-shadow: 0 6px 18px rgba(37, 0, 93, 0.2);
+    border: 3px solid var(--white);
+    background: var(--pale-lavender);
 }
 
 .cs-snapshot-name {
