@@ -86,16 +86,11 @@ export const FEATURE_MATRIX = [
     { feature: 'Performance Fee', starter: '$25/appt', growth: '$30/appt', scale: '$45/appt' },
     { feature: 'Expected Monthly Total', starter: '~$1,122/mo', growth: '~$2,497/mo', scale: '~$6,997/mo' },
     { feature: 'Setup Fee', starter: '$1,000', growth: '$2,000', scale: '$3,500' },
-    { feature: '60-Day Pilot Available', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Minimum Commitment', starter: '1 month', growth: '3 months', scale: '6 months' },
     { feature: '30-Day Guarantee', starter: '✓', growth: '✓', scale: '✓' },
 
-    { category: 'Speed-to-Lead' },
-    { feature: 'Speed-to-lead callback (under 60 seconds)', starter: '✓', growth: '✓', scale: '✓' },
-    { feature: 'Direct CRM integration (auto-pump, no file uploads)', starter: '✓', growth: '✓', scale: '✓' },
-    { feature: 'Web form auto-reply (SMS or email acknowledgement)', starter: '✓', growth: '✓', scale: '✓' },
-
     { category: 'Outbound Engine' },
+    { feature: 'Speed-to-lead callback (under 60 seconds)', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'ClosedLoop callback (system calls them back at least once)', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Lead qualification on every call', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Callback scheduling on no-answer', starter: '✓', growth: '✓', scale: '✓' },
@@ -113,7 +108,9 @@ export const FEATURE_MATRIX = [
     { feature: 'Custom agent personas', starter: '✗', growth: '✗', scale: '✓' },
 
     { category: 'Integrations' },
-    { feature: 'CRM integrations', starter: '1 integration', growth: 'Up to 3', scale: 'Unlimited' },
+    { feature: 'CRM integrations (auto-pump, no file uploads)', starter: '1 integration', growth: 'Up to 3', scale: 'Unlimited' },
+    { feature: 'SMS integration', starter: '✗', growth: '✓', scale: '✓' },
+    { feature: 'Email integration', starter: '✗', growth: '✓', scale: '✓' },
     { feature: 'Calendar integration + appointment booking', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Custom workflows', starter: '✗', growth: '✗', scale: '✓' },
 
