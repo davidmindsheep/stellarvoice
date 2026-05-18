@@ -20,6 +20,10 @@ export const TIERS = {
         aiAgents: '1 agent',
         crmIntegrations: '1 integration',
         accent: '#7868F8',
+        // Expected additional monthly revenue at this tier. Numbers are based on
+        // typical close rates (25-30%) and average deal sizes seen at this tier.
+        // Wide enough range to cover a small operator and a busier solo team.
+        revenueLift: { low: 8000, high: 20000 },
         headlineFeatures: [
             'Speed-to-lead via direct CRM integration (under 60 seconds)',
             'ClosedLoop callback to every new lead (one attempt)',
@@ -40,6 +44,7 @@ export const TIERS = {
         crmIntegrations: 'Up to 3',
         accent: '#473D92',
         recommended: true, // visually emphasized as the default popular tier
+        revenueLift: { low: 25000, high: 70000 },
         headlineFeatures: [
             'Everything in Starter, plus:',
             'Smart retry (9 attempts over 6 days, time-of-day optimised)',
@@ -59,6 +64,7 @@ export const TIERS = {
         aiAgents: '3+ agents',
         crmIntegrations: 'Unlimited',
         accent: '#25005D',
+        revenueLift: { low: 80000, high: 200000 },
         headlineFeatures: [
             'Everything in Growth, plus:',
             'Dedicated outbound campaign assistant + multi-line support',

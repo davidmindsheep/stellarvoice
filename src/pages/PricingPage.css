@@ -134,23 +134,36 @@
     font-weight: 600;
     font-size: 0.95rem;
 }
-.tier-expected {
-    margin: 0 0 1rem;
-    font-size: 0.95rem;
-    color: #444;
-}
-.tier-expected strong {
-    color: #25005D;
-    font-weight: 800;
-}
-.tier-downside {
-    background: #F3F3F3;
-    border-left: 3px solid var(--tier-accent, #7868F8);
-    padding: 0.6rem 0.8rem;
-    border-radius: 6px;
+/* Expected additional revenue box. The upside lives here — replaces the
+ * old "expected cost" line + "your risk" downside callout. */
+.tier-revenue {
+    background: linear-gradient(135deg, #F5F2FF 0%, #EFE9FB 100%);
+    border: 1px solid var(--tier-accent, #7868F8);
+    padding: 0.85rem 1rem;
+    border-radius: 10px;
     margin-bottom: 1.25rem;
-    font-size: 0.85rem;
-    color: #1A1A1A;
+    text-align: center;
+}
+.tier-revenue-label {
+    margin: 0 0 0.25rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #5040C7;
+    font-weight: 700;
+}
+.tier-revenue-value {
+    margin: 0;
+    color: var(--tier-accent, #25005D);
+    font-size: 1.15rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+.tier-revenue-value span {
+    font-size: 0.78rem;
+    color: #555;
+    font-weight: 500;
+    margin-left: 0.25rem;
 }
 .tier-features {
     list-style: none;

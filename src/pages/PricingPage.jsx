@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Calculator from '../components/Calculator/Calculator';
-import { TIERS, TIER_ORDER, FEATURE_MATRIX, expectedMonthlyTotal } from '../lib/pricingConfig';
+import { TIERS, TIER_ORDER, FEATURE_MATRIX } from '../lib/pricingConfig';
 import { getRecommendation, getTierFromUrl } from '../lib/recommendationCookie';
 import { openCalendly } from '../lib/calendly';
 import { track } from '../lib/analytics';
@@ -23,7 +23,6 @@ function CellValue({ value }) {
 }
 
 function TierCard({ tier, isRecommended, recommendedKnown }) {
-    const expected = expectedMonthlyTotal(tier.id);
     const handleCta = () => {
         track('tier_card_click', { tier: tier.id, was_recommended: isRecommended, cta: 'demo' });
         openCalendly(undefined, `pricing-${tier.id}`);
@@ -50,10 +49,12 @@ function TierCard({ tier, isRecommended, recommendedKnown }) {
             </div>
             <p className="tier-perappt">+ {fmt(tier.perAppt)} per qualified booked appointment</p>
 
-            <p className="tier-expected">Expected <strong>{fmt(expected)}/mo</strong></p>
-
-            <div className="tier-downside">
-                <strong>Your risk:</strong> just {fmt(tier.baseRetainer)}/mo if we underperform
+            <div className="tier-revenue">
+                <p className="tier-revenue-label">Expected additional revenue</p>
+                <p className="tier-revenue-value">
+                    +{fmt(tier.revenueLift.low)} to {fmt(tier.revenueLift.high)}
+                    <span>/mo</span>
+                </p>
             </div>
 
             <ul className="tier-features">
