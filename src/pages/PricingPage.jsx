@@ -132,10 +132,11 @@ export default function PricingPage() {
                 {/* HERO */}
                 <section className="pp-hero">
                     <div className="container pp-hero-inner">
-                        <h1>We keep your base cost low and earn our fee when we deliver results.</h1>
+                        <h1>We get paid when you do.</h1>
                         <p className="pp-hero-sub">
-                            Every plan includes a low base retainer. You only pay your per-appointment fee
-                            when we book qualified appointments. Your downside is capped at the base.
+                            Every plan is a small base plus a per-appointment fee. The base keeps the engine running.
+                            The real money changes hands when we put a qualified booked meeting on your calendar.
+                            If we don&apos;t book, we don&apos;t get paid the part that matters.
                         </p>
                         <button type="button" className="btn-primary pp-hero-cta" onClick={() => setCalcOpen(true)}>
                             See Your Recommended Plan
