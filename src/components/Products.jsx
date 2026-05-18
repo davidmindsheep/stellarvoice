@@ -4,19 +4,10 @@ import useScrollReveal, { useCardReveal } from '../hooks/useScrollReveal';
 import { Bot, Zap, PhoneOutgoing } from 'lucide-react';
 import { openCalendly } from '../lib/calendly';
 
+// Order: outbound products first (ClosedLoop, Dead Lead Revival), then the
+// inbound AI Receptionist. The outbound products are the ones with current
+// pricing tiers on /pricing; AI Receptionist pricing comes later.
 const products = [
-    {
-        name: 'AI Receptionist',
-        tagline: 'Your 24/7 front desk. Never miss a call.',
-        Icon: Bot,
-        features: [
-            'Answers every incoming call instantly, day or night',
-            'Qualifies each caller against your custom questions',
-            'Books the appointment straight into your calendar',
-            'Delivers call summaries and transcripts to your team'
-        ],
-        color: '#25005D'
-    },
     {
         name: 'ClosedLoop',
         tagline: 'Instant lead response. Seconds, not hours.',
@@ -40,6 +31,18 @@ const products = [
             'Full analytics on every conversation'
         ],
         color: '#473D92'
+    },
+    {
+        name: 'AI Receptionist',
+        tagline: 'Your 24/7 front desk. Never miss a call.',
+        Icon: Bot,
+        features: [
+            'Answers every incoming call instantly, day or night',
+            'Qualifies each caller against your custom questions',
+            'Books the appointment straight into your calendar',
+            'Delivers call summaries and transcripts to your team'
+        ],
+        color: '#25005D'
     }
 ];
 
