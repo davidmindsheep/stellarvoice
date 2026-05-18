@@ -107,7 +107,7 @@ export const FEATURE_MATRIX = [
     { feature: 'Custom agent personas', starter: '✗', growth: '✗', scale: '✓' },
 
     { category: 'Integrations' },
-    { feature: 'CRM integrations (auto-pump, no file uploads)', starter: '1 integration', growth: 'Up to 3', scale: 'Unlimited' },
+    { feature: 'CRM integrations', starter: '1 integration', growth: 'Up to 3', scale: 'Unlimited' },
     { feature: 'SMS integration', starter: '✗', growth: '✓', scale: '✓' },
     { feature: 'Email integration', starter: '✗', growth: '✓', scale: '✓' },
     { feature: 'Calendar integration + appointment booking', starter: '✓', growth: '✓', scale: '✓' },
