@@ -94,6 +94,8 @@ export const FEATURE_MATRIX = [
     { feature: 'Lead qualification on every call', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Callback scheduling on no-answer', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Smart retry (9 attempts over 6 days, time-of-day optimised)', starter: '✗', growth: '✓', scale: '✓' },
+    { feature: 'Outbound SMS', starter: '✗', growth: '✓', scale: '✓' },
+    { feature: 'Outbound email', starter: '✗', growth: '✓', scale: '✓' },
     { feature: 'Outbound campaigns via list upload', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Dedicated outbound campaign assistant (separate agent)', starter: '✗', growth: '✗', scale: '✓' },
     { feature: 'Multi-line support', starter: '✗', growth: '✗', scale: '✓' },
@@ -108,8 +110,6 @@ export const FEATURE_MATRIX = [
 
     { category: 'Integrations' },
     { feature: 'CRM integrations', starter: '1 integration', growth: 'Up to 3', scale: 'Unlimited' },
-    { feature: 'SMS integration', starter: '✗', growth: '✓', scale: '✓' },
-    { feature: 'Email integration', starter: '✗', growth: '✓', scale: '✓' },
     { feature: 'Calendar integration + appointment booking', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Custom workflows', starter: '✗', growth: '✗', scale: '✓' },
 
