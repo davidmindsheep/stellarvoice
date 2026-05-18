@@ -84,7 +84,6 @@ export const FEATURE_MATRIX = [
     { category: 'Pricing' },
     { feature: 'Base Retainer', starter: '$497/mo', growth: '$997/mo', scale: '$2,497/mo' },
     { feature: 'Performance Fee', starter: '$25/appt', growth: '$30/appt', scale: '$45/appt' },
-    { feature: 'Outcome Guarantee', starter: '~25 appts/mo', growth: '~50 appts/mo', scale: '~100 appts/mo' },
     { feature: 'Expected Monthly Total', starter: '~$1,122/mo', growth: '~$2,497/mo', scale: '~$6,997/mo' },
     { feature: 'Setup Fee', starter: '$1,000', growth: '$2,000', scale: '$3,500' },
     { feature: 'Setup Fee Waived (upfront)', starter: '3 months', growth: '3 months', scale: '3 months' },

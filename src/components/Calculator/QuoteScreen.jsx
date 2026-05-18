@@ -102,8 +102,8 @@ export default function QuoteScreen({ result, businessName }) {
                         <p className="quote-plan-value">+ {fmt(perAppt)}<span>/appt</span></p>
                     </div>
                     <div>
-                        <p className="quote-plan-label">Outcome guarantee</p>
-                        <p className="quote-plan-value">~{guarantee}<span>/mo</span></p>
+                        <p className="quote-plan-label">Expected total</p>
+                        <p className="quote-plan-value">{fmt(expectedCost)}<span>/mo</span></p>
                     </div>
                 </div>
                 <p className="quote-plan-explanation">
@@ -140,7 +140,7 @@ export default function QuoteScreen({ result, businessName }) {
                             <td className="num neg">- {fmt(baseRetainer)}</td>
                         </tr>
                         <tr>
-                            <td>Performance fee ({guarantee} × {fmt(perAppt)})</td>
+                            <td>Expected performance fee</td>
                             <td className="num neg">- {fmt(performanceFee)}</td>
                         </tr>
                         <tr className="row-cost">

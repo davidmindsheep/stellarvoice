@@ -41,7 +41,7 @@ const Pricing = () => {
                                     <span className="period">/mo base</span>
                                 </div>
                                 <p className="pricing-perappt">+ {fmt(tier.perAppt)} per qualified booked appointment</p>
-                                <p className="pricing-expected">Expected ~{fmt(expected)}/mo at ~{tier.guarantee} appts</p>
+                                <p className="pricing-expected">Expected ~{fmt(expected)}/mo</p>
                                 <ul className="pricing-features">
                                     {tier.headlineFeatures.slice(0, 4).map((f, j) => (
                                         <li key={j}><span className="check" style={{color: tier.accent}}>✓</span> {f}</li>

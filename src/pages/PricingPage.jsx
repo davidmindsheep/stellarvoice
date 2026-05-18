@@ -50,12 +50,7 @@ function TierCard({ tier, isRecommended, recommendedKnown }) {
             </div>
             <p className="tier-perappt">+ {fmt(tier.perAppt)} per qualified booked appointment</p>
 
-            <div className="tier-outcome">
-                <p className="tier-outcome-label">Outcome guarantee</p>
-                <p className="tier-outcome-value">~{tier.guarantee} qualified booked appointments/mo</p>
-            </div>
-
-            <p className="tier-expected">Expected: <strong>{fmt(expected)}/mo</strong> at guarantee volume</p>
+            <p className="tier-expected">Expected <strong>{fmt(expected)}/mo</strong></p>
 
             <div className="tier-downside">
                 <strong>Your risk:</strong> just {fmt(tier.baseRetainer)}/mo if we underperform
@@ -246,37 +241,18 @@ export default function PricingPage() {
                 <section className="pp-pilot">
                     <div className="container">
                         <div className="pp-pilot-box">
-                            <h2>Not sure? Start with a 60-Day Pilot at half the base.</h2>
-                            <p>Full features, no restrictions, cancel anytime.</p>
-                            <div className="pp-pilot-grid">
-                                {TIER_ORDER.map((id) => {
-                                    const t = TIERS[id];
-                                    return (
-                                        <div key={id} className="pp-pilot-card" style={{ '--tier-accent': t.accent }}>
-                                            <p className="pp-pilot-name">{t.name} pilot</p>
-                                            <p className="pp-pilot-price">
-                                                {fmt(t.pilotBase)}<span>/mo base</span>
-                                            </p>
-                                            <p className="pp-pilot-perappt">+ {fmt(t.perAppt)} per booked appointment</p>
-                                            <ul>
-                                                <li>Full features, no restrictions</li>
-                                                <li>Cancel anytime</li>
-                                                <li>60 days</li>
-                                            </ul>
-                                            <button
-                                                type="button"
-                                                className="btn-primary small"
-                                                onClick={() => {
-                                                    track('tier_card_click', { tier: id, cta: 'pilot', source: 'pilot_section' });
-                                                    openCalendly(undefined, `pricing-${id}-pilot-section`);
-                                                }}
-                                            >
-                                                Start Pilot
-                                            </button>
-                                        </div>
-                                    );
-                                })}
-                            </div>
+                            <h2>Not sure? Start with a 60-Day Pilot.</h2>
+                            <p>Talk to Gary about a pilot. Full features, no restrictions, cancel anytime.</p>
+                            <button
+                                type="button"
+                                className="btn-primary"
+                                onClick={() => {
+                                    track('tier_card_click', { cta: 'pilot', source: 'pilot_section' });
+                                    openCalendly(undefined, 'pricing-pilot-section');
+                                }}
+                            >
+                                Book a Pilot Call
+                            </button>
                         </div>
                     </div>
                 </section>

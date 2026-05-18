@@ -134,30 +134,14 @@
     font-weight: 600;
     font-size: 0.95rem;
 }
-.tier-outcome {
-    background: #F5F2FF;
-    padding: 0.85rem 1rem;
-    border-radius: 10px;
-    margin-bottom: 0.75rem;
-}
-.tier-outcome-label {
-    margin: 0 0 0.2rem;
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #5040C7;
-    font-weight: 700;
-}
-.tier-outcome-value {
-    margin: 0;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: #25005D;
-}
 .tier-expected {
     margin: 0 0 1rem;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: #444;
+}
+.tier-expected strong {
+    color: #25005D;
+    font-weight: 800;
 }
 .tier-downside {
     background: #F3F3F3;
@@ -309,62 +293,18 @@
     border-radius: 18px;
     padding: 2.5rem 2rem;
     border: 2px solid #E6E2F0;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
 }
 .pp-pilot-box h2 {
-    text-align: center;
     color: #25005D;
-    margin: 0 0 0.5rem;
+    margin: 0 0 0.75rem;
 }
 .pp-pilot-box > p {
-    text-align: center;
     color: #555;
-    margin: 0 0 2rem;
-}
-.pp-pilot-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-}
-.pp-pilot-card {
-    padding: 1.5rem;
-    border-radius: 12px;
-    border: 1px solid #E6E2F0;
-    background: #FAFAFA;
-}
-.pp-pilot-name {
-    margin: 0 0 0.5rem;
-    color: var(--tier-accent, #7868F8);
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-size: 0.85rem;
-}
-.pp-pilot-price {
-    margin: 0 0 0.4rem;
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: #1A1A1A;
-}
-.pp-pilot-price span { font-size: 0.9rem; color: #777; font-weight: 500; margin-left: 0.3rem; }
-.pp-pilot-perappt {
-    margin: 0 0 1rem;
-    color: var(--tier-accent, #7868F8);
-    font-size: 0.9rem;
-}
-.pp-pilot-card ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1.25rem;
-}
-.pp-pilot-card li {
-    padding: 0.3rem 0;
-    font-size: 0.9rem;
-    color: #333;
-}
-.pp-pilot-card li::before {
-    content: '✓ ';
-    color: #2C9F4C;
-    font-weight: 700;
+    margin: 0 0 1.75rem;
+    font-size: 1.02rem;
 }
 
 /* FINAL CTA */
@@ -387,7 +327,6 @@
 /* MOBILE */
 @media (max-width: 880px) {
     .pp-tier-grid { grid-template-columns: 1fr; }
-    .pp-pilot-grid { grid-template-columns: 1fr; }
     .pp-hero { padding: 5rem 0 3.5rem; }
     .pp-matrix-table { font-size: 0.85rem; min-width: 600px; }
     .tier-card.is-recommended { transform: none; }
@@ -396,4 +335,5 @@
     .pp-hero h1 { font-size: 1.85rem; }
     .pp-hero-sub { font-size: 1rem; }
     .tier-price-value { font-size: 2.2rem; }
+    .pp-pilot-box { padding: 1.75rem 1.25rem; }
 }
