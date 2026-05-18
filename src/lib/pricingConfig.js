@@ -88,9 +88,8 @@ export const FEATURE_MATRIX = [
     { feature: 'Setup Fee', starter: '$1,000', growth: '$2,000', scale: '$3,500' },
     { feature: 'Minimum Commitment', starter: '1 month', growth: '3 months', scale: '6 months' },
 
-    { category: 'Outbound Engine' },
+    { category: 'ClosedLoop Callback' },
     { feature: 'Speed-to-lead callback (under 60 seconds)', starter: '✓', growth: '✓', scale: '✓' },
-    { feature: 'ClosedLoop callback (system calls them back at least once)', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Lead qualification on every call', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Callback scheduling on no-answer', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Smart retry (9 attempts over 6 days, time-of-day optimised)', starter: '✗', growth: '✓', scale: '✓' },
