@@ -86,7 +86,6 @@ export const FEATURE_MATRIX = [
     { feature: 'Performance Fee', starter: '$25/appt', growth: '$30/appt', scale: '$45/appt' },
     { feature: 'Expected Monthly Total', starter: '~$1,122/mo', growth: '~$2,497/mo', scale: '~$6,997/mo' },
     { feature: 'Setup Fee', starter: '$1,000', growth: '$2,000', scale: '$3,500' },
-    { feature: 'Setup Fee Waived (upfront)', starter: '3 months', growth: '3 months', scale: '3 months' },
     { feature: '60-Day Pilot Available', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Minimum Commitment', starter: '1 month', growth: '3 months', scale: '6 months' },
     { feature: '30-Day Guarantee', starter: '✓', growth: '✓', scale: '✓' },
