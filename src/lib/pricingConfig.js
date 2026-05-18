@@ -22,8 +22,8 @@ export const TIERS = {
         accent: '#7868F8',
         headlineFeatures: [
             'Speed-to-lead via direct CRM integration (under 60 seconds)',
-            'ClosedLoop callback to every inbound lead (one attempt)',
-            'Appointment booking + missed call recovery, 24/7',
+            'ClosedLoop callback to every new lead (one attempt)',
+            'Appointment booking direct to your calendar',
             'Live dashboard + monthly summary'
         ]
     },
@@ -91,40 +91,35 @@ export const FEATURE_MATRIX = [
     { feature: 'Minimum Commitment', starter: '1 month', growth: '3 months', scale: '6 months' },
     { feature: '30-Day Guarantee', starter: '✓', growth: '✓', scale: '✓' },
 
-    { category: 'Inbound Call Handling' },
-    { feature: 'Missed call recovery', starter: '✓', growth: '✓', scale: '✓' },
-    { feature: 'After-hours greeting', starter: '✓', growth: '✓', scale: '✓' },
-    { feature: 'Call recording', starter: '✓', growth: '✓', scale: '✓' },
-    { feature: 'Basic lead qualification', starter: '✓', growth: '✓', scale: '✓' },
-    { feature: 'Callback scheduling', starter: '✓', growth: '✓', scale: '✓' },
-
     { category: 'Speed-to-Lead' },
     { feature: 'Speed-to-lead callback (under 60 seconds)', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Direct CRM integration (auto-pump, no file uploads)', starter: '✓', growth: '✓', scale: '✓' },
-    { feature: 'Web form auto-reply', starter: '✓', growth: '✓', scale: '✓' },
-
-    { category: 'Appointment Booking' },
-    { feature: 'Appointment booking', starter: '✓', growth: '✓', scale: '✓' },
+    { feature: 'Web form auto-reply (SMS or email acknowledgement)', starter: '✓', growth: '✓', scale: '✓' },
 
     { category: 'Outbound Engine' },
     { feature: 'ClosedLoop callback (system calls them back at least once)', starter: '✓', growth: '✓', scale: '✓' },
+    { feature: 'Lead qualification on every call', starter: '✓', growth: '✓', scale: '✓' },
+    { feature: 'Callback scheduling on no-answer', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Smart retry (9 attempts over 6 days, time-of-day optimised)', starter: '✗', growth: '✓', scale: '✓' },
     { feature: 'Outbound campaigns via list upload', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Dedicated outbound campaign assistant (separate agent)', starter: '✗', growth: '✗', scale: '✓' },
     { feature: 'Multi-line support', starter: '✗', growth: '✗', scale: '✓' },
 
     { category: 'Lead Sources' },
+    { feature: 'Handling one lead source', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Multi-source lead handling', starter: '✗', growth: '✓', scale: '✓' },
 
     { category: 'AI Agents' },
     { feature: 'AI agents included', starter: '1 agent', growth: '2 agents', scale: '3+ agents' },
     { feature: 'Custom agent personas', starter: '✗', growth: '✗', scale: '✓' },
 
-    { category: 'CRM Integration' },
+    { category: 'Integrations' },
     { feature: 'CRM integrations', starter: '1 integration', growth: 'Up to 3', scale: 'Unlimited' },
+    { feature: 'Calendar integration + appointment booking', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Custom workflows', starter: '✗', growth: '✗', scale: '✓' },
 
     { category: 'Reporting & Support' },
+    { feature: 'Call recording + transcript', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Live dashboard', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Monthly summary email', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Weekly digest report', starter: '✗', growth: '✓', scale: '✓' },
