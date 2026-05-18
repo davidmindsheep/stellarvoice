@@ -59,6 +59,7 @@ function TierCard({ tier, isRecommended, recommendedKnown }) {
                         +{fmt(tier.revenueLift.low)} to {fmt(tier.revenueLift.high)}
                         <span>/mo</span>
                     </p>
+                    <p className="tier-revenue-note">Based on the numbers you provided</p>
                 </div>
             )}
 
