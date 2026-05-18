@@ -1,35 +1,20 @@
+// Homepage pricing preview. Shows the 3 service tiers (Starter / Growth /
+// Scale) with the base retainer + per-appointment headline. The full feature
+// matrix lives on /pricing.
+
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Pricing.css';
 import useScrollReveal, { useCardReveal } from '../hooks/useScrollReveal';
-import { Bot, Zap, PhoneOutgoing } from 'lucide-react';
+import { TIERS, TIER_ORDER, expectedMonthlyTotal } from '../lib/pricingConfig';
 import { openCalendly } from '../lib/calendly';
 
-const plans = [
-    {
-        name: 'AI Receptionist',
-        price: '$597',
-        unit: '/mo',
-        Icon: Bot,
-        features: ['2 agents — one for calls, one for text', 'Unlimited inbound calls', 'CRM integration, recordings & transcripts'],
-        color: '#25005D'
-    },
-    {
-        name: 'ClosedLoop',
-        price: '$10',
-        unit: '/lead',
-        Icon: Zap,
-        features: ['Form-to-call in under 5 seconds', 'Google & Meta Ads integration', 'Custom qualification scripts on every call'],
-        color: '#7868F8'
-    },
-    {
-        name: 'Dead Lead Revival',
-        price: '$10',
-        unit: '/lead',
-        Icon: PhoneOutgoing,
-        features: ['We work your aged-lead database', 'Qualifies and re-books ready-to-move prospects', 'Detailed call analytics'],
-        color: '#473D92'
-    }
-];
+const fmt = (n) =>
+    new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0
+    }).format(n);
 
 const Pricing = () => {
     const titleRef = useScrollReveal();
@@ -38,31 +23,42 @@ const Pricing = () => {
         <section id="pricing" className="pricing-section bg-alt bg-glow">
             <div className="container">
                 <div ref={titleRef} className="reveal">
-                    <h2 className="section-title">Simple, Transparent Pricing</h2>
-                    <p className="section-subtitle">No hidden fees. Just results.</p>
+                    <h2 className="section-title">Pricing built around results</h2>
+                    <p className="section-subtitle">
+                        Low base retainer. Per-appointment fee only when we deliver. Your downside is capped at the base.
+                    </p>
                 </div>
                 <div className="pricing-grid" ref={gridRef}>
-                    {plans.map((plan, i) => (
-                        <div key={i} className="pricing-card glass-card reveal-card" style={{'--card-accent': plan.color}}>
-                            <div className="pricing-icon-wrap" style={{background: `${plan.color}15`}}>
-                                <plan.Icon size={28} strokeWidth={1.75} color={plan.color} />
+                    {TIER_ORDER.map((id) => {
+                        const tier = TIERS[id];
+                        const expected = expectedMonthlyTotal(id);
+                        return (
+                            <div key={id} className="pricing-card glass-card reveal-card" style={{'--card-accent': tier.accent}}>
+                                <h3 className="pricing-name">{tier.name}</h3>
+                                <div className="pricing-amount">
+                                    <span className="from">starting</span>
+                                    <span className="price">{fmt(tier.baseRetainer)}</span>
+                                    <span className="period">/mo base</span>
+                                </div>
+                                <p className="pricing-perappt">+ {fmt(tier.perAppt)} per qualified booked appointment</p>
+                                <p className="pricing-expected">Expected ~{fmt(expected)}/mo at ~{tier.guarantee} appts</p>
+                                <ul className="pricing-features">
+                                    {tier.headlineFeatures.slice(0, 4).map((f, j) => (
+                                        <li key={j}><span className="check" style={{color: tier.accent}}>✓</span> {f}</li>
+                                    ))}
+                                </ul>
+                                <Link to={`/pricing?plan=${id}`} className="btn-primary">
+                                    See {tier.name} details
+                                </Link>
                             </div>
-                            <h3 className="pricing-name">{plan.name}</h3>
-                            <div className="pricing-amount">
-                                <span className="from">starting</span>
-                                <span className="price">{plan.price}</span>
-                                <span className="period">{plan.unit}</span>
-                            </div>
-                            <ul className="pricing-features">
-                                {plan.features.map((f, j) => (
-                                    <li key={j}><span className="check" style={{color: plan.color}}>✓</span> {f}</li>
-                                ))}
-                            </ul>
-                            <button type="button" onClick={() => openCalendly(undefined, `pricing-${plan.name}`)} className="btn-primary">Get a Custom Quote</button>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
-                <p className="pricing-fineprint">Set up fee and add-ons not included in the listed prices.</p>
+                <p className="pricing-fineprint">
+                    Setup fees and add-ons not included.{' '}
+                    <Link to="/pricing">Compare every feature on the full pricing page</Link>, or{' '}
+                    <button type="button" className="pricing-inline-btn" onClick={() => openCalendly(undefined, 'pricing-section')}>book a demo</button>.
+                </p>
             </div>
         </section>
     );

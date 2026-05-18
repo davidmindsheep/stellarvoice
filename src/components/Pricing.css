@@ -30,7 +30,30 @@
     font-weight: 800;
 }
 
-.pricing-amount { margin-bottom: 24px; display: flex; align-items: baseline; gap: 4px; }
+.pricing-amount { margin-bottom: 8px; display: flex; align-items: baseline; gap: 4px; }
+.pricing-perappt {
+    margin: 0 0 6px;
+    color: var(--card-accent, var(--electric-violet));
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-align: center;
+}
+.pricing-expected {
+    margin: 0 0 22px;
+    color: #555;
+    font-size: 0.85rem;
+    text-align: center;
+}
+.pricing-inline-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--electric-violet);
+    text-decoration: underline;
+    cursor: pointer;
+    font: inherit;
+}
+.pricing-fineprint a { color: var(--electric-violet); }
 .pricing-amount .from { font-size: 0.85rem; color: #777; }
 .pricing-amount .price {
     font-size: 2.6rem;

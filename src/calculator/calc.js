@@ -1,10 +1,17 @@
-// Math engine. Constants calibrated against SVA pillar metrics
-// (3x speed-to-lead, 80% follow-up consistency, +45% coverage).
-// Currency: USD. Don't change constants without David.
+// Math engine for the SVA Smart Quiz.
+//
+// Calibrated against the SVA pillar metrics (3x speed-to-lead, 80%
+// follow-up consistency, +45% coverage). Currency: USD.
+//
+// As of May 2026 the fee anchor is tier-aware: we route the prospect
+// to one of three tiers (starter/growth/scale) via routeTier(), and
+// use that tier's expected monthly total as the ROI divisor. The base
+// retainer alone understates the prospect's true cost; expected total
+// (base + guarantee x per-appt) is the honest comparison.
 
 import { QUESTIONS } from './questions';
-
-const SVA_MONTHLY_FEE = 600;
+import { routeTier, isEnterpriseAnswers } from '../lib/tierRouting';
+import { TIERS, expectedMonthlyTotal } from '../lib/pricingConfig';
 
 function meta(answers, qid) {
     const q = QUESTIONS[qid];
@@ -50,10 +57,21 @@ export function calculate(answers) {
     ];
     const primary = drivers.reduce((a, b) => (b[1] > a[1] ? b : a));
 
+    // Tier routing. Enterprise prospects get no plan card, only a CTA to call
+    // Gary. For ROI math we still surface a reasonable anchor — we use Scale's
+    // expected total as a stand-in so the ROI multiple stays sensible.
+    const tier = routeTier(answers);
+    const enterprise = isEnterpriseAnswers(answers);
+    const anchorTier = enterprise ? 'scale' : tier;
+    const plan = TIERS[anchorTier];
+    const expectedTotal = expectedMonthlyTotal(anchorTier);
+
     return {
         monthlyRevenue: Math.round(monthlyRevenue),
         annualRevenue: Math.round(monthlyRevenue * 12),
-        roiMultiple: Math.round((monthlyRevenue / SVA_MONTHLY_FEE) * 100) / 100,
+        roiMultiple: expectedTotal > 0
+            ? Math.round((monthlyRevenue / expectedTotal) * 100) / 100
+            : 0,
         primaryDriverLabel: primary[2],
         breakdown: {
             missedCallsMonthly: Math.round(missedCallsMonthly),
@@ -61,6 +79,20 @@ export function calculate(answers) {
             afterHoursMonthly: Math.round(afterHoursMonthly),
             timeSavedMonthly: Math.round(timeSavedMonthly)
         },
-        sva: { monthlyFee: SVA_MONTHLY_FEE }
+        // Tier-aware plan info. Consumers should use `tier` for routing
+        // (which may be 'enterprise'); for cost math use `expectedMonthlyCost`.
+        tier,
+        enterprise,
+        plan: {
+            id: anchorTier,
+            name: plan.name,
+            baseRetainer: plan.baseRetainer,
+            perAppt: plan.perAppt,
+            guarantee: plan.guarantee,
+            pilotBase: plan.pilotBase,
+            expectedTotal
+        },
+        // Legacy field kept for the existing internal email template.
+        sva: { monthlyFee: expectedTotal }
     };
 }

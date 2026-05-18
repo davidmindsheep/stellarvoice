@@ -362,3 +362,23 @@
     .calc-hero-panel { padding: 28px 20px; }
     .calc-roi { padding: 18px; }
 }
+
+/* Phase 4: when showing the quote screen, widen the modal so the printable
+ * layout has breathing room, and switch alignment so long content scrolls
+ * from the top rather than getting clipped above by `align-items: center`.
+ * Uses :has() (supported in all modern evergreen browsers). */
+.calc-modal:has(.calc-slide-quote) {
+    max-width: 780px;
+}
+.calc-slide-quote {
+    width: 100%;
+}
+.calc-modal:has(.calc-slide-quote) .calc-main {
+    padding: 24px 20px 32px;
+    align-items: flex-start;
+}
+.calc-modal:has(.calc-slide-quote) .calc-card {
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+}

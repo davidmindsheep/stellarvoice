@@ -5,13 +5,8 @@ import { getNextQuestion, getProgress } from '../../calculator/nextQuestion';
 import { calculate } from '../../calculator/calc';
 import { submitLead } from '../../calculator/submit';
 import { track } from '../../lib/analytics';
-
-const fmt = (n) =>
-    new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        maximumFractionDigits: 0
-    }).format(n);
+import { setRecommendation } from '../../lib/recommendationCookie';
+import QuoteScreen, { EnterpriseQuoteScreen } from './QuoteScreen';
 
 const initialState = {
     stage: 'start',
@@ -40,7 +35,7 @@ function StartScreen({ onStart }) {
             <p className="calc-eyebrow">30-second test</p>
             <h1 className="calc-headline">Never lose<br />another lead.</h1>
             <p className="calc-subhead">
-                Answer four quick questions. See exactly how much revenue is walking past your business every month — and how a voice agent would engage, qualify, and book it.
+                Answer four quick questions. See exactly how much revenue is walking past your business every month, plus the plan that fits.
             </p>
             <button className="calc-continue" style={{ maxWidth: 280 }} onClick={() => { track('quiz_started'); onStart(); }}>
                 Start the test
@@ -106,61 +101,6 @@ function TextInputCard({ question, onSubmit }) {
     );
 }
 
-function ResultScreen({ result }) {
-    const { breakdown } = result;
-    const rows = [
-        { icon: '📞', label: 'Missed calls we engage, qualify, and book', value: breakdown.missedCallsMonthly },
-        { icon: '⚡', label: 'Web leads reached under 60 seconds', value: breakdown.speedToLeadMonthly },
-        { icon: '🌙', label: 'After-hours enquiries captured', value: breakdown.afterHoursMonthly },
-        { icon: '⏳', label: 'Hours your team gets back', value: breakdown.timeSavedMonthly }
-    ].filter((r) => r.value > 0);
-
-    return (
-        <div className="calc-result">
-            <div className="calc-hero-panel">
-                <p className="calc-hero-label">Your hidden revenue, monthly</p>
-                <p className="calc-hero-number">{fmt(result.monthlyRevenue)}</p>
-                <p className="calc-hero-annual">
-                    or <strong>{fmt(result.annualRevenue)}</strong> a year
-                </p>
-            </div>
-
-            {rows.length > 0 && (
-                <div className="calc-breakdown">
-                    <p className="calc-breakdown-header">Where it's coming from</p>
-                    <ul>
-                        {rows.map((r) => (
-                            <li key={r.label}>
-                                <span className="row-icon" aria-hidden>{r.icon}</span>
-                                <span className="row-label">{r.label}</span>
-                                <span className="row-value">{fmt(r.value)}/mo</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-
-            <div className="calc-roi">
-                <p className="calc-roi-label">For every $1 you spend with Stellar Voice Agents</p>
-                <p className="calc-roi-value">${result.roiMultiple.toFixed(2)} comes back</p>
-            </div>
-
-            <a
-                href="https://calendly.com/garysarco1/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="calc-cta"
-            >
-                Book a Demo
-            </a>
-
-            <p className="calc-fineprint">
-                Estimates based on your answers plus the SVA pillar metrics: 3× speed-to-lead, +120% qualified leads, +45% coverage uplift. On a demo we'll tune them to your actual data.
-            </p>
-        </div>
-    );
-}
-
 export default function Calculator({ onClose }) {
     const [state, dispatch] = useReducer(reducer, initialState);
     const q = QUESTIONS[state.currentId];
@@ -182,17 +122,36 @@ export default function Calculator({ onClose }) {
         if (id === 'contact') {
             const finalAnswers = { ...state.answers, contact: value };
             const result = calculate(finalAnswers);
+
+            // Phase 2: set the recommendation cookie so the pricing page lights
+            // up the matching tier when the user clicks "View plan".
+            setRecommendation({
+                tier: result.tier,
+                revenue_leak: result.monthlyRevenue,
+                revenue_annual: result.annualRevenue,
+                customer_value: finalAnswers.customerValue,
+                lead_volume: finalAnswers.leadVolume
+            });
+
+            // Phase 3 analytics.
             track('quiz_completed', {
                 value: result.monthlyRevenue,
                 currency: 'USD',
                 monthly_revenue: result.monthlyRevenue,
                 annual_revenue: result.annualRevenue,
                 roi_multiple: result.roiMultiple,
+                tier: result.tier,
+                enterprise: result.enterprise,
                 pain: finalAnswers.pain,
                 industry: finalAnswers.industry,
                 contact_kind: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? 'email' : 'phone'
             });
-            const submitResult = await submitLead(finalAnswers);
+            track('quiz_tier_recommended', { tier: result.tier });
+            if (result.enterprise) {
+                track('enterprise_redirect', { source: 'quiz_result', monthly_revenue: result.monthlyRevenue });
+            }
+
+            const submitResult = await submitLead({ ...finalAnswers, _tier: result.tier });
             if (!submitResult.ok) {
                 track('quiz_submit_failed', { status: submitResult.status, error: submitResult.error });
             }
@@ -225,11 +184,19 @@ export default function Calculator({ onClose }) {
                             </div>
                         )}
 
-                        {state.stage === 'result' && (
-                            <div className="calc-slide" key="result">
-                                <ResultScreen result={calculate(state.answers)} />
-                            </div>
-                        )}
+                        {state.stage === 'result' && (() => {
+                            const result = calculate(state.answers);
+                            const businessName = state.answers.businessName;
+                            return (
+                                <div className="calc-slide calc-slide-quote" key="result">
+                                    {result.enterprise ? (
+                                        <EnterpriseQuoteScreen result={result} businessName={businessName} />
+                                    ) : (
+                                        <QuoteScreen result={result} businessName={businessName} />
+                                    )}
+                                </div>
+                            );
+                        })()}
                     </div>
                 </main>
             </div>

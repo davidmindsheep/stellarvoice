@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import './App.css'
 import HomePage from './pages/HomePage'
 import CaseStudyEasyStart from './pages/CaseStudyEasyStart'
+import PricingPage from './pages/PricingPage'
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -27,6 +28,7 @@ function App() {
       <div className="app-container">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/pricing" element={<PricingPage />} />
           <Route path="/case-studies/denes-aldott" element={<CaseStudyEasyStart />} />
           {/* Legacy slug — preserved as a client-side fallback for anyone with
               the old link cached. Vercel also 308-redirects at the edge. */}
