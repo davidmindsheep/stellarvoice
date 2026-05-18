@@ -325,14 +325,155 @@
     line-height: 1.6;
 }
 
-/* MOBILE */
-@media (max-width: 540px) {
-    .quote-screen { padding: 1rem; }
-    .quote-header { grid-template-columns: 1fr; text-align: center; }
-    .quote-date { text-align: center; }
-    .quote-plan-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+/* MOBILE — tighten everything for narrow phones (320-540px). */
+@media (max-width: 640px) {
+    .quote-screen { padding: 0.75rem; }
+
+    /* Header stacks: logo centred, title centred, date small under it. */
+    .quote-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 0.4rem;
+        padding-bottom: 0.85rem;
+        margin-bottom: 1rem;
+    }
+    .quote-logo { height: 34px; justify-self: center; }
+    .quote-title { font-size: 1rem; }
+    .quote-date { text-align: center; font-size: 0.78rem; }
+
+    /* Print button is full-width and touch-friendly. */
+    .quote-print-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+    }
     .quote-print-btn .desktop-only { display: none; }
     .quote-print-btn .mobile-only { display: inline-flex; gap: 0.4rem; align-items: center; }
+
+    /* Leak block: compress padding, keep number prominent. */
+    .quote-leak {
+        padding: 1.25rem 1rem;
+        margin-bottom: 1rem;
+    }
+    .quote-leak-label { font-size: 0.85rem; }
+    .quote-leak-number { font-size: 2.6rem; }
+    .quote-leak-annual { font-size: 0.88rem; }
+
+    /* Plan section: switch from 3 columns to a tight 2-column flexible
+     * label/value pair list. Labels left, values right, one per row. */
+    .quote-plan {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    .quote-plan-badge {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.7rem;
+        margin-bottom: 0.75rem;
+    }
+    .quote-plan-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    .quote-plan-grid > div {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: baseline;
+        gap: 0.5rem;
+        padding-bottom: 0.4rem;
+        border-bottom: 1px solid #EFE9FB;
+    }
+    .quote-plan-grid > div:last-child { border-bottom: none; }
+    .quote-plan-label {
+        margin: 0;
+        font-size: 0.72rem;
+        text-align: left;
+    }
+    .quote-plan-value {
+        margin: 0;
+        font-size: 1rem;
+        text-align: right;
+        white-space: nowrap;
+    }
+    .quote-plan-explanation {
+        margin-top: 0.75rem;
+        font-size: 0.82rem;
+    }
+
+    /* Features list: tighten line height. */
+    .quote-features { margin-bottom: 1rem; }
+    .quote-features h3 { font-size: 0.85rem; margin-bottom: 0.6rem; }
+    .quote-features li { font-size: 0.88rem; padding: 0.25rem 0; }
+
+    /* Numbers section: smaller padding, allow label wrap, force value
+     * to its own column with right-aligned, non-wrapping currency. */
+    .quote-numbers {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    .quote-numbers h3 { font-size: 0.85rem; margin-bottom: 0.6rem; }
+    .quote-numbers table { font-size: 0.85rem; }
+    .quote-numbers td {
+        padding: 0.45rem 0;
+        line-height: 1.35;
+    }
+    .quote-numbers td:first-child {
+        padding-right: 0.5rem;
+        word-break: normal;
+    }
+    .quote-numbers td.num {
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+    .quote-numbers tr.row-profit td { padding: 0.65rem 0.25rem; font-size: 0.95rem; }
+    .quote-numbers tr.row-roi td { padding: 0.65rem 0.25rem; font-size: 0.95rem; }
+    .quote-numbers td.roi { font-size: 1rem; }
+
+    /* Pilot callout. */
+    .quote-pilot {
+        padding: 0.75rem 0.85rem;
+        margin-bottom: 1rem;
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    /* CTA: full-width primary button. */
+    .quote-cta {
+        padding: 1.25rem 1rem;
+        margin-bottom: 0.75rem;
+    }
+    .quote-cta-label { font-size: 0.95rem; margin-bottom: 0.75rem; }
+    .quote-cta-primary {
+        width: 100%;
+        padding: 0.95rem 1rem;
+        font-size: 0.95rem;
+    }
+    .quote-cta-secondary { font-size: 0.85rem; }
+
+    /* Footer: smaller, tighter. */
+    .quote-footer {
+        font-size: 0.72rem;
+        margin-top: 1rem;
+        padding-top: 0.75rem;
+    }
+
+    /* Enterprise variant tightening. */
+    .quote-enterprise-card { padding: 1.25rem 1rem; }
+    .quote-enterprise-card h3 { font-size: 1.15rem; }
+    .quote-enterprise-card p { font-size: 0.9rem; }
+    .quote-enterprise-card .quote-cta-primary { width: 100%; }
+}
+
+/* Extra-narrow phones (320-400px) — scale leak number down further. */
+@media (max-width: 400px) {
+    .quote-screen { padding: 0.5rem; }
+    .quote-leak { padding: 1rem 0.75rem; }
+    .quote-leak-number { font-size: 2.2rem; }
+    .quote-leak-label { font-size: 0.8rem; }
+    .quote-numbers td { font-size: 0.8rem; }
+    .quote-numbers td.num { font-size: 0.82rem; }
+    .quote-plan-value { font-size: 0.92rem; }
 }
 
 /* PRINT — clean, professional, no chrome */

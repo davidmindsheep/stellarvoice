@@ -135,24 +135,5 @@ export const FEATURE_MATRIX = [
     { feature: 'Strategy call with Gary', starter: '✗', growth: '✗', scale: 'Fortnightly' }
 ];
 
-// ROI examples for the social proof section of the pricing page.
-export const ROI_EXAMPLES = [
-    {
-        scenario: 'Roofing company, 200 leads/mo',
-        recovered: '$16,200/mo recovered',
-        plan: 'Growth plan: $997 base + $30/appt',
-        roi: '$6.49 back per $1 spent'
-    },
-    {
-        scenario: 'Real estate agent, after-hours leads',
-        recovered: '$8,100/mo recovered',
-        plan: 'Starter plan: $497 base + $25/appt',
-        roi: '$7.22 back per $1 spent'
-    },
-    {
-        scenario: 'Car dealership, 500 leads/mo',
-        recovered: '$48,000/mo recovered',
-        plan: 'Scale plan: $2,497 base + $45/appt',
-        roi: '$6.86 back per $1 spent'
-    }
-];
+// (ROI examples removed — we only publish real engagement data on the site.
+// The DENES case study at /case-studies/denes-aldott is the proof point.)

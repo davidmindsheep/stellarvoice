@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Calculator from '../components/Calculator/Calculator';
-import { TIERS, TIER_ORDER, FEATURE_MATRIX, ROI_EXAMPLES, expectedMonthlyTotal } from '../lib/pricingConfig';
+import { TIERS, TIER_ORDER, FEATURE_MATRIX, expectedMonthlyTotal } from '../lib/pricingConfig';
 import { getRecommendation, getTierFromUrl } from '../lib/recommendationCookie';
 import { openCalendly } from '../lib/calendly';
 import { track } from '../lib/analytics';
@@ -277,23 +277,6 @@ export default function PricingPage() {
                                     );
                                 })}
                             </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* ROI EXAMPLES */}
-                <section className="pp-roi">
-                    <div className="container">
-                        <h2 className="section-title">Real ROI from real businesses</h2>
-                        <div className="pp-roi-grid">
-                            {ROI_EXAMPLES.map((ex, i) => (
-                                <div key={i} className="pp-roi-card">
-                                    <p className="pp-roi-scenario">{ex.scenario}</p>
-                                    <p className="pp-roi-recovered">{ex.recovered}</p>
-                                    <p className="pp-roi-plan">{ex.plan}</p>
-                                    <p className="pp-roi-return">{ex.roi}</p>
-                                </div>
-                            ))}
                         </div>
                     </div>
                 </section>
