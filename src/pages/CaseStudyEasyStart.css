@@ -1033,3 +1033,103 @@
     .cs-floating-cta { bottom: 14px; right: 14px; }
     .cs-floating-btn { padding: 12px 18px; font-size: 0.78rem; }
 }
+
+/* ─── Mobile safety: no horizontal overflow ───────────────────────────
+ * Belt-and-suspenders against off-viewport content. body already has
+ * overflow-x:hidden in index.css, but stacking contexts (fixed, absolute,
+ * sticky) can occasionally escape it. Lock the wrapper too. */
+.cs-main {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+.cs-main img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.cs-main, .cs-main *, .cs-main *::before, .cs-main *::after {
+    box-sizing: border-box;
+}
+
+/* ─── Mobile padding pass (<= 640px) ─────────────────────────────── */
+@media (max-width: 640px) {
+    /* Hero */
+    .cs-hero {
+        padding: 120px 16px 80px;
+        min-height: auto;
+    }
+    .cs-hero-wave { display: none; }
+
+    /* Sections */
+    .cs-section { padding: 56px 16px; }
+    .cs-snapshot-section { padding: 32px 16px 24px; }
+    .cs-tldr-section { padding: 0 16px; margin-top: -30px; }
+
+    /* Container inside the case study (override the global 24px). */
+    .cs-main .container { padding: 0 16px; }
+
+    /* Cards / boxes */
+    .cs-snapshot { padding: 18px; gap: 18px; }
+    .cs-tldr { padding: 16px 18px; }
+    .cs-quote-inline { padding: 18px 18px; }
+    .cs-callout { padding: 16px 18px; }
+    .cs-prose { max-width: 100%; }
+
+    /* Snapshot meta switches from 2 columns to a single column on phones. */
+    .cs-snapshot-meta { grid-template-columns: 1fr !important; gap: 10px; }
+    .cs-snapshot-id { gap: 12px; }
+    .cs-snapshot-avatar { width: 64px; height: 64px; }
+    .cs-snapshot-name { font-size: 1.1rem; }
+
+    /* TOC: smaller chips, smaller padding so they wrap cleanly. */
+    .cs-toc { padding: 10px 12px; }
+    .cs-toc a { font-size: 0.74rem; padding: 5px 11px; }
+
+    /* Audio feature card: stack play button above the waveform so neither
+     * gets squashed at narrow widths. */
+    .cs-audio-feature-card {
+        padding: 22px 18px;
+        flex-direction: column;
+        gap: 18px;
+    }
+    .cs-audio-waveform { width: 100%; height: 50px; }
+    .cs-audio-feature-btn { width: 76px; height: 76px; }
+
+    /* Dashboard image: tighter padding so the placeholder/screenshot
+     * doesn't push past the viewport. */
+    .cs-dashboard-image { padding: 8px; }
+
+    /* Stat grid values can be very wide ("17 to 25%"). Make sure they
+     * don't overflow their tile. */
+    .cs-stat-tile { padding: 22px 12px; }
+    .cs-stat-value { word-break: keep-all; }
+
+    /* Cadence: tighter padding on each day cell. */
+    .cs-cadence-day { padding: 12px 8px; }
+    .cs-cadence-time { font-size: 0.65rem; }
+
+    /* CTA section padding. */
+    .cs-cta-section { padding: 72px 16px 56px; }
+    .cs-cta-inner { padding: 0; }
+
+    /* Notify form keeps text inside its rounded panel on narrow phones. */
+    .cs-notify { padding: 16px 14px; }
+
+    /* Long words (rare but possible: URLs, brand names) wrap instead of
+     * pushing past the viewport. */
+    .cs-prose, .cs-snapshot-meta li, .cs-tldr li, .cs-callout, .cs-quote-inline {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+}
+
+/* ─── Extra-narrow phones (<= 400px) ──────────────────────────────── */
+@media (max-width: 400px) {
+    .cs-h1 { font-size: 1.85rem; }
+    .cs-hero { padding: 96px 14px 64px; }
+    .cs-section { padding: 48px 14px; }
+    .cs-snapshot { padding: 14px; }
+    .cs-tldr { padding: 14px 16px; }
+    .cs-tldr li { font-size: 0.88rem; }
+    .cs-tldr li strong { min-width: 0; display: block; margin-bottom: 2px; }
+}
