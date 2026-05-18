@@ -87,7 +87,6 @@ export const FEATURE_MATRIX = [
     { feature: 'Expected Monthly Total', starter: '~$1,122/mo', growth: '~$2,497/mo', scale: '~$6,997/mo' },
     { feature: 'Setup Fee', starter: '$1,000', growth: '$2,000', scale: '$3,500' },
     { feature: 'Minimum Commitment', starter: '1 month', growth: '3 months', scale: '6 months' },
-    { feature: '30-Day Guarantee', starter: '✓', growth: '✓', scale: '✓' },
 
     { category: 'Outbound Engine' },
     { feature: 'Speed-to-lead callback (under 60 seconds)', starter: '✓', growth: '✓', scale: '✓' },
