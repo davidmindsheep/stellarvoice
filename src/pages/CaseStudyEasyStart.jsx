@@ -148,7 +148,6 @@ function CadenceDot({ kind }) {
 function AudioFeature() {
     const ref = useRef(null);
     const [playing, setPlaying] = useState(false);
-    const [showTranscript, setShowTranscript] = useState(false);
 
     const toggle = () => {
         const a = ref.current;
@@ -187,15 +186,6 @@ function AudioFeature() {
                 </div>
 
                 <audio ref={ref} src="/audio/agent-realestate.mp3" onEnded={() => setPlaying(false)} preload="none" />
-
-                <button className="cs-transcript-toggle" onClick={() => setShowTranscript(v => !v)}>
-                    {showTranscript ? 'Hide transcript' : 'View transcript'}
-                </button>
-                {showTranscript && (
-                    <div className="cs-transcript">
-                        <p><em>[Transcript pending — generate from the approved audio sample.]</em></p>
-                    </div>
-                )}
             </div>
         </section>
     );
