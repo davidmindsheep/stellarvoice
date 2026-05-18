@@ -21,9 +21,9 @@ export const TIERS = {
         crmIntegrations: '1 integration',
         accent: '#7868F8',
         headlineFeatures: [
-            'Speed-to-lead callback under 60 seconds',
-            'Appointment booking into your calendar',
-            'Missed call recovery, 24/7',
+            'Speed-to-lead via direct CRM integration (under 60 seconds)',
+            'ClosedLoop callback to every inbound lead (one attempt)',
+            'Appointment booking + missed call recovery, 24/7',
             'Live dashboard + monthly summary'
         ]
     },
@@ -42,9 +42,9 @@ export const TIERS = {
         recommended: true, // visually emphasized as the default popular tier
         headlineFeatures: [
             'Everything in Starter, plus:',
-            'Smart retry system (9 attempts over 6 days)',
-            'Closeloop outbound for fresh leads',
-            'Multi-source lead handling + weekly digest'
+            'Smart retry (9 attempts over 6 days, time-of-day optimised)',
+            'Multi-source lead handling + up to 3 CRM integrations',
+            'Weekly digest report'
         ]
     },
     scale: {
@@ -61,9 +61,9 @@ export const TIERS = {
         accent: '#25005D',
         headlineFeatures: [
             'Everything in Growth, plus:',
-            'Outbound campaigns + multi-line support',
+            'Dedicated outbound campaign assistant + multi-line support',
             'Custom agent personas + custom workflows',
-            'Fortnightly strategy call with Gary'
+            'Fortnightly strategy call with Gary + custom KPI reports'
         ]
     }
 };
@@ -100,20 +100,18 @@ export const FEATURE_MATRIX = [
     { feature: 'Callback scheduling', starter: '✓', growth: '✓', scale: '✓' },
 
     { category: 'Speed-to-Lead' },
-    { feature: 'Speed-to-lead (60-sec callback)', starter: '✓', growth: '✓', scale: '✓' },
+    { feature: 'Speed-to-lead callback (under 60 seconds)', starter: '✓', growth: '✓', scale: '✓' },
+    { feature: 'Direct CRM integration (auto-pump, no file uploads)', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Web form auto-reply', starter: '✓', growth: '✓', scale: '✓' },
 
     { category: 'Appointment Booking' },
     { feature: 'Appointment booking', starter: '✓', growth: '✓', scale: '✓' },
 
-    { category: 'Smart Retry System' },
-    { feature: 'Smart retry system', starter: '✓', growth: '✓', scale: '✓' },
-    { feature: 'Smart retry (9 attempts)', starter: '✗', growth: '✓', scale: '✓' },
-    { feature: 'Afternoon/evening optimisation', starter: '✗', growth: '✓', scale: '✓' },
-
-    { category: 'Outbound' },
-    { feature: 'Closeloop outbound (standard)', starter: '✗', growth: '✓', scale: '✓' },
-    { feature: 'Outbound campaigns', starter: '✗', growth: '✗', scale: '✓' },
+    { category: 'Outbound Engine' },
+    { feature: 'ClosedLoop callback (system calls them back at least once)', starter: '✓', growth: '✓', scale: '✓' },
+    { feature: 'Smart retry (9 attempts over 6 days, time-of-day optimised)', starter: '✗', growth: '✓', scale: '✓' },
+    { feature: 'Outbound campaigns via list upload', starter: '✓', growth: '✓', scale: '✓' },
+    { feature: 'Dedicated outbound campaign assistant (separate agent)', starter: '✗', growth: '✗', scale: '✓' },
     { feature: 'Multi-line support', starter: '✗', growth: '✗', scale: '✓' },
 
     { category: 'Lead Sources' },
