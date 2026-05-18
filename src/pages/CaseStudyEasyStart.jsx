@@ -268,13 +268,15 @@ function ShareRow({ position }) {
 
     return (
         <div className={`cs-share cs-share-${position}`}>
-            <span className="cs-share-label">Share</span>
-            <a href={linkedin} target="_blank" rel="noopener noreferrer" onClick={onClick('linkedin')} aria-label="Share on LinkedIn"><Linkedin size={18} /></a>
-            <a href={x} target="_blank" rel="noopener noreferrer" onClick={onClick('x')} aria-label="Share on X"><Twitter size={18} /></a>
-            <a href={email} onClick={onClick('email')} aria-label="Share via email"><Mail size={18} /></a>
-            <button type="button" onClick={copy} aria-label="Copy link">
-                {copied ? <Check size={18} /> : <LinkIcon size={18} />}
-            </button>
+            <span className="cs-share-label">Share this case study</span>
+            <div className="cs-share-icons">
+                <a href={linkedin} target="_blank" rel="noopener noreferrer" onClick={onClick('linkedin')} aria-label="Share on LinkedIn"><Linkedin size={20} /></a>
+                <a href={x} target="_blank" rel="noopener noreferrer" onClick={onClick('x')} aria-label="Share on X"><Twitter size={20} /></a>
+                <a href={email} onClick={onClick('email')} aria-label="Share via email"><Mail size={20} /></a>
+                <button type="button" onClick={copy} aria-label="Copy link">
+                    {copied ? <Check size={20} /> : <LinkIcon size={20} />}
+                </button>
+            </div>
         </div>
     );
 }
@@ -428,11 +430,11 @@ export default function CaseStudyEasyStart() {
                     </div>
                 </section>
 
-                {/* ─── TL;DR box ───────────────────────────────────────── */}
+                {/* ─── At-a-glance summary ─────────────────────────────── */}
                 <section className="cs-tldr-section">
                     <div className="container">
                         <div className="cs-tldr">
-                            <p className="cs-tldr-label">TL;DR</p>
+                            <p className="cs-tldr-label">At a glance</p>
                             <ul>
                                 <li><strong>Client</strong> Denes Aldott, Sales Consultant (EasyStart Homes)</li>
                                 <li><strong>Challenge</strong> Inbound leads going cold because one person couldn&rsquo;t reach them all</li>

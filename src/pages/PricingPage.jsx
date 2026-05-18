@@ -49,13 +49,18 @@ function TierCard({ tier, isRecommended, recommendedKnown }) {
             </div>
             <p className="tier-perappt">+ {fmt(tier.perAppt)} per qualified booked appointment</p>
 
-            <div className="tier-revenue">
-                <p className="tier-revenue-label">Expected additional revenue</p>
-                <p className="tier-revenue-value">
-                    +{fmt(tier.revenueLift.low)} to {fmt(tier.revenueLift.high)}
-                    <span>/mo</span>
-                </p>
-            </div>
+            {/* Expected additional revenue only renders on the recommended tier
+             * card. Showing the upside on every card dilutes the recommendation
+             * and risks the prospect picking the cheapest tier on cost alone. */}
+            {isRecommended && (
+                <div className="tier-revenue">
+                    <p className="tier-revenue-label">Expected additional revenue</p>
+                    <p className="tier-revenue-value">
+                        +{fmt(tier.revenueLift.low)} to {fmt(tier.revenueLift.high)}
+                        <span>/mo</span>
+                    </p>
+                </div>
+            )}
 
             <ul className="tier-features">
                 {tier.headlineFeatures.map((f, i) => (

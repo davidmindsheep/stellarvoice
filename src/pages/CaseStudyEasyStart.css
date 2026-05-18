@@ -869,40 +869,62 @@
 }
 
 /* ─── Share row ───────────────────────────────────────────── */
+/* Reworked to be unmissable. Solid white circles with deep-purple
+ * icons sit inside a glass panel with a clear label. Old version was
+ * 12% opacity white-on-dark and basically invisible. */
 .cs-share {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 24px;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 14px;
 }
-.cs-share-top { margin-top: 12px; }
-.cs-share-bottom { margin-top: 8px; }
+.cs-share-top { margin-top: 28px; }
+.cs-share-bottom { margin-top: 24px; }
 
 .cs-share-label {
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    font-weight: 800;
-    color: rgba(255, 255, 255, 0.78);
-    margin-right: 4px;
-}
-.cs-share a, .cs-share button {
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    font-size: 0.95rem;
+    font-weight: 700;
     color: var(--white);
-    width: 34px;
-    height: 34px;
+    letter-spacing: 0.01em;
+}
+
+.cs-share-icons {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cs-share a, .cs-share button {
+    background: var(--white);
+    border: 2px solid var(--white);
+    color: var(--deep-purple);
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background 0.15s ease, transform 0.15s ease;
+    transition: background 0.15s ease, transform 0.15s ease, color 0.15s ease;
     text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 .cs-share a:hover, .cs-share button:hover {
-    background: rgba(255, 255, 255, 0.22);
+    background: var(--electric-violet);
+    border-color: var(--electric-violet);
+    color: var(--white);
     transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+    .cs-share { padding: 14px 16px; }
+    .cs-share-icons { gap: 10px; }
+    .cs-share a, .cs-share button { width: 40px; height: 40px; }
 }
 
 /* ─── Newsletter capture ──────────────────────────────────── */
