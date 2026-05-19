@@ -1,62 +1,68 @@
-.quote-bar {
-    padding: 4rem 0 3rem;
-    background: linear-gradient(180deg, var(--pale-lavender) 0%, transparent 100%);
+/* A single big pull quote between the social-proof stat bar and the
+ * SoundsReal section. Centred, italic, large, with a decorative
+ * oversized opening quote-mark behind the text. */
+
+.pull-quote {
+    padding: 5.5rem 0;
+    background: linear-gradient(180deg, var(--pale-lavender, #F5F2FF) 0%, #fff 100%);
 }
-.quote-bar-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+
+.pull-quote-figure {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    padding: 0 1.25rem;
 }
-/* When we only have 2 quotes, centre them at a comfortable width
- * instead of stretching across the full container. */
-.quote-bar-grid-2 {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 380px));
-    justify-content: center;
+
+/* Oversized decorative opening quote mark, sitting behind the text. */
+.pull-quote-mark {
+    position: absolute;
+    top: -3.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: clamp(7rem, 14vw, 11rem);
+    line-height: 1;
+    color: var(--electric-violet, #7868F8);
+    opacity: 0.22;
+    pointer-events: none;
+    user-select: none;
 }
-.quote-card {
-    padding: 1.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-.quote-card blockquote {
-    font-size: 1.15rem;
-    line-height: 1.5;
-    color: var(--near-black);
+
+.pull-quote blockquote {
+    margin: 0 0 2rem;
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    line-height: 1.3;
     font-style: italic;
-    margin: 0;
+    font-weight: 500;
+    color: var(--deep-purple, #25005D);
+    letter-spacing: -0.01em;
+    position: relative;
+    z-index: 1;
 }
-.quote-card figcaption {
+
+.pull-quote figcaption {
     display: flex;
     flex-direction: column;
-    gap: 0.15rem;
-    font-size: 0.9rem;
-    line-height: 1.4;
+    gap: 0.25rem;
+    align-items: center;
 }
-.quote-card figcaption strong {
+.pull-quote-name {
+    font-size: 0.95rem;
+    font-weight: 800;
     color: var(--violet-text, #5040C7);
-    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
 }
-.quote-card figcaption span {
-    color: var(--near-black);
-    opacity: 0.75;
+.pull-quote-company {
+    font-size: 0.88rem;
+    color: #555;
+    font-weight: 500;
 }
-.quote-card figcaption em {
-    color: var(--near-black);
-    opacity: 0.55;
-    font-style: normal;
-    font-size: 0.85rem;
-}
-.quote-card-link {
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-    color: var(--electric-violet);
-    text-decoration: none;
-    font-weight: 600;
-}
-.quote-card-link:hover {
-    text-decoration: underline;
-}
+
 @media (max-width: 640px) {
-    .quote-bar { padding: 3rem 0 2rem; }
+    .pull-quote { padding: 4rem 0; }
+    .pull-quote-mark { top: -2.25rem; }
+    .pull-quote blockquote { font-size: 1.55rem; }
 }
