@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
-import SocialProof from '../components/SocialProof';
 import QuoteBar from '../components/QuoteBar';
 import SoundsReal from '../components/SoundsReal';
 import CalculatorCTA from '../components/Calculator/CalculatorCTA';
@@ -17,17 +16,16 @@ import FAQ from '../components/FAQ';
 import CTABanner from '../components/CTABanner';
 import Footer from '../components/Footer';
 
-// Section order per blueprint v2.7:
-//   Hero -> SocialProof -> QuoteBar -> SoundsReal -> Demos
+// Section order:
+//   Hero -> QuoteBar (big Denes pull quote) -> SoundsReal -> Demos
 //   -> CalculatorCTA -> ProblemSolution -> Products -> HowItWorks
 //   -> Features -> Industries -> Plan-finder CTA (anchored #pricing)
 //   -> Team -> FAQ -> CTABanner
 //
-// Rationale: a visitor lands, sees the proof bar immediately, reads the
-// "does it actually sound real?" answer, hears the voice via the demos,
-// then is invited to take the calculator quiz once they've already been
-// convinced the voice is the real deal. Products and the rest of the
-// page follow.
+// The old SocialProof stat strip (4 tiles in a white band) was removed
+// because it duplicated the hero stats one screen below and pushed the
+// Denes "this is amazing" quote further down the page. Visitor sees:
+// hero -> big quote -> "does it actually sound real?" -> demos.
 export default function HomePage() {
     const [calcOpen, setCalcOpen] = useState(false);
 
@@ -36,7 +34,6 @@ export default function HomePage() {
             <Navbar onOpenCalculator={() => setCalcOpen(true)} />
             <main>
                 <Hero onOpenCalculator={() => setCalcOpen(true)} />
-                <SocialProof />
                 <QuoteBar />
                 <SoundsReal />
                 <Demos />
