@@ -1,0 +1,62 @@
+.quote-bar {
+    padding: 4rem 0 3rem;
+    background: linear-gradient(180deg, var(--pale-lavender) 0%, transparent 100%);
+}
+.quote-bar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+/* When we only have 2 quotes, centre them at a comfortable width
+ * instead of stretching across the full container. */
+.quote-bar-grid-2 {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 380px));
+    justify-content: center;
+}
+.quote-card {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.quote-card blockquote {
+    font-size: 1.15rem;
+    line-height: 1.5;
+    color: var(--near-black);
+    font-style: italic;
+    margin: 0;
+}
+.quote-card figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+.quote-card figcaption strong {
+    color: var(--violet-text, #5040C7);
+    font-weight: 700;
+}
+.quote-card figcaption span {
+    color: var(--near-black);
+    opacity: 0.75;
+}
+.quote-card figcaption em {
+    color: var(--near-black);
+    opacity: 0.55;
+    font-style: normal;
+    font-size: 0.85rem;
+}
+.quote-card-link {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--electric-violet);
+    text-decoration: none;
+    font-weight: 600;
+}
+.quote-card-link:hover {
+    text-decoration: underline;
+}
+@media (max-width: 640px) {
+    .quote-bar { padding: 3rem 0 2rem; }
+}

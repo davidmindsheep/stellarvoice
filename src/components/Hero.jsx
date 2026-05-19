@@ -10,22 +10,25 @@ const Hero = ({ onOpenCalculator }) => {
                     Never lose<br />another lead.
                 </h1>
                 <p className="hero-subtitle">
-                    AI voice agents that engage, qualify, and book appointments 24/7.
+                    AI voice agents that sound human, qualify leads, and book appointments 24/7.
                 </p>
                 <div className="hero-cta-group">
                     <button type="button" onClick={onOpenCalculator} className="btn-primary">Take the 30-Sec Test</button>
                     <button type="button" onClick={() => openCalendly(undefined, 'hero')} className="btn-secondary">Book a Demo</button>
                 </div>
+                <a href="#demos" className="hero-tertiary-link">
+                    <span aria-hidden="true">&#9658;</span> Hear a Real Call
+                </a>
 
                 <div className="hero-stats">
                     <div className="stat-item">
-                        <h3>3×</h3>
-                        <p>Speed-to-Lead</p>
+                        <h3>&lt;5s</h3>
+                        <p>Form to Call Response</p>
                     </div>
                     <div className="stat-divider"></div>
                     <div className="stat-item">
-                        <h3>+120%</h3>
-                        <p>Qualified Leads</p>
+                        <h3>17-25%</h3>
+                        <p>Booking Rate on Cold Leads</p>
                     </div>
                     <div className="stat-divider"></div>
                     <div className="stat-item">

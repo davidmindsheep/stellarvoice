@@ -59,8 +59,30 @@
     gap: 16px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 60px;
+    margin-bottom: 14px;
     animation: fadeInUp 1.2s ease-out;
+}
+
+/* Tertiary "Hear a Real Call" link below the two primary CTAs. Underline
+ * style, not a button, to avoid crowding the hero CTA group. */
+.hero-tertiary-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    margin: 0 auto 48px;
+    transition: color 0.2s ease, opacity 0.2s ease;
+    animation: fadeInUp 1.3s ease-out;
+}
+.hero-tertiary-link:hover {
+    color: var(--white);
+}
+.hero-tertiary-link span {
+    font-size: 0.78em;
+    line-height: 1;
 }
 
 /* Override the default deep-purple primary on the gradient hero — use white for max contrast */

@@ -4,43 +4,44 @@ import useScrollReveal, { useCardReveal } from '../hooks/useScrollReveal';
 import { Bot, Zap, PhoneOutgoing } from 'lucide-react';
 import { openCalendly } from '../lib/calendly';
 
-// Order: outbound products first (ClosedLoop, Dead Lead Revival), then the
-// inbound AI Receptionist. The outbound products are the ones with current
-// pricing tiers on /pricing; AI Receptionist pricing comes later.
+// Order: outbound products first (Outbound Sales Qualifier, Dead Lead
+// Reactivation), then the inbound Inbound Sales Qualifier. The outbound
+// products are the ones with current pricing tiers on /pricing; the inbound
+// product's tier structure is being scoped separately.
 const products = [
     {
-        name: 'ClosedLoop',
+        name: 'Outbound Sales Qualifier',
         tagline: 'Instant lead response. Seconds, not hours.',
         Icon: Zap,
         features: [
             'The moment someone responds to your ad, we call them',
-            'Beats every competitor to the phone — engage while hot',
+            'Beats every competitor to the phone, engage while hot',
             'Qualifies them on the call against your criteria',
             'Books them into your calendar before they shop around'
         ],
         color: '#7868F8'
     },
     {
-        name: 'Dead Lead Revival',
+        name: 'Dead Lead Reactivation',
         tagline: 'Your old database, worth real money again.',
         Icon: PhoneOutgoing,
         features: [
             'We call your aged-lead database on your behalf',
-            'Identifies who\'s ready to move — now',
+            'Identifies who\'s ready to move, now',
             'Puts re-activated prospects back on your calendar',
             'Full analytics on every conversation'
         ],
         color: '#473D92'
     },
     {
-        name: 'AI Receptionist',
-        tagline: 'Your 24/7 front desk. Never miss a call.',
+        name: 'Inbound Sales Qualifier',
+        tagline: 'Inbound calls answered, qualified, and booked. 24/7.',
         Icon: Bot,
         features: [
-            'Answers every incoming call instantly, day or night',
-            'Qualifies each caller against your custom questions',
-            'Books the appointment straight into your calendar',
-            'Delivers call summaries and transcripts to your team'
+            'Answers every inbound call instantly, day or night',
+            'Qualifies each caller against your custom script',
+            'Books qualified prospects directly into your calendar',
+            'Every call recorded, transcribed, and scored'
         ],
         color: '#25005D'
     }

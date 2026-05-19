@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import SocialProof from '../components/SocialProof';
+import QuoteBar from '../components/QuoteBar';
+import SoundsReal from '../components/SoundsReal';
 import CalculatorCTA from '../components/Calculator/CalculatorCTA';
 import Calculator from '../components/Calculator/Calculator';
 import ProblemSolution from '../components/ProblemSolution';
@@ -15,6 +17,17 @@ import FAQ from '../components/FAQ';
 import CTABanner from '../components/CTABanner';
 import Footer from '../components/Footer';
 
+// Section order per blueprint v2.7:
+//   Hero -> SocialProof -> QuoteBar -> SoundsReal -> Demos
+//   -> CalculatorCTA -> ProblemSolution -> Products -> HowItWorks
+//   -> Features -> Industries -> Plan-finder CTA (anchored #pricing)
+//   -> Team -> FAQ -> CTABanner
+//
+// Rationale: a visitor lands, sees the proof bar immediately, reads the
+// "does it actually sound real?" answer, hears the voice via the demos,
+// then is invited to take the calculator quiz once they've already been
+// convinced the voice is the real deal. Products and the rest of the
+// page follow.
 export default function HomePage() {
     const [calcOpen, setCalcOpen] = useState(false);
 
@@ -24,14 +37,16 @@ export default function HomePage() {
             <main>
                 <Hero onOpenCalculator={() => setCalcOpen(true)} />
                 <SocialProof />
+                <QuoteBar />
+                <SoundsReal />
+                <Demos />
                 <CalculatorCTA onOpen={() => setCalcOpen(true)} />
                 <ProblemSolution />
                 <Products />
                 <HowItWorks />
-                <Demos />
                 <Features />
                 <Industries />
-                {/* Plan-finder CTA replaces the old static 3-tier preview.
+                {/* Plan-finder CTA in the former pricing slot.
                     Anchored at #pricing so existing nav links still land here. */}
                 <CalculatorCTA
                     id="pricing"
