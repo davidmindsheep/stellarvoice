@@ -41,9 +41,9 @@ const SoundsReal = () => {
                         <Link to="/case-studies/denes-aldott" className="btn-primary">
                             Read the Full Case Study
                         </Link>
-                        <a href="#demos" className="btn-secondary">
-                            Hear Our Demos
-                        </a>
+                        {/* "Hear Our Demos" button removed — the demos section
+                         * is literally the next section, and the white-on-white
+                         * btn-secondary styling made it nearly invisible. */}
                     </div>
                 </div>
             </div>
