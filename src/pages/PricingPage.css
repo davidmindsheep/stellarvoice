@@ -11,7 +11,10 @@
 .pp-hero {
     background: linear-gradient(180deg, #25005D 0%, #473D92 100%);
     color: #fff;
-    padding: 7rem 0 5rem;
+    /* Top padding must clear the fixed navbar (16px offset + 8px padding +
+     * 96px logo + 8px padding ~= 128px in its unscrolled state). 9rem (144px)
+     * gives the H1 breathing room below the nav bar. */
+    padding: 9rem 0 5rem;
     text-align: center;
 }
 .pp-hero-inner {
