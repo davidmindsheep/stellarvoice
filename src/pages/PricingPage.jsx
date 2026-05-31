@@ -55,19 +55,10 @@ function TierCard({ tier, isRecommended, recommendedKnown }) {
             </div>
             <p className="tier-perappt">+ {fmt(tier.perBooking)} per qualified booking</p>
 
-            {/* Expected additional revenue only renders on the recommended tier
-             * card. Showing the upside on every card dilutes the recommendation
-             * and risks the prospect picking the cheapest tier on cost alone. */}
-            {isRecommended && (
-                <div className="tier-revenue">
-                    <p className="tier-revenue-label">Expected additional revenue</p>
-                    <p className="tier-revenue-value">
-                        +{fmt(tier.revenueLift.low)} to {fmt(tier.revenueLift.high)}
-                        <span>/mo</span>
-                    </p>
-                    <p className="tier-revenue-note">Based on the numbers you provided</p>
-                </div>
-            )}
+            {/* (Static revenue-lift range removed Jun 2026: prospects who came
+             * from the quiz with a smaller calculated leak were seeing the
+             * hardcoded range and getting confused by the contradiction. The
+             * recommended badge alone signals which tier matches their inputs.) */}
 
             <ul className="tier-features">
                 {tier.headlineFeatures.map((f, i) => (

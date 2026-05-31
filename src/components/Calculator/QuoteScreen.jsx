@@ -45,8 +45,10 @@ function handlePrintOrShare() {
 }
 
 // Compact tier card for the quote screen. The recommended tier gets a
-// badge and a revenue box; the others render in a muted layout.
-function QuoteTierCard({ tier, isRecommended, revenueLow, revenueHigh }) {
+// badge; the others render in a muted layout. The personalised revenue
+// number lives in the leak panel above this row — duplicating it (or
+// showing a hardcoded range that contradicts it) creates confusion.
+function QuoteTierCard({ tier, isRecommended }) {
     return (
         <div
             className={`qts-tier ${isRecommended ? 'is-recommended' : ''}`}
@@ -59,14 +61,6 @@ function QuoteTierCard({ tier, isRecommended, revenueLow, revenueHigh }) {
                 <span>/mo base</span>
             </p>
             <p className="qts-tier-fee">+ {fmt(tier.perBooking)}/booking</p>
-            {isRecommended && revenueLow && revenueHigh && (
-                <div className="qts-tier-revenue">
-                    <span className="qts-tier-revenue-label">Expected additional revenue</span>
-                    <span className="qts-tier-revenue-value">
-                        +{fmt(revenueLow)} to {fmt(revenueHigh)}/mo
-                    </span>
-                </div>
-            )}
         </div>
     );
 }
@@ -124,8 +118,6 @@ export default function QuoteScreen({ result, businessName }) {
                             key={id}
                             tier={TIERS[id]}
                             isRecommended={id === recommendedId}
-                            revenueLow={TIERS[id].revenueLift?.low}
-                            revenueHigh={TIERS[id].revenueLift?.high}
                         />
                     ))}
                 </div>
