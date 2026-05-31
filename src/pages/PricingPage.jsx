@@ -53,6 +53,9 @@ function TierCard({ tier, isRecommended, recommendedKnown }) {
                 <span className="tier-price-value">{fmt(tier.baseRetainer)}</span>
                 <span className="tier-price-unit">/mo base</span>
             </div>
+            {/* Brief CR-2: one-line summary directly under the price so the
+             * level of service is immediately obvious. */}
+            {tier.tierSummary && <p className="tier-summary">{tier.tierSummary}</p>}
             <p className="tier-perappt">+ {fmt(tier.perBooking)} per qualified booking</p>
 
             {/* (Static revenue-lift range removed Jun 2026: prospects who came

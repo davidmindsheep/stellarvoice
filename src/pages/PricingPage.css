@@ -131,6 +131,16 @@
     color: #555;
     font-size: 0.95rem;
 }
+.tier-summary {
+    margin: 0.5rem 0 0.85rem;
+    color: var(--deep-purple, #25005D);
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.4;
+    padding: 0.55rem 0.75rem;
+    background: var(--pale-lavender, #F5F2FF);
+    border-radius: 6px;
+}
 .tier-perappt {
     margin: 0 0 1.25rem;
     color: var(--tier-accent, #7868F8);

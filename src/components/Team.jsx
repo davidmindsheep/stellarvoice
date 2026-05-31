@@ -9,13 +9,16 @@ const team = [
         name: 'Gary Sarco',
         role: 'CEO & Founder',
         image: '/garysarco.jpg',
+        // Brief CR-3 (May 31 2026): Gary's career history corrected.
+        // Six years real estate as a mortgage loan officer, four years IT,
+        // and the past seven years in cybersecurity.
         bio: [
-            'Gary spent 11 years in cybersecurity, including a role as Cyber Threat Intelligence Analyst at Leidos, one of the largest US defense contractors. He holds a Certified Ethical Hacker (CEH) certification, CompTIA Security+, and a Bachelor of Science in Cybersecurity earned while working full time.',
-            'Then he spent 6 years in real estate and mortgage sales. He watched leads slip through the cracks every single day. Not because the product was wrong, but because nobody picked up the phone fast enough.',
+            'Gary spent six years in real estate as a mortgage loan officer in sales, four years in IT, and the past seven years in cybersecurity. His cybersecurity work includes a role as Cyber Threat Intelligence Analyst at Leidos, one of the largest US defense contractors. He holds a Certified Ethical Hacker (CEH) certification, CompTIA Security+, and a Bachelor of Science in Cybersecurity earned while working full time.',
+            'Across his real estate and mortgage years he watched leads slip through the cracks every single day. Not because the product was wrong, but because nobody picked up the phone fast enough.',
             'He built Stellar to fix that. His security background means the tech is built right. His sales background means the AI actually knows how to qualify and close. Gary personally builds every client\'s qualification playbook and runs weekly strategy calls on the Scale tier.',
-            'Gary has completed 42+ BNI networking meetings and demoed the Stellar prototype at a Virginia real estate conference where every attendee who heard it asked to sign up.'
+            'Gary has completed 50+ Business Network International (BNI) meetings and is an active networker across professional verticals.'
         ],
-        credentials: ['Leidos', 'CEH', 'CompTIA Security+', 'BS Cybersecurity', '42+ BNI Meetings', '6 Years Real Estate Sales']
+        credentials: ['Leidos', 'CEH', 'CompTIA Security+', 'BS Cybersecurity', '50+ BNI Meetings', '6 Years Real Estate Sales']
     },
     {
         name: 'David Taylor',

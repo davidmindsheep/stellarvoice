@@ -22,12 +22,16 @@ export const TIERS = {
         aiAgents: '1 agent',
         crmIntegrations: '1 integration',
         accent: '#7868F8',
+        // Brief Sec CR-2: one-line summary shown directly under the price.
+        tierSummary: 'Inbound AI voice agent for your business line',
         // Expected additional monthly revenue at this tier. Based on typical
         // close rates (25-30%) and average deal sizes seen in this band.
         revenueLift: { low: 8000, high: 20000 },
+        // Brief CR-1: ClosedLoop wording removed — clients did not know what
+        // it meant. Plain-English feature copy below.
         headlineFeatures: [
-            'Speed-to-lead via direct CRM integration (under 60 seconds)',
-            'ClosedLoop callback to every new lead (9 attempts over 6 days, time-of-day optimised)',
+            'Inbound call handling and lead qualification',
+            'Automatic callback to every new lead (9 attempts over 6 days)',
             'SMS follow-up messaging on every lead',
             'Booking direct to your calendar',
             'Live dashboard + monthly summary'
@@ -46,10 +50,11 @@ export const TIERS = {
         crmIntegrations: 'Up to 3',
         accent: '#473D92',
         recommended: true, // default popular tier when no quiz answer set
+        tierSummary: 'Inbound + outbound AI voice agents',
         revenueLift: { low: 25000, high: 70000 },
         headlineFeatures: [
             'Everything in Starter, plus:',
-            'ClosedLoop outbound included as standard',
+            'Outbound calling to your lead lists',
             'SMS + WhatsApp messaging',
             'Multi-source lead handling + up to 3 CRM integrations',
             'Weekly digest report'
@@ -67,6 +72,7 @@ export const TIERS = {
         aiAgents: '3+ agents',
         crmIntegrations: 'Unlimited',
         accent: '#25005D',
+        tierSummary: 'Full suite: inbound, outbound, multi-line, custom workflows',
         revenueLift: { low: 80000, high: 200000 },
         headlineFeatures: [
             'Everything in Growth, plus:',
@@ -112,11 +118,12 @@ export const FEATURE_MATRIX = [
     { feature: 'Minimum Commitment', starter: '1 month', growth: '3 months', scale: '6 months' },
     { feature: 'Performance Guarantee', starter: '✓', growth: '✓', scale: '✓' },
 
-    { category: 'ClosedLoop Callback' },
+    { category: 'Lead Callback and Follow-Up' },
     { feature: 'Speed-to-lead callback (under 60 seconds)', starter: '✓', growth: '✓', scale: '✓' },
+    { feature: 'Automatic lead callback', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Lead qualification on every call', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Callback scheduling on no-answer', starter: '✓', growth: '✓', scale: '✓' },
-    { feature: 'Smart retry (9 attempts over 6 days, time-of-day optimised)', starter: '✓', growth: '✓', scale: '✓' },
+    { feature: 'Smart retry (9 attempts over 6 days)', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'SMS messaging', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'WhatsApp messaging', starter: '✗', growth: '✓', scale: '✓' },
     { feature: 'Outbound email', starter: '✗', growth: '✓', scale: '✓' },

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 import { openCalendly } from '../lib/calendly';
 
@@ -14,19 +15,19 @@ const Footer = () => {
                     <div className="footer-links">
                         <h4>Quick Links</h4>
                         <ul>
-                            <li><a href="#hero">Home</a></li>
-                            <li><a href="#products">Products</a></li>
-                            <li><a href="#demos">Demos</a></li>
-                            <li><a href="#industries">Industries</a></li>
-                            <li><a href="#faq">FAQ</a></li>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/how-it-works">How It Works</Link></li>
+                            <li><Link to="/case-studies">Case Studies</Link></li>
+                            <li><Link to="/pricing">Pricing</Link></li>
+                            <li><Link to="/about">About</Link></li>
                         </ul>
                     </div>
                     <div className="footer-products">
                         <h4>Products</h4>
                         <ul>
-                            <li><a href="#products">AI Receptionist</a></li>
-                            <li><a href="#products">ClosedLoop</a></li>
-                            <li><a href="#products">Dead Lead Revival</a></li>
+                            <li><Link to="/how-it-works">Outbound Sales Qualifier</Link></li>
+                            <li><Link to="/how-it-works">Dead Lead Reactivation</Link></li>
+                            <li><Link to="/how-it-works">Inbound Sales Qualifier</Link></li>
                         </ul>
                     </div>
                     <div className="footer-contact">

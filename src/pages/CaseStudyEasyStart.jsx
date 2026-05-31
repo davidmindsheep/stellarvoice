@@ -335,7 +335,7 @@ export default function CaseStudyEasyStart() {
 
         const desc = document.querySelector('meta[name="description"]');
         const prevDesc = desc?.getAttribute('content');
-        if (desc) desc.setAttribute('content', "How Denes Aldott uses Stellar's ClosedLoop Outbound to book 17–25% of his inbound leads. The leads don't realise they're talking to AI.");
+        if (desc) desc.setAttribute('content', "How Denes Aldott uses Stellar's Outbound Sales Qualifier to book 17–25% of his inbound leads. The leads don't realise they're talking to AI.");
 
         // OG / Twitter meta — Denes-centred per blueprint
         const ogTags = [
@@ -404,7 +404,7 @@ export default function CaseStudyEasyStart() {
                         <p className="cs-eyebrow">Case Study · 5 min read</p>
                         <h1 className="cs-h1">From a 60-lead pilot to a 6-month outbound engine</h1>
                         <p className="cs-hero-sub">
-                            How Denes Aldott uses Stellar&rsquo;s ClosedLoop Outbound to qualify and book 17&ndash;25% of his inbound leads. The leads don&rsquo;t realise they&rsquo;re talking to AI.
+                            How Denes Aldott uses Stellar&rsquo;s Outbound Sales Qualifier to qualify and book 17&ndash;25% of his inbound leads. The leads don&rsquo;t realise they&rsquo;re talking to AI.
                         </p>
                         <div className="cs-hero-cta">
                             <button type="button" onClick={handleCTA('primary')} className="cs-btn-primary">
@@ -453,7 +453,7 @@ export default function CaseStudyEasyStart() {
                             </div>
                             <ul className="cs-snapshot-meta">
                                 <li><strong>Industry</strong>Residential home building (AU)</li>
-                                <li><strong>Product</strong>ClosedLoop Outbound</li>
+                                <li><strong>Product</strong>Outbound Sales Qualifier</li>
                                 <li><strong>Live since</strong>January 2026</li>
                                 <li><strong>Volume</strong>50&ndash;100 leads / mo</li>
                                 <li><strong>Booking rate</strong>17&ndash;25%</li>
@@ -544,7 +544,7 @@ export default function CaseStudyEasyStart() {
                     <div className="container">
                         <h2 className="cs-h2 cs-h2-center">Four moving parts, one operational system</h2>
                         <p className="cs-prose-lead">
-                            Stellar&rsquo;s ClosedLoop Outbound product wraps four parts into a single engagement that runs in the background of Denes&rsquo;s business.
+                            Stellar&rsquo;s Outbound Sales Qualifier product wraps four parts into a single engagement that runs in the background of Denes&rsquo;s business.
                         </p>
                         <div className="cs-pillars-grid">
                             {pillars.map((p, i) => (
@@ -716,14 +716,14 @@ export default function CaseStudyEasyStart() {
                     <div className="container cs-cta-inner">
                         <h2 className="cs-h2-cta">Your leads are going cold right now</h2>
                         <p>
-                            If you live or die by inbound leads and you know most of them aren&rsquo;t getting reached, we should talk. ClosedLoop Outbound is built for businesses doing 50&ndash;1,000 leads a month who want every single one of them called, qualified, and booked. Without burning out a sales team. Without sounding like a robot.
+                            If you live or die by inbound leads and you know most of them aren&rsquo;t getting reached, we should talk. Outbound Sales Qualifier is built for businesses doing 50&ndash;1,000 leads a month who want every single one of them called, qualified, and booked. Without burning out a sales team. Without sounding like a robot.
                         </p>
                         <div className="cs-cta-buttons">
                             <button type="button" onClick={handleCTA('primary-bottom')} className="cs-btn-primary">
                                 Book a 20-minute call
                             </button>
                             <Link to="/#products" className="cs-btn-secondary">
-                                See how ClosedLoop Outbound works
+                                See how Outbound Sales Qualifier works
                             </Link>
                         </div>
                         <ShareRow position="bottom" />
