@@ -79,7 +79,7 @@ function TierCard({ tier, isRecommended, recommendedKnown }) {
                 Book a Demo
             </button>
             <button type="button" onClick={handlePilot} className="tier-cta tier-cta-secondary">
-                Start 60-Day Pilot
+                Start 30-Day Pilot
             </button>
         </div>
     );
@@ -287,7 +287,7 @@ export default function PricingPage() {
                 <section className="pp-pilot">
                     <div className="container">
                         <div className="pp-pilot-box">
-                            <h2>Not sure? Start with a 60-Day Pilot.</h2>
+                            <h2>Not sure? Start with a 30-Day Pilot.</h2>
                             <p>Talk to Gary about a pilot. Full features, performance-based pricing from day one. Cancel anytime.</p>
                             <button
                                 type="button"

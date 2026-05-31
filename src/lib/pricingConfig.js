@@ -18,8 +18,7 @@ export const TIERS = {
         guarantee: 25, // expected qualified bookings / month
         setupFee: 1500,
         setupWaiverMonths: 3,
-        minCommitment: '1 month',
-        aiAgents: '1 agent',
+        concurrentCalls: '1',
         crmIntegrations: '1 integration',
         accent: '#7868F8',
         // Brief Sec CR-2: one-line summary shown directly under the price.
@@ -32,7 +31,7 @@ export const TIERS = {
         headlineFeatures: [
             'Inbound call handling and lead qualification',
             'Automatic callback to every new lead (9 attempts over 6 days)',
-            'SMS follow-up messaging on every lead',
+            'SMS + WhatsApp follow-up messaging',
             'Booking direct to your calendar',
             'Live dashboard + monthly summary'
         ]
@@ -45,8 +44,7 @@ export const TIERS = {
         guarantee: 50,
         setupFee: 3500,
         setupWaiverMonths: 3,
-        minCommitment: '3 months',
-        aiAgents: '2 agents',
+        concurrentCalls: '2',
         crmIntegrations: 'Up to 3',
         accent: '#473D92',
         recommended: true, // default popular tier when no quiz answer set
@@ -55,9 +53,9 @@ export const TIERS = {
         headlineFeatures: [
             'Everything in Starter, plus:',
             'Outbound calling to your lead lists',
-            'SMS + WhatsApp messaging',
+            'Outbound email follow-up',
             'Multi-source lead handling + up to 3 CRM integrations',
-            'Weekly digest report'
+            '2 concurrent calls + weekly digest report'
         ]
     },
     scale: {
@@ -68,8 +66,7 @@ export const TIERS = {
         guarantee: 100,
         setupFee: 5000,
         setupWaiverMonths: 6,
-        minCommitment: '6 months',
-        aiAgents: '3+ agents',
+        concurrentCalls: '3+',
         crmIntegrations: 'Unlimited',
         accent: '#25005D',
         tierSummary: 'Full suite: inbound, outbound, multi-line, custom workflows',
@@ -115,7 +112,6 @@ export const FEATURE_MATRIX = [
     { feature: 'Base Retainer', starter: '$497/mo', growth: '$997/mo', scale: '$2,497/mo' },
     { feature: 'Per-Booking Fee', starter: '$35/booking', growth: '$25/booking', scale: '$20/booking' },
     { feature: 'Setup Fee', starter: '$1,500 (waived at 3mo)', growth: '$3,500 (waived at 3mo)', scale: '$5,000 (waived at 6mo)' },
-    { feature: 'Minimum Commitment', starter: '1 month', growth: '3 months', scale: '6 months' },
     { feature: 'Performance Guarantee', starter: '✓', growth: '✓', scale: '✓' },
 
     { category: 'Lead Callback and Follow-Up' },
@@ -125,7 +121,7 @@ export const FEATURE_MATRIX = [
     { feature: 'Callback scheduling on no-answer', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Smart retry (9 attempts over 6 days)', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'SMS messaging', starter: '✓', growth: '✓', scale: '✓' },
-    { feature: 'WhatsApp messaging', starter: '✗', growth: '✓', scale: '✓' },
+    { feature: 'WhatsApp messaging', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Outbound email', starter: '✗', growth: '✓', scale: '✓' },
     { feature: 'Outbound campaigns via list upload', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Dedicated outbound campaign assistant (separate agent)', starter: '✗', growth: '✗', scale: '✓' },
@@ -135,8 +131,8 @@ export const FEATURE_MATRIX = [
     { feature: 'Handling one lead source', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Multi-source lead handling', starter: '✗', growth: '✓', scale: '✓' },
 
-    { category: 'AI Agents' },
-    { feature: 'AI agents included', starter: '1 agent', growth: '2 agents', scale: '3+ agents' },
+    { category: 'AI Voice Agents' },
+    { feature: 'Concurrent calls (made or received at the same time)', starter: '1', growth: '2', scale: '3+' },
     { feature: 'Custom agent personas', starter: '✗', growth: '✗', scale: '✓' },
 
     { category: 'Integrations' },
