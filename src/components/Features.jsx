@@ -12,8 +12,8 @@ const features = [
         Icon: TrendingUp
     },
     {
-        title: 'Focused on Sales Qualification',
-        description: 'Every agent we build is purpose-built for one thing: qualifying your leads and booking the real buyers. That focus is why we outperform generalist platforms.',
+        title: 'Sales Qualification Experts',
+        description: 'We have built voice agents for sales qualification across real estate, solar, insurance, healthcare, and more. We know which questions qualify a real buyer and which book the meeting. That expertise is why we outperform generalist platforms.',
         Icon: Target
     },
     { title: 'Real Objection Handling', description: "Our agents don't just read scripts. They pivot, handle pushback, and keep the conversation moving toward a booking.", Icon: MessageSquare },

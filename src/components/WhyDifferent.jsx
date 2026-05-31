@@ -7,8 +7,8 @@ import useScrollReveal from '../hooks/useScrollReveal';
 const cards = [
     {
         Icon: Target,
-        title: 'Focused on sales qualification. Nothing else.',
-        body: 'Every agent we build is purpose-built for one thing: qualifying your inbound and outbound leads and booking the real buyers onto your calendar. Every prompt, every script, every call flow is built around sales qualification. That singular focus is why our booking rates are 2x to 5x what generalist AI platforms deliver.'
+        title: 'Sales qualification experts.',
+        body: 'We have built voice agents for sales qualification across real estate, solar, insurance, healthcare, home services, and more. We know which questions qualify a real buyer, which trigger objections, and which book the meeting. That depth of expertise is why our booking rates run 2x to 5x what generalist AI platforms deliver.'
     },
     {
         Icon: TrendingUp,

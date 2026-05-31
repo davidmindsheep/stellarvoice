@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
-import PositioningStrip from '../components/PositioningStrip';
 import QuoteBar from '../components/QuoteBar';
 import WhyDifferent from '../components/WhyDifferent';
 import Capabilities from '../components/Capabilities';
@@ -19,9 +18,8 @@ import FAQ from '../components/FAQ';
 import CTABanner from '../components/CTABanner';
 import Footer from '../components/Footer';
 
-// Section order per the 31 May 2026 Developer Brief (Sec 3):
-//   Hero -> PositioningStrip (3 "why us" points, dark band)
-//   -> QuoteBar (big Denes pull quote)
+// Section order:
+//   Hero -> QuoteBar (big Denes pull quote)
 //   -> WhyDifferent (3-card section, dark panel)
 //   -> Capabilities ("What our AI actually does" 5 capabilities)
 //   -> SoundsReal (positive-framed voice quality section)
@@ -35,7 +33,6 @@ export default function HomePage() {
             <Navbar onOpenCalculator={() => setCalcOpen(true)} />
             <main>
                 <Hero onOpenCalculator={() => setCalcOpen(true)} />
-                <PositioningStrip />
                 <QuoteBar />
                 <WhyDifferent />
                 <Capabilities />
