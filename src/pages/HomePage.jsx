@@ -2,29 +2,27 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import QuoteBar from '../components/QuoteBar';
-import WhyDifferent from '../components/WhyDifferent';
-import Capabilities from '../components/Capabilities';
 import SoundsReal from '../components/SoundsReal';
+import { FeaturedDemo, IndustriesStrip, TeamTeaser, FAQTeaser } from '../components/HomepageTeasers';
 import CalculatorCTA from '../components/Calculator/CalculatorCTA';
 import Calculator from '../components/Calculator/Calculator';
-import ProblemSolution from '../components/ProblemSolution';
 import Products from '../components/Products';
-import HowItWorks from '../components/HowItWorks';
-import Demos from '../components/Demos';
-import Features from '../components/Features';
-import Industries from '../components/Industries';
-import Team from '../components/Team';
-import FAQ from '../components/FAQ';
 import CTABanner from '../components/CTABanner';
 import Footer from '../components/Footer';
 
-// Section order:
-//   Hero -> QuoteBar (big Denes pull quote)
-//   -> WhyDifferent (3-card section, dark panel)
-//   -> Capabilities ("What our AI actually does" 5 capabilities)
-//   -> SoundsReal (positive-framed voice quality section)
-//   -> Demos -> CalculatorCTA -> ProblemSolution -> Products -> HowItWorks
-//   -> Features -> Industries -> Plan-finder CTA -> Team -> FAQ -> CTABanner
+// Lean homepage (Jun 2026 restructure). Long-form sections moved to
+// dedicated pages:
+//   - Capabilities, HowItWorks, Features, Demos (full grid) -> /how-it-works
+//   - WhyDifferent, Team (full bios), origin story -> /about
+//   - Case study cards -> /case-studies
+//   - 8-card Industries grid -> compressed to a 6-vertical strip here only
+//
+// Homepage flow now:
+//   Hero -> Denes pull quote -> SoundsReal (compressed narrative)
+//   -> FeaturedDemo (1 real client call + link to all 6)
+//   -> Revenue quiz CTA -> Products (3 cards)
+//   -> Industries strip (6 verticals, no separate page)
+//   -> Plan Finder CTA -> Team teaser -> FAQ teaser -> CTABanner
 export default function HomePage() {
     const [calcOpen, setCalcOpen] = useState(false);
 
@@ -34,16 +32,11 @@ export default function HomePage() {
             <main>
                 <Hero onOpenCalculator={() => setCalcOpen(true)} />
                 <QuoteBar />
-                <WhyDifferent />
-                <Capabilities />
                 <SoundsReal />
-                <Demos />
+                <FeaturedDemo />
                 <CalculatorCTA onOpen={() => setCalcOpen(true)} />
-                <ProblemSolution />
                 <Products />
-                <HowItWorks />
-                <Features />
-                <Industries />
+                <IndustriesStrip />
                 {/* Plan-finder CTA in the former pricing slot.
                     Anchored at #pricing so existing nav links still land here. */}
                 <CalculatorCTA
@@ -54,8 +47,8 @@ export default function HomePage() {
                     sub="Answer four quick questions and we will match you to the right plan. Every plan includes performance-based pricing. You pay a low retainer plus a fee per qualified booking."
                     buttonText="Find My Plan →"
                 />
-                <Team />
-                <FAQ />
+                <TeamTeaser />
+                <FAQTeaser />
                 <CTABanner />
             </main>
             <Footer />

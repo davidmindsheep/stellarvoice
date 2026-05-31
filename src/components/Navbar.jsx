@@ -25,12 +25,10 @@ const Navbar = ({ onOpenCalculator }) => {
                     <span></span><span></span><span></span>
                 </button>
                 <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
-                    <li><a href="/#products" onClick={close}>Products</a></li>
-                    <li><a href="/#demos" onClick={close}>Demos</a></li>
-                    <li><a href="/#industries" onClick={close}>Industries</a></li>
-                    <li><Link to="/case-studies/denes-aldott" onClick={close}>Case Studies</Link></li>
+                    <li><Link to="/how-it-works" onClick={close}>How It Works</Link></li>
+                    <li><Link to="/case-studies" onClick={close}>Case Studies</Link></li>
                     <li><Link to="/pricing" onClick={close}>Pricing</Link></li>
-                    <li><a href="/#faq" onClick={close}>FAQ</a></li>
+                    <li><Link to="/about" onClick={close}>About</Link></li>
                 </ul>
                 <div className="nav-cta">
                     {onOpenCalculator ? (
