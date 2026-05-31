@@ -1,18 +1,18 @@
 import React from 'react';
 import './Industries.css';
 import useScrollReveal, { useCardReveal } from '../hooks/useScrollReveal';
-import { Home, Sun, Stethoscope, DollarSign, Scale, Wrench, Leaf, Shield } from 'lucide-react';
+import { Home, Sun, Stethoscope, DollarSign, Scale, Shield } from 'lucide-react';
 
-// Brief Sec 3.14: every industry description ends with a reference to
-// paying only for qualified bookings.
+// Six professional verticals. Trades (Home Services, Landscaping) were
+// dropped Jun 2026 to align with SVA's positioning on higher-ticket,
+// qualification-heavy sales cycles. Every description ends with a
+// reference to paying only for qualified bookings.
 const industries = [
     { name: 'Real Estate', Icon: Home, desc: 'Speed-to-lead wins listings. Our AI calls your leads within seconds, qualifies them on budget and timeline, and books the showing. You only pay for qualified bookings.' },
     { name: 'Solar Energy', Icon: Sun, desc: 'Solar leads have a 5-minute window. We call, qualify for roof type and bill size, and book the site survey. You only pay for qualified bookings.' },
     { name: 'Healthcare', Icon: Stethoscope, desc: 'Patients do not leave voicemails, they call the next clinic. Our AI books appointments 24/7 so you never lose a patient. You only pay for qualified bookings.' },
-    { name: 'Finance', Icon: DollarSign, desc: 'Pre-qualify loan and insurance leads automatically. Ask the right questions before a human ever picks up. You only pay for qualified bookings.' },
+    { name: 'Finance', Icon: DollarSign, desc: 'Pre-qualify loan and advisory leads automatically. Ask the right questions before a human ever picks up. You only pay for qualified bookings.' },
     { name: 'Legal', Icon: Scale, desc: 'A missed call could be a $50K case. Our AI captures intent, urgency, and contact details after hours, then books the consult. You only pay for qualified bookings.' },
-    { name: 'Home Services', Icon: Wrench, desc: 'Your team is on a roof. A $15K job calls. Our AI answers, qualifies, and books the estimate before they call your competitor. You only pay for qualified bookings.' },
-    { name: 'Landscaping', Icon: Leaf, desc: 'Spring means 200 calls a week. Our AI handles the surge, qualifies the jobs, and books estimates while your crew works. You only pay for qualified bookings.' },
     { name: 'Insurance', Icon: Shield, desc: 'Engage and qualify insurance leads with personalised AI calls. Ask about coverage needs, timeline, and budget automatically. You only pay for qualified bookings.' }
 ];
 

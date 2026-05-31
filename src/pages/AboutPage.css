@@ -1,0 +1,95 @@
+/* /about — Our Story page. */
+
+.about-page {
+    background: #fff;
+    color: var(--near-black, #1A1A1A);
+}
+
+/* HERO */
+.ap-hero {
+    background: linear-gradient(180deg, #25005D 0%, #473D92 100%);
+    color: #fff;
+    padding: 9rem 0 5rem;
+    text-align: center;
+}
+.ap-hero-inner {
+    max-width: 820px;
+}
+.ap-hero-eyebrow {
+    margin: 0 0 1rem;
+    color: var(--electric-violet, #7868F8);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.82rem;
+}
+.ap-hero h1 {
+    color: #fff;
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    line-height: 1.15;
+    margin: 0 0 1.25rem;
+    font-weight: 800;
+}
+.ap-hero-sub {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    line-height: 1.6;
+    margin: 0 auto;
+    opacity: 0.92;
+    max-width: 660px;
+}
+
+/* SECTIONS */
+.ap-section {
+    padding: 5rem 0;
+    background: #fff;
+}
+.ap-section-alt {
+    background: var(--off-white, #F3F3F3);
+}
+.ap-prose {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+.ap-prose h2 {
+    color: var(--deep-purple, #25005D);
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+    text-transform: none;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.5rem;
+}
+.ap-prose p {
+    color: var(--near-black, #1A1A1A);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin: 0 0 1.25rem;
+}
+.ap-prose em { color: var(--violet-text, #5040C7); font-style: italic; }
+
+/* Pull-quote inside a prose section */
+.ap-prose-quote {
+    margin: 2rem 0 0;
+    padding: 1.5rem 1.75rem;
+    background: var(--pale-lavender, #F5F2FF);
+    border-left: 4px solid var(--electric-violet, #7868F8);
+    border-radius: 0 12px 12px 0;
+    color: var(--deep-purple, #25005D) !important;
+    font-size: 1.25rem !important;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.4 !important;
+}
+.ap-prose-quote cite {
+    display: block;
+    margin-top: 0.85rem;
+    font-size: 0.95rem;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--royal-purple, #473D92);
+}
+
+@media (max-width: 640px) {
+    .ap-hero { padding: 6rem 0 3.5rem; }
+    .ap-section { padding: 3.5rem 0; }
+    .ap-prose p { font-size: 1rem; }
+}
