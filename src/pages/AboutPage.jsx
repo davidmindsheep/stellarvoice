@@ -32,30 +32,23 @@ export default function AboutPage() {
                     <div className="container ap-prose">
                         <h2>How we met</h2>
                         <p>
-                            Gary and David met through a mutual friend over lunch in Bali. Gary sat through
-                            two hours of conversation without understanding a word: David&apos;s Australian
-                            accent plus technical jargon was a wall.
+                            Gary and David met at a cafe. Over the course of that conversation, they kept
+                            returning to the same observation: businesses were losing real revenue every day
+                            because nobody could respond to inbound leads fast enough. Most of the AI voice
+                            tools on the market either sounded robotic, charged regardless of outcome, or
+                            could not actually qualify a lead before handing it off.
                         </p>
                         <p>
-                            The next day Gary told David: <em>&quot;I had no idea what you said yesterday.
-                            We need to start over.&quot;</em> They blocked out one weekend, then two. By the
-                            end of the second weekend, they had a working prototype.
-                        </p>
-                    </div>
-                </section>
-
-                {/* HOW WE KNEW IT WORKED */}
-                <section className="ap-section ap-section-alt">
-                    <div className="container ap-prose">
-                        <h2>How we knew it worked</h2>
-                        <p>
-                            Gary took the prototype to a Virginia real estate conference. Nobody there knew
-                            what an AI voice agent was. So Gary stopped explaining and just rang the
-                            prototype&apos;s number and handed people the phone.
+                            They saw the gap clearly, and they saw a way to fill it. They decided to focus
+                            their combined effort on one problem: building voice AI that qualifies leads
+                            and books appointments as naturally as a top sales representative does.
                         </p>
                         <p>
-                            Every single time: disbelief, then excitement, then <em>&quot;where do I sign
-                            up.&quot;</em> He called David from the parking lot and said they had a business.
+                            An initial prototype proved the concept worked. Months of platform development
+                            followed. Today, Stellar Voice Agents works with clients across professional
+                            verticals to deliver qualified bookings on their calendars every week. The
+                            longest-running engagement has been live for six months and counting, with
+                            consistent results from the day it went live.
                         </p>
                     </div>
                 </section>
