@@ -245,24 +245,9 @@
     line-height: 1.2;
 }
 
-/* COMMIT CALLOUT on quote screen (Brief Sec 2.7) */
-.qts-commit {
-    margin-bottom: 1.25rem;
-    padding: 0.9rem 1.1rem;
-    background: linear-gradient(135deg, var(--deep-purple, #25005D) 0%, var(--royal-purple, #473D92) 100%);
-    color: #fff;
-    border-radius: 10px;
-    text-align: center;
-}
-.qts-commit p {
-    margin: 0;
-    font-size: 0.92rem;
-    line-height: 1.5;
-}
-.qts-commit strong {
-    color: #fff;
-    font-weight: 700;
-}
+/* (Quote-screen commit callout removed Jun 2026: the same line already
+ * appears on /pricing in a larger callout, and on the quote screen it
+ * was visual noise between the tier cards and the financial breakdown.) */
 
 @media (max-width: 640px) {
     .qts-tiers-grid {

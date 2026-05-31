@@ -123,14 +123,6 @@ export default function QuoteScreen({ result, businessName }) {
                 </div>
             </section>
 
-            {/* COMMIT CALLOUT (Brief Sec 2.7) */}
-            <section className="qts-commit">
-                <p>
-                    <strong>The more you commit, the less you pay per booking.</strong>{' '}
-                    Starter: $35. Growth: $25. Scale: $20. We reward commitment.
-                </p>
-            </section>
-
             {/* WHAT YOU GET */}
             <section className="quote-features">
                 <h3>What {tier.name} includes</h3>
