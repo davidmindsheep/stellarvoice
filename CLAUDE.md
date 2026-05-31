@@ -2,7 +2,7 @@
 
 Marketing site for **Stellar Voice Agents** — live at **https://www.stellarvoiceagents.com**. Vite + React 19 + plain CSS, hosted on Vercel (team `mindsheeplabs-projects`, project `stellarvoice`).
 
-Founders: **Gary Sarco** (CEO — `garysarco1@gmail.com`) + **David Taylor** (CTO — `david@mindsheep.com.au`).
+Founders: **Gary Sarco** (CEO — `gary@stellarvoiceagents.com`) + **David Taylor** (CTO — `david@mindsheep.com.au`).
 
 ## Stack
 - Vite + React 19, plain CSS (no Tailwind/shadcn), lucide-react icons, Poppins font
@@ -44,9 +44,9 @@ Founders: **Gary Sarco** (CEO — `garysarco1@gmail.com`) + **David Taylor** (CT
 
 ## Env vars (Vercel Production + Preview)
 - `RESEND_API_KEY` — ⚠️ needs rotation (was in plaintext chat)
-- `INTERNAL_EMAILS` — `david@mindsheep.com.au,garysarco1@gmail.com`
+- `INTERNAL_EMAILS` — `david@mindsheep.com.au,gary@stellarvoiceagents.com`
 - `FROM_EMAIL` — `Stellar Voice Agents <hello@stellarvoiceagents.com>`
-- `REPLY_TO_EMAIL` — `garysarco1@gmail.com`
+- `REPLY_TO_EMAIL` — `gary@stellarvoiceagents.com`
 
 ## Pending (non-blocking)
 1. Rotate Resend API key

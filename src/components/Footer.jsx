@@ -32,7 +32,7 @@ const Footer = () => {
                     </div>
                     <div className="footer-contact">
                         <h4>Get In Touch</h4>
-                        <p>Email: garysarco1@gmail.com</p>
+                        <p>Email: <a href="mailto:gary@stellarvoiceagents.com" style={{ color: 'inherit' }}>gary@stellarvoiceagents.com</a></p>
                         <button type="button" onClick={() => openCalendly(undefined, 'footer')} className="btn-primary small" style={{ marginTop: '12px' }}>Book a Call</button>
                     </div>
                 </div>
