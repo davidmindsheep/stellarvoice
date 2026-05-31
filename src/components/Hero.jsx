@@ -10,7 +10,10 @@ const Hero = ({ onOpenCalculator }) => {
                     Never lose<br />another lead.
                 </h1>
                 <p className="hero-subtitle">
-                    AI voice agents that sound human, qualify leads, and book appointments 24/7.
+                    AI voice agents that qualify your leads and book your appointments. You only pay when we deliver.
+                </p>
+                <p className="hero-trust-signal">
+                    Performance-based pricing. Low monthly retainer. You pay per qualified booking.
                 </p>
                 <div className="hero-cta-group">
                     <button type="button" onClick={onOpenCalculator} className="btn-primary">Take the 30-Sec Test</button>

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
+import PositioningStrip from '../components/PositioningStrip';
 import QuoteBar from '../components/QuoteBar';
+import WhyDifferent from '../components/WhyDifferent';
+import Capabilities from '../components/Capabilities';
 import SoundsReal from '../components/SoundsReal';
 import CalculatorCTA from '../components/Calculator/CalculatorCTA';
 import Calculator from '../components/Calculator/Calculator';
@@ -16,16 +19,14 @@ import FAQ from '../components/FAQ';
 import CTABanner from '../components/CTABanner';
 import Footer from '../components/Footer';
 
-// Section order:
-//   Hero -> QuoteBar (big Denes pull quote) -> SoundsReal -> Demos
-//   -> CalculatorCTA -> ProblemSolution -> Products -> HowItWorks
-//   -> Features -> Industries -> Plan-finder CTA (anchored #pricing)
-//   -> Team -> FAQ -> CTABanner
-//
-// The old SocialProof stat strip (4 tiles in a white band) was removed
-// because it duplicated the hero stats one screen below and pushed the
-// Denes "this is amazing" quote further down the page. Visitor sees:
-// hero -> big quote -> "does it actually sound real?" -> demos.
+// Section order per the 31 May 2026 Developer Brief (Sec 3):
+//   Hero -> PositioningStrip (3 "why us" points, dark band)
+//   -> QuoteBar (big Denes pull quote)
+//   -> WhyDifferent (3-card section, dark panel)
+//   -> Capabilities ("What our AI actually does" 5 capabilities)
+//   -> SoundsReal (positive-framed voice quality section)
+//   -> Demos -> CalculatorCTA -> ProblemSolution -> Products -> HowItWorks
+//   -> Features -> Industries -> Plan-finder CTA -> Team -> FAQ -> CTABanner
 export default function HomePage() {
     const [calcOpen, setCalcOpen] = useState(false);
 
@@ -34,7 +35,10 @@ export default function HomePage() {
             <Navbar onOpenCalculator={() => setCalcOpen(true)} />
             <main>
                 <Hero onOpenCalculator={() => setCalcOpen(true)} />
+                <PositioningStrip />
                 <QuoteBar />
+                <WhyDifferent />
+                <Capabilities />
                 <SoundsReal />
                 <Demos />
                 <CalculatorCTA onOpen={() => setCalcOpen(true)} />
@@ -50,7 +54,7 @@ export default function HomePage() {
                     onOpen={() => setCalcOpen(true)}
                     eyebrow="Plan Finder"
                     headline="Find the best plan for your business."
-                    sub="Answer four quick questions and we'll match you to the right tier, then show you the full pricing breakdown."
+                    sub="Answer four quick questions and we will match you to the right plan. Every plan includes performance-based pricing. You pay a low retainer plus a fee per qualified booking."
                     buttonText="Find My Plan →"
                 />
                 <Team />

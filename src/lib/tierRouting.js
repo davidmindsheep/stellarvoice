@@ -1,10 +1,19 @@
-// Tier routing logic per the SVA pricing blueprint v1.0 (Phase 2).
-// Maps a completed quiz answer set to one of four outcomes:
-//   - 'starter' | 'growth' | 'scale' | 'enterprise'
+// Tier routing per the 31 May 2026 Developer Brief (Sec 2.5).
 //
-// Tie-breaker: when signals match multiple tiers, route UP. The base +
-// performance model caps client downside, and a demo call can always
-// step down. Routing too low loses the deal.
+// Recommend SCALE if:
+//   - missed calls 30+ per week, OR
+//   - customer value $5,000+ (l or xl), OR
+//   - pain "speed" + lead volume 100+, OR
+//   - industry Real Estate or Finance + customer value $5,000+
+// Recommend GROWTH if:
+//   - missed calls 15-30 per week, OR
+//   - customer value $1,500-$5,000 (m), OR
+//   - pain "speed" + lead volume 50-100 (m), OR
+//   - pain "afterHours" + afterHoursChannel "both"
+// Recommend STARTER otherwise.
+//
+// Enterprise overlay: $15,000+ value, 500+ leads/mo, or 100+ missed/wk
+// flips the prospect to enterprise (custom call) regardless of tier.
 
 import { QUESTIONS } from '../calculator/questions';
 
@@ -27,13 +36,17 @@ function weeklyMissed(answers) {
     return Number(meta(answers, 'missedVolume').weekly ?? 0);
 }
 
-function isHighValueIndustry(answers) {
-    // Real estate, health, finance, and commercial services tend toward higher
-    // average deal sizes and longer sales cycles where tier 3 features pay off.
-    return ['realEstate', 'health', 'finance'].includes(answers.industry);
+// "Speed" pain branch maps to the `speed` answer ID on the pain question.
+// "After-hours" pain branch maps to `afterHours`.
+function isPain(answers, painId) {
+    return answers.pain === painId;
 }
 
-// Heuristics for enterprise. Either of these on its own is enough.
+function isHighValueIndustry(answers) {
+    return ['realEstate', 'finance'].includes(answers.industry);
+}
+
+// Enterprise overlay. Either of these on its own is enough.
 function isEnterprise(answers) {
     if (customerValue(answers) >= 15000) return true;
     if (monthlyLeads(answers) >= 500) return true;
@@ -44,66 +57,33 @@ function isEnterprise(answers) {
 export function routeTier(answers) {
     if (isEnterprise(answers)) return 'enterprise';
 
-    // Score each tier from the captured signals. Highest score wins; ties go
-    // to the higher tier.
-    const score = { starter: 0, growth: 0, scale: 0 };
-
     const value = customerValue(answers);
     const leads = monthlyLeads(answers);
     const missed = weeklyMissed(answers);
 
-    // Customer value bands.
-    if (value <= 3000) score.starter += 2;
-    else if (value <= 8000) score.growth += 2;
-    else score.scale += 2;
+    // Check SCALE conditions first. If any are met, route up.
+    const scaleConditions = [
+        missed >= 30,                                          // 30+ missed calls/wk (tons)
+        value >= 5000,                                          // $5k+ customer value (l, xl)
+        isPain(answers, 'speed') && leads >= 100,              // speed pain + 100+ leads (l)
+        isHighValueIndustry(answers) && value >= 5000          // real estate/finance + $5k+
+    ];
+    if (scaleConditions.some(Boolean)) return 'scale';
 
-    // Lead volume bands.
-    if (leads === 0) {
-        // Unknown - assume small.
-        score.starter += 1;
-    } else if (leads < 100) {
-        score.starter += 1;
-    } else if (leads < 300) {
-        score.growth += 2;
-    } else {
-        score.scale += 2;
-    }
+    // Then GROWTH conditions.
+    const growthConditions = [
+        missed >= 15 && missed < 30,                           // 15-30 missed/wk (lots)
+        value >= 1500 && value < 5000,                         // $1.5k-$5k (m)
+        isPain(answers, 'speed') && leads >= 50 && leads < 100, // speed + 50-100 leads (m)
+        isPain(answers, 'afterHours') && answers.afterHoursChannel === 'both'
+    ];
+    if (growthConditions.some(Boolean)) return 'growth';
 
-    // Missed-call volume bands.
-    if (missed >= 25) score.growth += 1;
-    if (missed >= 50) score.scale += 1;
-
-    // Pain branches that imply more complex needs.
-    if (answers.pain === 'missed' || answers.pain === 'afterHours') {
-        score.starter += 1;
-    }
-    if (answers.pain === 'speed') {
-        // Speed-to-lead is included in all tiers, but it really shines with
-        // smart retry (growth+) and outbound (growth+).
-        score.growth += 1;
-    }
-
-    // After-hours channel = both phone AND forms implies more lines / volume.
-    if (answers.afterHoursChannel === 'both') score.growth += 1;
-
-    // Multiple lead sources / high-value industries push toward scale.
-    if (isHighValueIndustry(answers)) score.growth += 1;
-    if (isHighValueIndustry(answers) && (leads >= 100 || value >= 5000)) score.scale += 1;
-
-    // Pick the winner. Tie-breaker: higher tier wins.
-    const ordered = ['scale', 'growth', 'starter'];
-    let best = 'starter';
-    let bestScore = -1;
-    for (const tier of ordered) {
-        if (score[tier] > bestScore) {
-            bestScore = score[tier];
-            best = tier;
-        }
-    }
-    return best;
+    // Default: STARTER.
+    return 'starter';
 }
 
-// Returns true when the quiz answers indicate enterprise without routing.
+// Returns true when the quiz answers indicate enterprise.
 // Exposed so the calculator can branch the UI to the enterprise message.
 export function isEnterpriseAnswers(answers) {
     return isEnterprise(answers);

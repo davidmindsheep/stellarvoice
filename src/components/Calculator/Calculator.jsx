@@ -35,7 +35,8 @@ function StartScreen({ onStart }) {
             <p className="calc-eyebrow">30-second test</p>
             <h1 className="calc-headline">Never lose<br />another lead.</h1>
             <p className="calc-subhead">
-                Answer four quick questions. See exactly how much revenue is walking past your business every month, plus the plan that fits.
+                Answer four quick questions. See exactly how much revenue is walking past your business every month.
+                We will also show you which plan matches your business and what you would pay only when we deliver.
             </p>
             <button className="calc-continue" style={{ maxWidth: 280 }} onClick={() => { track('quiz_started'); onStart(); }}>
                 Start the test

@@ -64,6 +64,7 @@ const Products = () => {
                                 <product.Icon size={28} strokeWidth={1.75} color={product.color} />
                             </div>
                             <h3 className="product-name">{product.name}</h3>
+                            <p className="product-pricing-signal">Low monthly retainer + you pay per qualified booking</p>
                             <p className="product-tagline">{product.tagline}</p>
                             <ul className="product-features">
                                 {product.features.map((feature, i) => (

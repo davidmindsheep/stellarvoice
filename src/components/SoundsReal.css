@@ -45,6 +45,17 @@
     font-weight: 600;
     color: var(--royal-purple);
 }
+.sounds-real-close {
+    margin-top: 1.5rem !important;
+    padding: 1.25rem 1.5rem;
+    background: var(--pale-lavender, #F5F2FF);
+    border-left: 4px solid var(--electric-violet, #7868F8);
+    border-radius: 0 12px 12px 0;
+    color: var(--deep-purple, #25005D) !important;
+    font-weight: 500;
+    font-size: 1.05rem !important;
+    line-height: 1.6 !important;
+}
 .sounds-real-ctas {
     display: flex;
     gap: 1rem;

@@ -1,10 +1,10 @@
-// Phase 4 of the pricing blueprint: the quiz result rendered as a printable,
-// shareable quote. Replaces the legacy ResultScreen for all non-enterprise
-// outcomes. Enterprise prospects get the EnterpriseScreen sibling.
+// The quiz result rendered as a printable, shareable quote.
+// Shows 3 tier cards with the recommended tier highlighted + a per-booking
+// commit callout (Brief Sec 2.4 to 2.7).
 
 import React from 'react';
 import { Printer, Share2 } from 'lucide-react';
-import { TIERS } from '../../lib/pricingConfig';
+import { TIERS, TIER_ORDER } from '../../lib/pricingConfig';
 import { openCalendly } from '../../lib/calendly';
 import { track } from '../../lib/analytics';
 import './QuoteScreen.css';
@@ -29,7 +29,6 @@ const today = () =>
 
 function handlePrintOrShare() {
     track('quote_printed', { source: 'quote_screen' });
-    // Mobile: try Web Share API first, fall back to print.
     const ua = typeof navigator !== 'undefined' ? navigator.userAgent : '';
     const isMobile = /Mobi|Android|iPhone|iPad/i.test(ua);
     if (isMobile && typeof navigator !== 'undefined' && navigator.share) {
@@ -45,14 +44,42 @@ function handlePrintOrShare() {
     }
 }
 
+// Compact tier card for the quote screen. The recommended tier gets a
+// badge and a revenue box; the others render in a muted layout.
+function QuoteTierCard({ tier, isRecommended, revenueLow, revenueHigh }) {
+    return (
+        <div
+            className={`qts-tier ${isRecommended ? 'is-recommended' : ''}`}
+            style={{ '--tier-accent': tier.accent }}
+        >
+            {isRecommended && <span className="qts-tier-badge">RECOMMENDED FOR YOU</span>}
+            <p className="qts-tier-name">{tier.name}</p>
+            <p className="qts-tier-base">
+                <strong>{fmt(tier.baseRetainer)}</strong>
+                <span>/mo base</span>
+            </p>
+            <p className="qts-tier-fee">+ {fmt(tier.perBooking)}/booking</p>
+            {isRecommended && revenueLow && revenueHigh && (
+                <div className="qts-tier-revenue">
+                    <span className="qts-tier-revenue-label">Expected additional revenue</span>
+                    <span className="qts-tier-revenue-value">
+                        +{fmt(revenueLow)} to {fmt(revenueHigh)}/mo
+                    </span>
+                </div>
+            )}
+        </div>
+    );
+}
+
 export default function QuoteScreen({ result, businessName }) {
-    const tier = TIERS[result.plan.id];
+    const recommendedId = result.plan.id;
+    const tier = TIERS[recommendedId];
     const monthlyRevenue = result.monthlyRevenue;
     const annualRevenue = result.annualRevenue;
     const baseRetainer = tier.baseRetainer;
-    const perAppt = tier.perAppt;
+    const perBooking = tier.perBooking;
     const guarantee = tier.guarantee;
-    const performanceFee = guarantee * perAppt;
+    const performanceFee = guarantee * perBooking;
     const expectedCost = baseRetainer + performanceFee;
     const monthlyProfit = monthlyRevenue - expectedCost;
     const annualProfit = monthlyProfit * 12;
@@ -74,7 +101,8 @@ export default function QuoteScreen({ result, businessName }) {
             </header>
 
             <button type="button" className="quote-print-btn no-print" onClick={handlePrintOrShare}>
-                <Printer size={16} aria-hidden="true" /> <span className="desktop-only">Print This Quote</span>
+                <Printer size={16} aria-hidden="true" />
+                <span className="desktop-only">Print This Quote</span>
                 <span className="mobile-only"><Share2 size={16} aria-hidden="true" /> Share</span>
             </button>
 
@@ -87,34 +115,33 @@ export default function QuoteScreen({ result, businessName }) {
                 </p>
             </section>
 
-            {/* PLAN */}
-            <section className="quote-plan">
-                <span className="quote-plan-badge" style={{ '--tier-accent': tier.accent }}>
-                    {tier.name.toUpperCase()}
-                </span>
-                <div className="quote-plan-grid">
-                    <div>
-                        <p className="quote-plan-label">Base retainer</p>
-                        <p className="quote-plan-value">{fmt(baseRetainer)}<span>/mo</span></p>
-                    </div>
-                    <div>
-                        <p className="quote-plan-label">Performance fee</p>
-                        <p className="quote-plan-value">+ {fmt(perAppt)}<span>/appt</span></p>
-                    </div>
-                    <div>
-                        <p className="quote-plan-label">Expected total</p>
-                        <p className="quote-plan-value">{fmt(expectedCost)}<span>/mo</span></p>
-                    </div>
+            {/* TIER CARDS (Brief Sec 2.4 + 2.6) */}
+            <section className="qts-tiers">
+                <h3>Your recommended plan</h3>
+                <div className="qts-tiers-grid">
+                    {TIER_ORDER.map((id) => (
+                        <QuoteTierCard
+                            key={id}
+                            tier={TIERS[id]}
+                            isRecommended={id === recommendedId}
+                            revenueLow={TIERS[id].revenueLift?.low}
+                            revenueHigh={TIERS[id].revenueLift?.high}
+                        />
+                    ))}
                 </div>
-                <p className="quote-plan-explanation">
-                    Your base covers always-on AI infrastructure. You only pay the appointment fee
-                    when we deliver qualified booked appointments.
+            </section>
+
+            {/* COMMIT CALLOUT (Brief Sec 2.7) */}
+            <section className="qts-commit">
+                <p>
+                    <strong>The more you commit, the less you pay per booking.</strong>{' '}
+                    Starter: $35. Growth: $25. Scale: $20. We reward commitment.
                 </p>
             </section>
 
             {/* WHAT YOU GET */}
             <section className="quote-features">
-                <h3>What you get</h3>
+                <h3>What {tier.name} includes</h3>
                 <ul>
                     {tier.headlineFeatures.map((f, i) => (
                         <li key={i}><span className="check">✓</span> {f}</li>
@@ -140,7 +167,7 @@ export default function QuoteScreen({ result, businessName }) {
                             <td className="num neg">- {fmt(baseRetainer)}</td>
                         </tr>
                         <tr>
-                            <td>Expected performance fee</td>
+                            <td>Expected per-booking fees</td>
                             <td className="num neg">- {fmt(performanceFee)}</td>
                         </tr>
                         <tr className="row-cost">
@@ -169,11 +196,11 @@ export default function QuoteScreen({ result, businessName }) {
                 </table>
             </section>
 
-            {/* PILOT OPTION */}
+            {/* PERFORMANCE GUARANTEE NOTE */}
             <section className="quote-pilot">
                 <p>
-                    <strong>Not ready to commit?</strong> Start with a 60-Day Pilot at half the base:{' '}
-                    <strong>{fmt(tier.pilotBase)}/mo</strong> + the same {fmt(perAppt)}/appt. Full features, cancel anytime.
+                    <strong>Performance guarantee:</strong> Full refund of your first month if we deliver
+                    zero qualified bookings in your first month. That is how confident we are.
                 </p>
             </section>
 
@@ -243,7 +270,7 @@ export function EnterpriseQuoteScreen({ result, businessName }) {
                     <li>Unlimited AI agents and CRM integrations</li>
                     <li>Custom workflows, custom personas, custom KPIs</li>
                     <li>SLA-backed uptime and response guarantees</li>
-                    <li>Fortnightly strategy reviews with Gary</li>
+                    <li>Weekly strategy reviews with Gary</li>
                 </ul>
                 <button type="button" className="quote-cta-primary" onClick={handleBookCall}>
                     Book a Call with Gary

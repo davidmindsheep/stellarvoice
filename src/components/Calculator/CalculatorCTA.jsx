@@ -10,7 +10,7 @@ export default function CalculatorCTA({
     id,
     eyebrow = '30-second test',
     headline = 'How much revenue is your phone leaking?',
-    sub = "Take the quick test and see — to the dollar — what slow follow-up, missed calls, and after-hours enquiries are costing your business every month.",
+    sub = "Take the quick test and see, to the dollar, what slow follow-up, missed calls, and after-hours enquiries are costing your business every month. We will also show you which of our plans matches your business and what you would pay only when we deliver.",
     buttonText = 'Take The Quiz →'
 }) {
     return (

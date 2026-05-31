@@ -18,3 +18,17 @@
 }
 .step-card p { color: #555; font-size: 0.95rem; line-height: 1.6; }
 @media (max-width: 768px) { .steps-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; } }
+
+.how-results-tagline {
+    max-width: 760px;
+    margin: 2.5rem auto 0;
+    padding: 1.25rem 1.5rem;
+    background: var(--pale-lavender, #F5F2FF);
+    border-left: 4px solid var(--electric-violet, #7868F8);
+    border-radius: 0 12px 12px 0;
+    color: var(--deep-purple, #25005D);
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: left;
+}
+.how-results-tagline strong { color: var(--violet-text, #5040C7); }

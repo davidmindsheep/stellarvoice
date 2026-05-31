@@ -1133,3 +1133,32 @@
     .cs-tldr li { font-size: 0.88rem; }
     .cs-tldr li strong { min-width: 0; display: block; margin-bottom: 2px; }
 }
+
+/* Performance pricing callout below results (Brief Sec 3.20). */
+.cs-perf-pricing {
+    max-width: 720px;
+    margin: 2.5rem auto 0;
+    padding: 1.5rem 1.75rem;
+    background: linear-gradient(135deg, var(--deep-purple, #25005D) 0%, var(--royal-purple, #473D92) 100%);
+    border-radius: 14px;
+    color: #fff;
+}
+.cs-perf-pricing p {
+    margin: 0 0 0.85rem;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.02rem;
+    line-height: 1.6;
+}
+.cs-perf-pricing strong { color: #fff; font-weight: 800; }
+.cs-perf-pricing-link {
+    display: inline-block;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+.cs-perf-pricing-link:hover { color: var(--electric-violet, #7868F8); }
+@media (max-width: 640px) {
+    .cs-perf-pricing { padding: 1.25rem 1.25rem; }
+    .cs-perf-pricing p { font-size: 0.95rem; }
+}

@@ -1,33 +1,35 @@
 // Single source of truth for tier pricing. Used by:
-//   - src/pages/PricingPage.jsx (the new 3-tier page)
-//   - src/components/Pricing.jsx (homepage teaser)
+//   - src/pages/PricingPage.jsx (the 3-tier page)
 //   - src/components/Calculator/QuoteScreen.jsx (printable quote)
 //   - src/calculator/calc.js (ROI anchor)
 //   - src/lib/tierRouting.js (tier selection)
 //
-// Update these numbers in ONE place — they propagate everywhere.
+// Per the 31 May 2026 Developer Brief: per-booking fees DECREASE with tier
+// commitment ($35 / $25 / $20) so the more the client commits, the lower
+// their per-booking rate. Monthly retainers unchanged at $497 / $997 / $2,497.
+// All "appointment" / "appt" terminology has been replaced with "booking".
 
 export const TIERS = {
     starter: {
         id: 'starter',
         name: 'Starter',
         baseRetainer: 497,
-        perAppt: 25,
-        guarantee: 25, // expected qualified booked appointments / month
-        setupFee: 1000,
-        pilotBase: 247,
+        perBooking: 35,
+        guarantee: 25, // expected qualified bookings / month
+        setupFee: 1500,
+        setupWaiverMonths: 3,
         minCommitment: '1 month',
         aiAgents: '1 agent',
         crmIntegrations: '1 integration',
         accent: '#7868F8',
-        // Expected additional monthly revenue at this tier. Numbers are based on
-        // typical close rates (25-30%) and average deal sizes seen at this tier.
-        // Wide enough range to cover a small operator and a busier solo team.
+        // Expected additional monthly revenue at this tier. Based on typical
+        // close rates (25-30%) and average deal sizes seen in this band.
         revenueLift: { low: 8000, high: 20000 },
         headlineFeatures: [
             'Speed-to-lead via direct CRM integration (under 60 seconds)',
-            'ClosedLoop callback to every new lead (one attempt)',
-            'Appointment booking direct to your calendar',
+            'ClosedLoop callback to every new lead (9 attempts over 6 days, time-of-day optimised)',
+            'SMS follow-up messaging on every lead',
+            'Booking direct to your calendar',
             'Live dashboard + monthly summary'
         ]
     },
@@ -35,19 +37,20 @@ export const TIERS = {
         id: 'growth',
         name: 'Growth',
         baseRetainer: 997,
-        perAppt: 30,
+        perBooking: 25,
         guarantee: 50,
-        setupFee: 2000,
-        pilotBase: 497,
+        setupFee: 3500,
+        setupWaiverMonths: 3,
         minCommitment: '3 months',
         aiAgents: '2 agents',
         crmIntegrations: 'Up to 3',
         accent: '#473D92',
-        recommended: true, // visually emphasized as the default popular tier
+        recommended: true, // default popular tier when no quiz answer set
         revenueLift: { low: 25000, high: 70000 },
         headlineFeatures: [
             'Everything in Starter, plus:',
-            'Smart retry (9 attempts over 6 days, time-of-day optimised)',
+            'ClosedLoop outbound included as standard',
+            'SMS + WhatsApp messaging',
             'Multi-source lead handling + up to 3 CRM integrations',
             'Weekly digest report'
         ]
@@ -56,10 +59,10 @@ export const TIERS = {
         id: 'scale',
         name: 'Scale',
         baseRetainer: 2497,
-        perAppt: 45,
+        perBooking: 20,
         guarantee: 100,
-        setupFee: 3500,
-        pilotBase: 1247,
+        setupFee: 5000,
+        setupWaiverMonths: 6,
         minCommitment: '6 months',
         aiAgents: '3+ agents',
         crmIntegrations: 'Unlimited',
@@ -69,18 +72,33 @@ export const TIERS = {
             'Everything in Growth, plus:',
             'Dedicated outbound campaign assistant + multi-line support',
             'Custom agent personas + custom workflows',
-            'Fortnightly strategy call with Gary + custom KPI reports'
+            'Weekly strategy call with Gary + custom KPI reports',
+            'White label option',
+            'Unlimited integrations'
         ]
     }
 };
 
 export const TIER_ORDER = ['starter', 'growth', 'scale'];
 
-// Expected total = base + (guarantee × perAppt).
+// Universal performance guarantee, shipped on every tier card.
+export const PERFORMANCE_GUARANTEE =
+    'Performance guarantee: Full refund of first month if zero qualified bookings in your first month.';
+
+// Setup fee line: rendered on each tier card and in the matrix.
+export function setupFeeLine(tier) {
+    const t = TIERS[tier];
+    if (!t) return null;
+    const waiver = t.setupWaiverMonths;
+    return `One-time setup: $${t.setupFee.toLocaleString()}. Waived when you pay ${waiver} months upfront.`;
+}
+
+// Expected total used by ROI math (anchor for the calculator quote screen).
+// = base + (guarantee × per-booking fee).
 export function expectedMonthlyTotal(tier) {
     const t = TIERS[tier];
     if (!t) return null;
-    return t.baseRetainer + t.guarantee * t.perAppt;
+    return t.baseRetainer + t.guarantee * t.perBooking;
 }
 
 // Full feature matrix used on the pricing page.
@@ -89,17 +107,18 @@ export function expectedMonthlyTotal(tier) {
 export const FEATURE_MATRIX = [
     { category: 'Pricing' },
     { feature: 'Base Retainer', starter: '$497/mo', growth: '$997/mo', scale: '$2,497/mo' },
-    { feature: 'Performance Fee', starter: '$25/appt', growth: '$30/appt', scale: '$45/appt' },
-    { feature: 'Expected Monthly Total', starter: '~$1,122/mo', growth: '~$2,497/mo', scale: '~$6,997/mo' },
-    { feature: 'Setup Fee', starter: '$1,000', growth: '$2,000', scale: '$3,500' },
+    { feature: 'Per-Booking Fee', starter: '$35/booking', growth: '$25/booking', scale: '$20/booking' },
+    { feature: 'Setup Fee', starter: '$1,500 (waived at 3mo)', growth: '$3,500 (waived at 3mo)', scale: '$5,000 (waived at 6mo)' },
     { feature: 'Minimum Commitment', starter: '1 month', growth: '3 months', scale: '6 months' },
+    { feature: 'Performance Guarantee', starter: '✓', growth: '✓', scale: '✓' },
 
     { category: 'ClosedLoop Callback' },
     { feature: 'Speed-to-lead callback (under 60 seconds)', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Lead qualification on every call', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Callback scheduling on no-answer', starter: '✓', growth: '✓', scale: '✓' },
-    { feature: 'Smart retry (9 attempts over 6 days, time-of-day optimised)', starter: '✗', growth: '✓', scale: '✓' },
-    { feature: 'Outbound SMS', starter: '✗', growth: '✓', scale: '✓' },
+    { feature: 'Smart retry (9 attempts over 6 days, time-of-day optimised)', starter: '✓', growth: '✓', scale: '✓' },
+    { feature: 'SMS messaging', starter: '✓', growth: '✓', scale: '✓' },
+    { feature: 'WhatsApp messaging', starter: '✗', growth: '✓', scale: '✓' },
     { feature: 'Outbound email', starter: '✗', growth: '✓', scale: '✓' },
     { feature: 'Outbound campaigns via list upload', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Dedicated outbound campaign assistant (separate agent)', starter: '✗', growth: '✗', scale: '✓' },
@@ -124,8 +143,5 @@ export const FEATURE_MATRIX = [
     { feature: 'Monthly summary email', starter: '✓', growth: '✓', scale: '✓' },
     { feature: 'Weekly digest report', starter: '✗', growth: '✓', scale: '✓' },
     { feature: 'Custom KPI reports', starter: '✗', growth: '✗', scale: '✓' },
-    { feature: 'Strategy call with Gary', starter: '✗', growth: '✗', scale: 'Fortnightly' }
+    { feature: 'Strategy call with Gary', starter: '✗', growth: '✗', scale: 'Weekly' }
 ];
-
-// (ROI examples removed — we only publish real engagement data on the site.
-// The DENES case study at /case-studies/denes-aldott is the proof point.)

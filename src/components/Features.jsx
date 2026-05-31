@@ -1,15 +1,25 @@
 import React from 'react';
 import './Features.css';
 import useScrollReveal, { useCardReveal } from '../hooks/useScrollReveal';
-import { DollarSign, Headphones, MessageSquare, Eye, Mic, Rocket } from 'lucide-react';
+import { TrendingUp, Target, MessageSquare, Eye, Mic, Rocket } from 'lucide-react';
 
+// Brief Sec 3.13: tile 1 renamed to Performance-Based Pricing (lead),
+// tile 2 renamed to Focused on Sales Qualification, rest unchanged.
 const features = [
-    { title: 'No Per-Minute Billing', description: 'Flat monthly plans. No surprise charges after a 12-minute call. You know exactly what you pay.', Icon: DollarSign },
-    { title: 'White-Glove Setup', description: 'We build your agent for you. No prompt engineering or tech skills needed. Just tell us about your business.', Icon: Headphones },
+    {
+        title: 'Performance-Based Pricing',
+        description: 'You pay a low monthly retainer plus a fee per qualified booking. The bulk of what you pay only kicks in when we deliver results. Clear, predictable pricing tied to results.',
+        Icon: TrendingUp
+    },
+    {
+        title: 'Focused on Sales Qualification',
+        description: 'Every agent we build is purpose-built for one thing: qualifying your leads and booking the real buyers. That focus is why we outperform generalist platforms.',
+        Icon: Target
+    },
     { title: 'Real Objection Handling', description: "Our agents don't just read scripts. They pivot, handle pushback, and keep the conversation moving toward a booking.", Icon: MessageSquare },
     { title: 'Full Transparency', description: 'Every call recorded, transcribed, and scored. You hear exactly what your AI is saying to your leads.', Icon: Eye },
-    { title: 'Human-Sounding Voice', description: 'Natural voices that adapt tone and intent. Most callers can\'t tell they\'re talking to an AI.', Icon: Mic },
-    { title: 'Live in 5–7 Days', description: 'Most agencies take weeks. We go from kickoff to live calls in under a week.', Icon: Rocket }
+    { title: 'Human-Sounding Voice', description: 'Natural voices that adapt tone and intent. Most callers cannot tell they are talking to an AI.', Icon: Mic },
+    { title: 'Live in 5-7 Days', description: 'Most agencies take weeks. We go from kickoff to live calls in under a week.', Icon: Rocket }
 ];
 
 const Features = () => {

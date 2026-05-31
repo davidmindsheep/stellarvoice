@@ -92,7 +92,7 @@ function buildInternalHtml(answers, result, contactKind) {
     const tierLabel = result.enterprise ? 'ENTERPRISE (custom partnership)' : tierName;
     const planSummary = result.enterprise
         ? `Custom Enterprise partnership. Route to a direct call with Gary.`
-        : `Base ${fmt(result.plan.baseRetainer)}/mo + ${fmt(result.plan.perAppt)}/appt · expected ~${fmt(result.plan.expectedTotal)}/mo at ~${result.plan.guarantee} appts`;
+        : `Base ${fmt(result.plan.baseRetainer)}/mo + ${fmt(result.plan.perBooking)}/booking · expected ~${result.plan.guarantee} qualified bookings/mo`;
 
     return `
 <!DOCTYPE html>

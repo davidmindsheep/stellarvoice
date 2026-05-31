@@ -689,6 +689,15 @@ export default function CaseStudyEasyStart() {
                         <p className="cs-data-note">
                             All figures are based on data from the Stellar client dashboard, January to May 2026. Booking rate varies month to month based on lead quality and volume.
                         </p>
+                        {/* Brief Sec 3.20: performance pricing callout below results. */}
+                        <div className="cs-perf-pricing">
+                            <p>
+                                These results are why we tie our pricing to performance. When the system books at these rates,
+                                we are confident enough to let our revenue depend on it. Our Starter plan begins at <strong>$497 per month</strong>
+                                {' '}plus a fee per qualified booking. If the AI does not book, you barely pay.
+                            </p>
+                            <Link to="/pricing" className="cs-perf-pricing-link">See full pricing &rarr;</Link>
+                        </div>
                     </div>
                 </section>
 

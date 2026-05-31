@@ -59,3 +59,16 @@
     background: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
 }
+
+.cta-banner-trust {
+    margin: 0 auto 24px;
+    color: var(--electric-violet, #7868F8);
+    font-weight: 700;
+    font-size: 0.92rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    max-width: 660px;
+}
+@media (max-width: 640px) {
+    .cta-banner-trust { font-size: 0.8rem; }
+}

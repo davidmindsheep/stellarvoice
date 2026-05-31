@@ -3,15 +3,18 @@
 // Calibrated against the SVA pillar metrics (3x speed-to-lead, 80%
 // follow-up consistency, +45% coverage). Currency: USD.
 //
-// As of May 2026 the fee anchor is tier-aware: we route the prospect
-// to one of three tiers (starter/growth/scale) via routeTier(), and
-// use that tier's expected monthly total as the ROI divisor. The base
-// retainer alone understates the prospect's true cost; expected total
-// (base + guarantee x per-appt) is the honest comparison.
+// Per the 31 May 2026 Developer Brief (Sec 2.3): the ROI anchor is the
+// Starter base retainer ($497), not the expected total. This gives the
+// prospect the headline ROI multiple ("X returned per $1 of monthly
+// retainer"). The plan object still carries the tier-routed details so
+// the quote screen can show the matching tier's per-booking fee.
 
 import { QUESTIONS } from './questions';
 import { routeTier, isEnterpriseAnswers } from '../lib/tierRouting';
-import { TIERS, expectedMonthlyTotal } from '../lib/pricingConfig';
+import { TIERS } from '../lib/pricingConfig';
+
+// Anchor for ROI display. Starter base retainer.
+const SVA_MONTHLY_FEE = 497;
 
 function meta(answers, qid) {
     const q = QUESTIONS[qid];
@@ -57,20 +60,19 @@ export function calculate(answers) {
     ];
     const primary = drivers.reduce((a, b) => (b[1] > a[1] ? b : a));
 
-    // Tier routing. Enterprise prospects get no plan card, only a CTA to call
-    // Gary. For ROI math we still surface a reasonable anchor — we use Scale's
-    // expected total as a stand-in so the ROI multiple stays sensible.
+    // Tier routing per the Brief Sec 2.5 rules. Enterprise prospects still
+    // get a Scale-tier plan object as the math fallback; the UI checks the
+    // `enterprise` flag to route them to a custom-call CTA instead.
     const tier = routeTier(answers);
     const enterprise = isEnterpriseAnswers(answers);
-    const anchorTier = enterprise ? 'scale' : tier;
-    const plan = TIERS[anchorTier];
-    const expectedTotal = expectedMonthlyTotal(anchorTier);
+    const planTier = enterprise ? 'scale' : tier;
+    const plan = TIERS[planTier];
 
     return {
         monthlyRevenue: Math.round(monthlyRevenue),
         annualRevenue: Math.round(monthlyRevenue * 12),
-        roiMultiple: expectedTotal > 0
-            ? Math.round((monthlyRevenue / expectedTotal) * 100) / 100
+        roiMultiple: SVA_MONTHLY_FEE > 0
+            ? Math.round((monthlyRevenue / SVA_MONTHLY_FEE) * 100) / 100
             : 0,
         primaryDriverLabel: primary[2],
         breakdown: {
@@ -79,20 +81,18 @@ export function calculate(answers) {
             afterHoursMonthly: Math.round(afterHoursMonthly),
             timeSavedMonthly: Math.round(timeSavedMonthly)
         },
-        // Tier-aware plan info. Consumers should use `tier` for routing
-        // (which may be 'enterprise'); for cost math use `expectedMonthlyCost`.
         tier,
         enterprise,
         plan: {
-            id: anchorTier,
+            id: planTier,
             name: plan.name,
             baseRetainer: plan.baseRetainer,
-            perAppt: plan.perAppt,
+            perBooking: plan.perBooking,
             guarantee: plan.guarantee,
-            pilotBase: plan.pilotBase,
-            expectedTotal
+            setupFee: plan.setupFee,
+            setupWaiverMonths: plan.setupWaiverMonths
         },
         // Legacy field kept for the existing internal email template.
-        sva: { monthlyFee: expectedTotal }
+        sva: { monthlyFee: SVA_MONTHLY_FEE }
     };
 }

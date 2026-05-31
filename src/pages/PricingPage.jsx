@@ -3,7 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Calculator from '../components/Calculator/Calculator';
-import { TIERS, TIER_ORDER, FEATURE_MATRIX } from '../lib/pricingConfig';
+import {
+    TIERS,
+    TIER_ORDER,
+    FEATURE_MATRIX,
+    PERFORMANCE_GUARANTEE,
+    setupFeeLine
+} from '../lib/pricingConfig';
 import { getRecommendation, getTierFromUrl } from '../lib/recommendationCookie';
 import { openCalendly } from '../lib/calendly';
 import { track } from '../lib/analytics';
@@ -47,7 +53,7 @@ function TierCard({ tier, isRecommended, recommendedKnown }) {
                 <span className="tier-price-value">{fmt(tier.baseRetainer)}</span>
                 <span className="tier-price-unit">/mo base</span>
             </div>
-            <p className="tier-perappt">+ {fmt(tier.perAppt)} per qualified booked appointment</p>
+            <p className="tier-perappt">+ {fmt(tier.perBooking)} per qualified booking</p>
 
             {/* Expected additional revenue only renders on the recommended tier
              * card. Showing the upside on every card dilutes the recommendation
@@ -71,6 +77,10 @@ function TierCard({ tier, isRecommended, recommendedKnown }) {
                 ))}
             </ul>
 
+            {/* Setup fee + performance guarantee. Brief Sec 1.2-1.4. */}
+            <p className="tier-setup">{setupFeeLine(tier.id)}</p>
+            <p className="tier-guarantee">{PERFORMANCE_GUARANTEE}</p>
+
             <button type="button" onClick={handleCta} className="tier-cta">
                 Book a Demo
             </button>
@@ -87,7 +97,6 @@ export default function PricingPage() {
     const location = useLocation();
 
     // Resolve the recommendation synchronously from URL and cookie. URL wins.
-    // useMemo avoids the cascading-render lint rule for setState-in-effect.
     const { recommendedTier, recommendation, source } = useMemo(() => {
         const fromUrl = getTierFromUrl(location.search);
         const cookie = getRecommendation();
@@ -99,7 +108,6 @@ export default function PricingPage() {
         };
     }, [location.search]);
 
-    // Side effects: analytics + auto-scroll. Pure setState lives above.
     useEffect(() => {
         track('pricing_page_view', {
             has_recommendation: !!recommendedTier,
@@ -107,7 +115,6 @@ export default function PricingPage() {
             source
         });
         if (source === 'quiz_redirect' && recommendedTier && recommendedTier !== 'enterprise') {
-            // Defer to next frame so layout is ready.
             requestAnimationFrame(() => {
                 const card = document.getElementById(`tier-${recommendedTier}`);
                 if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -117,7 +124,6 @@ export default function PricingPage() {
 
     const isEnterprise = recommendedTier === 'enterprise';
 
-    // Group the feature matrix by category for rendering.
     const matrixSections = useMemo(() => {
         const sections = [];
         let current = null;
@@ -208,6 +214,21 @@ export default function PricingPage() {
                     </div>
                 </section>
 
+                {/* COMMIT CALLOUT — Brief Sec 1.6 */}
+                <section className="pp-commit-callout">
+                    <div className="container">
+                        <div className="pp-commit-inner">
+                            <h2>The more you commit, the less you pay per booking.</h2>
+                            <p>
+                                Starter clients pay $35 per qualified booking. Growth clients pay $25. Scale clients pay $20.
+                                We reward commitment because it lets us plan capacity and deliver better results. Every tier
+                                includes a performance guarantee: if we deliver zero qualified bookings in your first month,
+                                you get a full refund.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
                 {/* FEATURE MATRIX */}
                 <section className="pp-matrix">
                     <div className="container">
@@ -244,12 +265,36 @@ export default function PricingPage() {
                     </div>
                 </section>
 
+                {/* WHY WE TIE OUR PRICING TO YOUR RESULTS — Brief Sec 1.8 */}
+                <section className="pp-why-tie">
+                    <div className="container pp-why-tie-inner">
+                        <h2>Why we tie our pricing to your results.</h2>
+                        <p>
+                            Our pricing has two parts. A monthly retainer covers the AI infrastructure, your dedicated voice
+                            agents, integrations, and ongoing support. A per-booking fee is collected each time we place a
+                            qualified meeting on your calendar.
+                        </p>
+                        <p>
+                            This structure means the majority of what you pay is tied directly to measurable outcomes. If we
+                            deliver more qualified bookings, we both earn more. If we book fewer, you pay less.
+                        </p>
+                        <p>
+                            We built it this way because we believe in the system we have built. Our booking rates on cold
+                            leads run 17 to 25%. Our agents respond to new enquiries in under 5 seconds. We have been running
+                            in production for over 6 months with consistent results.
+                        </p>
+                        <p className="pp-why-tie-close">
+                            Performance-based pricing is our commitment to earning your business every single month.
+                        </p>
+                    </div>
+                </section>
+
                 {/* PILOT CALLOUT */}
                 <section className="pp-pilot">
                     <div className="container">
                         <div className="pp-pilot-box">
                             <h2>Not sure? Start with a 60-Day Pilot.</h2>
-                            <p>Talk to Gary about a pilot. Full features, no restrictions, cancel anytime.</p>
+                            <p>Talk to Gary about a pilot. Full features, performance-based pricing from day one. Cancel anytime.</p>
                             <button
                                 type="button"
                                 className="btn-primary"

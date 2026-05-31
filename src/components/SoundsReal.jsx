@@ -3,47 +3,44 @@ import { Link } from 'react-router-dom';
 import './SoundsReal.css';
 import useScrollReveal from '../hooks/useScrollReveal';
 
-// Section 3.4 of the v2.7 blueprint. Directly confronts the #1 objection
-// ("AI sounds robotic") immediately under the social proof bar.
+// Brief Sec 3.6: rewritten with positive framing. Opens with capability
+// and proof, not with the "AI sounds robotic" objection. Closes with a
+// performance-pricing tie-in.
 const SoundsReal = () => {
     const ref = useScrollReveal();
     return (
         <section id="sounds-real" className="sounds-real-section">
             <div className="container">
                 <div ref={ref} className="reveal sounds-real-content">
-                    <h2 className="section-title">But does it actually sound like a person?</h2>
-                    <p className="sounds-real-lead">
-                        Fair question. Most AI voice you have heard does sound robotic.
-                        Flat tone, awkward pauses, zero personality.
-                    </p>
-                    <p className="sounds-real-lead sounds-real-lead-bold">
-                        That is not what we built.
-                    </p>
+                    <h2 className="section-title">Hear what natural AI voice actually sounds like.</h2>
                     <p>
-                        Stellar's voice agents sound natural because we obsess over the details most providers
-                        skip: warm pacing, natural hesitation, the ability to handle interruptions without losing
-                        the conversation, and the discipline to stay focused on one thing, figuring out if a lead
+                        Stellar's voice agents sound natural because we invest in the details that matter most:
+                        warm pacing, natural hesitation, the ability to handle interruptions without losing the
+                        conversation, and the focus to stay on track toward one goal. Figuring out if this lead
                         is real and getting them booked in with you.
                     </p>
                     <p>
-                        Before our first client agreed to send a single real lead through the system, he tested
-                        the voice himself. He called in, asked the kind of curveball questions a real customer
-                        would ask, and reacted in the moment. His verdict:
+                        Before our first client sent a single real lead through the system, he tested the voice
+                        himself. He called in, asked the kind of curveball questions a real customer would ask,
+                        and reacted in the moment. His verdict:
                     </p>
                     <blockquote className="sounds-real-quote">
                         "That's just so unreal, well done!"
                         <cite>Denes Aldott, EasyStart Homes</cite>
                     </blockquote>
                     <p>
-                        Denes has now been live for 6 months. His leads do not realise they are talking to AI.
+                        That client, Denes Aldott from EasyStart Homes, has now been live for over 6 months.
+                        His leads do not realise they are talking to AI.
+                    </p>
+                    <p className="sounds-real-close">
+                        This is also why we are confident enough to tie our pricing to results. When the AI sounds
+                        this natural, leads engage. When leads engage, they qualify. When they qualify, they book.
+                        We built a system that works, and we priced it so you only pay when it does.
                     </p>
                     <div className="sounds-real-ctas">
                         <Link to="/case-studies/denes-aldott" className="btn-primary">
                             Read the Full Case Study
                         </Link>
-                        {/* "Hear Our Demos" button removed — the demos section
-                         * is literally the next section, and the white-on-white
-                         * btn-secondary styling made it nearly invisible. */}
                     </div>
                 </div>
             </div>

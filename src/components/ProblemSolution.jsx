@@ -24,8 +24,9 @@ const ProblemSolution = () => {
                     <h2 className="text-gradient">THE FIX</h2>
                     <p className="highlight">Instant Response. Instant Qualification.</p>
                     <p>
-                        Stellar answers instantly, vets the lead for budget and timeline,
-                        and books the call on your calendar. You only talk to serious buyers.
+                        Stellar answers instantly, qualifies the lead for budget and timeline, and books the real
+                        buyers on your calendar. You only talk to serious prospects. And you only pay us when we
+                        book them.
                     </p>
                     <div className="ps-metric">
                         <span className="value">100%</span>
