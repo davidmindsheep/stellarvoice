@@ -23,11 +23,20 @@ function Section({ section }) {
         case 'visual':
             return (
                 <figure className="bp-visual">
-                    <div className="bp-visual-frame" aria-hidden="true">
-                        <span className="bp-visual-marker">Visual</span>
-                        <p className="bp-visual-title">{section.label}</p>
-                        <p className="bp-visual-caption">{section.description}</p>
-                    </div>
+                    {section.image ? (
+                        <img
+                            src={section.image}
+                            alt={section.imageAlt ?? section.label ?? ''}
+                            className="bp-visual-img"
+                            loading="lazy"
+                        />
+                    ) : (
+                        <div className="bp-visual-frame" aria-hidden="true">
+                            <span className="bp-visual-marker">Visual</span>
+                            <p className="bp-visual-title">{section.label}</p>
+                            <p className="bp-visual-caption">{section.description}</p>
+                        </div>
+                    )}
                 </figure>
             );
         case 'statStrip':

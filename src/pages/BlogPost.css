@@ -225,6 +225,13 @@
 .bp-visual {
     margin: 2rem 0;
 }
+.bp-visual-img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    display: block;
+    box-shadow: 0 12px 32px rgba(37, 0, 93, 0.1);
+}
 
 /* Table */
 .bp-table-wrap {
