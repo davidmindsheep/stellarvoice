@@ -1,0 +1,405 @@
+/* Blog post page — anatomy per master blueprint Section 3.
+ * Hero band (violet gradient, tags, title, dek, meta) -> hero visual ->
+ * body column max 720px -> related posts -> sources -> CTABanner. */
+
+.bp-page {
+    background: #fff;
+    color: var(--near-black, #1A1A1A);
+}
+
+/* ─── HERO ───────────────────────────────────────────────────── */
+.bp-hero {
+    background: linear-gradient(135deg, var(--royal-purple, #473D92) 0%, var(--electric-violet, #7868F8) 55%, rgba(95, 83, 197, 0.25) 100%);
+    color: #fff;
+    padding: 9rem 0 4rem;
+}
+.bp-hero-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 0 1.5rem;
+}
+.bp-hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+.bp-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+}
+.bp-tag-category {
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--deep-purple, #25005D);
+}
+.bp-tag-vertical {
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.bp-hero h1 {
+    color: #fff;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    margin: 0 0 1.25rem;
+    font-weight: 800;
+    text-transform: none;
+    letter-spacing: -0.01em;
+}
+.bp-hero-dek {
+    color: rgba(255, 255, 255, 0.94);
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+    line-height: 1.55;
+    margin: 0 0 1.75rem;
+    max-width: 760px;
+}
+.bp-hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.86);
+}
+.bp-hero-meta-author {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+.bp-hero-meta-author strong {
+    color: #fff;
+    font-weight: 700;
+}
+.bp-hero-meta-author span {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.78);
+}
+.bp-hero-meta-divider {
+    opacity: 0.5;
+    margin: 0 0.15rem;
+}
+
+/* ─── HERO VISUAL ───────────────────────────────────────────── */
+.bp-hero-visual-wrap {
+    padding: 2.5rem 0 0;
+    background: #fff;
+}
+.bp-hero-visual {
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 0 1.5rem;
+}
+.bp-hero-visual-frame,
+.bp-visual-frame {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--pale-lavender, #F5F2FF) 0%, #fff 100%);
+    border: 1px dashed var(--electric-violet, #7868F8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem 1.75rem;
+    color: var(--deep-purple, #25005D);
+}
+.bp-visual-marker {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--electric-violet, #7868F8);
+    background: #fff;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    margin-bottom: 0.85rem;
+    border: 1px solid var(--electric-violet, #7868F8);
+}
+.bp-visual-title {
+    margin: 0 0 0.45rem;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--deep-purple, #25005D);
+    text-transform: none;
+    letter-spacing: 0;
+}
+.bp-visual-caption {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.5;
+    max-width: 600px;
+}
+
+/* ─── BODY COLUMN ───────────────────────────────────────────── */
+.bp-body {
+    padding: 3.5rem 0 4rem;
+    background: #fff;
+}
+.bp-body-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+.bp-body-inner p {
+    margin: 0 0 1.25rem;
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: var(--near-black, #1A1A1A);
+}
+.bp-h2 {
+    margin: 2.5rem 0 1rem;
+    font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+    color: var(--deep-purple, #25005D);
+    text-transform: none;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    font-weight: 800;
+}
+
+/* Pullquote — violet text on lavender-white per blueprint. */
+.bp-pullquote {
+    margin: 2rem 0;
+    padding: 1.5rem 1.75rem;
+    background: var(--pale-lavender, #F5F2FF);
+    border-left: 4px solid var(--electric-violet, #7868F8);
+    border-radius: 0 12px 12px 0;
+}
+.bp-pullquote p {
+    margin: 0;
+    font-size: 1.2rem !important;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--deep-purple, #25005D);
+    line-height: 1.5 !important;
+}
+
+/* Stat strip — homepage-style translucent cards on the violet gradient. */
+.bp-stat-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 2.25rem 0;
+    padding: 1.75rem 1.5rem;
+    background: linear-gradient(135deg, var(--royal-purple, #473D92) 0%, var(--electric-violet, #7868F8) 100%);
+    border-radius: 16px;
+}
+.bp-stat-card {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+.bp-stat-value {
+    margin: 0 0 0.5rem;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+}
+.bp-stat-label {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+
+/* Visual placeholders inside the body column. */
+.bp-visual {
+    margin: 2rem 0;
+}
+
+/* Table */
+.bp-table-wrap {
+    margin: 2rem 0;
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid #E6E2F0;
+}
+.bp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    min-width: 540px;
+}
+.bp-table thead th {
+    background: var(--pale-lavender, #F5F2FF);
+    color: var(--deep-purple, #25005D);
+    text-align: left;
+    padding: 0.85rem 1rem;
+    font-weight: 800;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.bp-table td {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #F0EDF8;
+    color: #333;
+    vertical-align: top;
+}
+.bp-table tbody tr:nth-child(even) { background: #FAFAFA; }
+
+/* Takeaway box */
+.bp-takeaway {
+    margin: 2.5rem 0 1rem;
+    padding: 1.5rem 1.75rem;
+    background: var(--pale-lavender, #F5F2FF);
+    border-radius: 14px;
+    border-left: 4px solid var(--deep-purple, #25005D);
+}
+.bp-takeaway-label {
+    margin: 0 0 0.5rem !important;
+    font-size: 0.72rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 800;
+    color: var(--deep-purple, #25005D);
+}
+.bp-takeaway p:not(.bp-takeaway-label) {
+    margin: 0 !important;
+    color: var(--near-black, #1A1A1A);
+    font-weight: 500;
+    line-height: 1.65 !important;
+}
+
+/* Inline CTA */
+.bp-cta-inline {
+    margin: 2rem 0;
+    text-align: center;
+}
+.bp-cta-inline-link {
+    display: inline-block;
+    padding: 0.85rem 1.75rem;
+    background: var(--deep-purple, #25005D);
+    color: #fff;
+    border-radius: 999px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+.bp-cta-inline-link:hover { background: var(--violet-hover, #6A5AF5); }
+
+/* ─── RELATED ─────────────────────────────────────────────── */
+.bp-related {
+    padding: 4rem 0;
+    background: var(--off-white, #F3F3F3);
+}
+.bp-related-title {
+    text-align: center;
+    margin: 0 0 2rem;
+    color: var(--deep-purple, #25005D);
+    font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+    text-transform: none;
+    letter-spacing: -0.01em;
+}
+.bp-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+.bp-related-card {
+    background: #fff;
+    border: 1px solid #E6E2F0;
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.bp-related-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(37, 0, 93, 0.1);
+    border-color: var(--electric-violet, #7868F8);
+}
+.bp-related-card h3 {
+    margin: 0;
+    color: var(--deep-purple, #25005D);
+    font-size: 1.05rem;
+    line-height: 1.35;
+    text-transform: none;
+    letter-spacing: 0;
+}
+.bp-related-card .bp-tag {
+    align-self: flex-start;
+}
+.bp-related-dek {
+    margin: 0;
+    color: #555;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    flex-grow: 1;
+}
+.bp-related-meta {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--electric-violet, #7868F8);
+}
+
+/* ─── SOURCES ─────────────────────────────────────────────── */
+.bp-sources {
+    padding: 2.5rem 0;
+    background: #fff;
+}
+.bp-sources-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+.bp-sources details {
+    border-top: 1px solid #E6E2F0;
+    border-bottom: 1px solid #E6E2F0;
+    padding: 1rem 0;
+}
+.bp-sources summary {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--violet-text, #5040C7);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    list-style: none;
+}
+.bp-sources summary::-webkit-details-marker { display: none; }
+.bp-sources summary::before {
+    content: '+ ';
+    margin-right: 0.4rem;
+    color: var(--electric-violet, #7868F8);
+}
+.bp-sources details[open] summary::before { content: '− '; }
+.bp-sources ul {
+    margin: 1rem 0 0;
+    padding-left: 1.25rem;
+    color: #555;
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+.bp-sources li { margin-bottom: 0.4rem; }
+
+/* ─── MOBILE ───────────────────────────────────────────────── */
+@media (max-width: 880px) {
+    .bp-stat-strip { grid-template-columns: 1fr; }
+    .bp-related-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+    .bp-hero { padding: 6rem 0 3rem; }
+    .bp-body { padding: 2.5rem 0 3rem; }
+    .bp-body-inner p { font-size: 1rem; }
+    .bp-pullquote { padding: 1.25rem 1.25rem; }
+    .bp-pullquote p { font-size: 1.05rem !important; }
+    .bp-stat-strip { padding: 1.25rem 1rem; }
+    .bp-stat-value { font-size: 1.6rem; }
+}

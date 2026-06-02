@@ -7,6 +7,8 @@ import HowItWorksPage from './pages/HowItWorksPage'
 import PricingPage from './pages/PricingPage'
 import CaseStudiesHub from './pages/CaseStudiesHub'
 import CaseStudyEasyStart from './pages/CaseStudyEasyStart'
+import BlogIndex from './pages/BlogIndex'
+import BlogPost from './pages/BlogPost'
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -36,6 +38,8 @@ function App() {
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/case-studies" element={<CaseStudiesHub />} />
           <Route path="/case-studies/denes-aldott" element={<CaseStudyEasyStart />} />
+          <Route path="/blog" element={<BlogIndex />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           {/* Legacy slug — preserved as a client-side fallback for anyone with
               the old link cached. Vercel also 308-redirects at the edge. */}
           <Route path="/case-studies/easystart-homes" element={<CaseStudyEasyStart />} />
