@@ -21,6 +21,8 @@ export const blogPosts = {
         authorRole: 'CEO',
         date: '2026-06-02',
         readTime: '6 min',
+        heroImage: '/blog/blog-1-5-minute-window-visual-1.webp',
+        heroImageAlt: 'Line chart showing the likelihood of qualifying a lead drops sharply within the first five minutes and flattens after an hour. 21x more likely to qualify at five minutes versus the 47-hour industry average.',
         heroVisual: {
             label: 'The first 5 minutes decide everything',
             description: 'A line chart showing the likelihood of qualifying a lead drops sharply within the first five minutes and flattens after an hour. 21x vs 47 hrs.'
@@ -80,6 +82,8 @@ export const blogPosts = {
         authorRole: 'CTO',
         date: '2026-06-02',
         readTime: '5 min',
+        heroImage: '/blog/blog-2-leaky-bucket-visual-1.webp',
+        heroImageAlt: 'Illustration of a leaking bucket: incoming phone-call droplets pour in the top and drain out the bottom through holes labelled voicemail hang-up, no callback, and after hours.',
         heroVisual: {
             label: 'The leaky bucket',
             description: 'A bucket being filled from above by falling phone-call droplets, leaking out the bottom through three holes labelled voicemail hang-up, no callback, and after hours.'
@@ -130,6 +134,8 @@ export const blogPosts = {
         authorRole: 'CEO',
         date: '2026-06-02',
         readTime: '6 min',
+        heroImage: '/blog/blog-3-natural-conversation-visual-1.webp',
+        heroImageAlt: 'Warm illustration of an older adult comfortably on the phone, with a glowing audio-waveform AI voice and the caption "A natural conversation — not a phone menu."',
         heroVisual: {
             label: 'A natural conversation, not a phone menu',
             description: 'A warm illustration of an older adult comfortably on the phone with a glowing audio-waveform AI voice.'
@@ -181,6 +187,8 @@ export const blogPosts = {
         authorRole: 'CTO',
         date: '2026-06-02',
         readTime: '7 min',
+        heroImage: '/blog/blog-4-booking-rate-lift-visual-1.webp',
+        heroImageAlt: 'Ascending bar chart showing booking rate rising from 17 to 25 percent now, to 28 to 35 percent conservative, to 32 to 40 percent moderate. Subtitle: same leads, no extra ad spend.',
         heroVisual: {
             label: 'The booking-rate lift',
             description: 'Ascending bar chart: Now 17-25%, Conservative 28-35%, Moderate 32-40%. Same leads, no extra ad spend.'
@@ -241,6 +249,8 @@ export const blogPosts = {
         authorRole: 'CTO',
         date: '2026-06-02',
         readTime: '6 min',
+        heroImage: '/blog/blog-5-revenue-leak-waterfall-visual-1.webp',
+        heroImageAlt: 'Waterfall diagram showing 100 leads of full revenue potential draining through three leaks (slow response, missed calls, after-hours unanswered), leaving a small captured remainder labelled Revenue you actually capture.',
         heroVisual: {
             label: 'The revenue-leak waterfall',
             description: '100 leads of full revenue potential drain through three leaks (slow response, missed calls, after-hours unanswered), leaving a small captured remainder.'

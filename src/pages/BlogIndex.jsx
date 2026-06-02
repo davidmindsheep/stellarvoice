@@ -41,10 +41,18 @@ export default function BlogIndex() {
                     <section className="bi-featured-wrap">
                         <div className="container">
                             <Link to={`/blog/${featured.slug}`} className="bi-featured">
-                                <div className="bi-featured-visual" aria-hidden="true">
-                                    <span className="bi-featured-marker">Hero visual</span>
-                                    <p className="bi-featured-visual-title">{featured.heroVisual?.label}</p>
-                                </div>
+                                {featured.heroImage ? (
+                                    <img
+                                        src={featured.heroImage}
+                                        alt={featured.heroImageAlt ?? featured.heroVisual?.label ?? ''}
+                                        className="bi-featured-img"
+                                    />
+                                ) : (
+                                    <div className="bi-featured-visual" aria-hidden="true">
+                                        <span className="bi-featured-marker">Hero visual</span>
+                                        <p className="bi-featured-visual-title">{featured.heroVisual?.label}</p>
+                                    </div>
+                                )}
                                 <div className="bi-featured-body">
                                     <div className="bi-card-tags">
                                         <span className="bi-tag bi-tag-featured">Featured</span>
@@ -73,9 +81,17 @@ export default function BlogIndex() {
                             <div className="bi-grid">
                                 {rest.map((post) => (
                                     <Link key={post.slug} to={`/blog/${post.slug}`} className="bi-card">
-                                        <div className="bi-card-visual" aria-hidden="true">
-                                            <span className="bi-card-marker">{post.category}</span>
-                                        </div>
+                                        {post.heroImage ? (
+                                            <img
+                                                src={post.heroImage}
+                                                alt={post.heroImageAlt ?? post.heroVisual?.label ?? ''}
+                                                className="bi-card-img"
+                                            />
+                                        ) : (
+                                            <div className="bi-card-visual" aria-hidden="true">
+                                                <span className="bi-card-marker">{post.category}</span>
+                                            </div>
+                                        )}
                                         <div className="bi-card-body">
                                             <div className="bi-card-tags">
                                                 <span className="bi-tag bi-tag-category">{post.category}</span>

@@ -149,16 +149,24 @@ export default function BlogPost() {
                     </div>
                 </section>
 
-                {/* HERO VISUAL placeholder — replace with gpt-image-2 art later */}
-                {post.heroVisual && (
+                {/* HERO VISUAL — real image if available, placeholder otherwise. */}
+                {(post.heroImage || post.heroVisual) && (
                     <section className="bp-hero-visual-wrap">
                         <div className="container">
                             <figure className="bp-hero-visual">
-                                <div className="bp-hero-visual-frame" aria-hidden="true">
-                                    <span className="bp-visual-marker">Hero visual</span>
-                                    <p className="bp-visual-title">{post.heroVisual.label}</p>
-                                    <p className="bp-visual-caption">{post.heroVisual.description}</p>
-                                </div>
+                                {post.heroImage ? (
+                                    <img
+                                        src={post.heroImage}
+                                        alt={post.heroImageAlt ?? post.heroVisual?.label ?? ''}
+                                        className="bp-hero-img"
+                                    />
+                                ) : (
+                                    <div className="bp-hero-visual-frame" aria-hidden="true">
+                                        <span className="bp-visual-marker">Hero visual</span>
+                                        <p className="bp-visual-title">{post.heroVisual.label}</p>
+                                        <p className="bp-visual-caption">{post.heroVisual.description}</p>
+                                    </div>
+                                )}
                             </figure>
                         </div>
                     </section>

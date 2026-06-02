@@ -95,6 +95,13 @@
     max-width: 1000px;
     padding: 0 1.5rem;
 }
+.bp-hero-img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    display: block;
+    box-shadow: 0 16px 40px rgba(37, 0, 93, 0.12);
+}
 .bp-hero-visual-frame,
 .bp-visual-frame {
     aspect-ratio: 16 / 9;
