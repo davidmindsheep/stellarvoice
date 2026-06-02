@@ -40,6 +40,18 @@ function Section({ section }) {
                 </figure>
             );
         case 'statStrip':
+            if (section.image) {
+                return (
+                    <figure className="bp-visual bp-stat-figure">
+                        <img
+                            src={section.image}
+                            alt={section.imageAlt ?? section.items.map((i) => `${i.value} ${i.label}`).join('. ')}
+                            className="bp-visual-img"
+                            loading="lazy"
+                        />
+                    </figure>
+                );
+            }
             return (
                 <div className="bp-stat-strip">
                     {section.items.map((item, i) => (
