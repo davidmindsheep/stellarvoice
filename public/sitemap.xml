@@ -43,32 +43,44 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.stellarvoiceagents.com/blog/5-minute-window-speed-to-lead</loc>
+    <loc>https://www.stellarvoiceagents.com/blog/rising-cost-of-scaling-a-human-team</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.stellarvoiceagents.com/blog/every-missed-call-is-a-lost-customer</loc>
+    <loc>https://www.stellarvoiceagents.com/blog/your-salespeople-are-stuck-chasing</loc>
     <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.stellarvoiceagents.com/blog/are-my-clients-too-old-for-ai</loc>
+    <loc>https://www.stellarvoiceagents.com/blog/5-minute-window-speed-to-lead</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.stellarvoiceagents.com/blog/easystart-homes-speed-to-lead-projection</loc>
+    <loc>https://www.stellarvoiceagents.com/blog/every-missed-call-is-a-lost-customer</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.stellarvoiceagents.com/blog/real-cost-of-slow-follow-up</loc>
+    <loc>https://www.stellarvoiceagents.com/blog/are-my-clients-too-old-for-ai</loc>
     <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.stellarvoiceagents.com/blog/easystart-homes-speed-to-lead-projection</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.stellarvoiceagents.com/blog/real-cost-of-slow-follow-up</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

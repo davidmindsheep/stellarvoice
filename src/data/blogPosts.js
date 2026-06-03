@@ -19,10 +19,9 @@ export const blogPosts = {
         metaDescription: 'Responding to a lead in 5 minutes makes you 21x more likely to qualify them. The average business takes 47 hours.',
         author: 'Gary Sarco',
         authorRole: 'CEO',
-        date: '2026-06-02',
+        date: '2026-05-19',
         readTime: '6 min',
         heroImage: '/blog/blog-1-5-minute-window-visual-1.webp',
-        // (Post 1 — most recent, weekly cadence: 06-02 / 05-26 / 05-19 / 05-12 / 05-05)
         heroImageAlt: 'Line chart showing the likelihood of qualifying a lead drops sharply within the first five minutes and flattens after an hour. 21x more likely to qualify at five minutes versus the 47-hour industry average.',
         heroVisual: {
             label: 'The first 5 minutes decide everything',
@@ -81,7 +80,7 @@ export const blogPosts = {
         metaDescription: '80% of callers will not leave a voicemail and 85% will not call back. After-hours calls are up to half your volume.',
         author: 'David Taylor',
         authorRole: 'CTO',
-        date: '2026-05-26',
+        date: '2026-05-12',
         readTime: '5 min',
         heroImage: '/blog/blog-2-leaky-bucket-visual-1.webp',
         heroImageAlt: 'Illustration of a leaking bucket: incoming phone-call droplets pour in the top and drain out the bottom through holes labelled voicemail hang-up, no callback, and after hours.',
@@ -133,7 +132,7 @@ export const blogPosts = {
         metaDescription: '90% of over-55s found voice AI easy to use, and boomers prefer calls over texts. Here is what the research actually says about AI voice and older customers.',
         author: 'Gary Sarco',
         authorRole: 'CEO',
-        date: '2026-05-19',
+        date: '2026-05-05',
         readTime: '6 min',
         heroImage: '/blog/blog-3-natural-conversation-visual-1.webp',
         heroImageAlt: 'Warm illustration of an older adult comfortably on the phone, with a glowing audio-waveform AI voice and the caption "A natural conversation — not a phone menu."',
@@ -186,7 +185,7 @@ export const blogPosts = {
         metaDescription: 'A real home-building client books 17 to 25% of leads with outbound calling. Here is the honest model for what adding speed-to-lead could do.',
         author: 'David Taylor',
         authorRole: 'CTO',
-        date: '2026-05-12',
+        date: '2026-04-28',
         readTime: '7 min',
         heroImage: '/blog/blog-4-booking-rate-lift-visual-1.webp',
         heroImageAlt: 'Ascending bar chart showing booking rate rising from 17 to 25 percent now, to 28 to 35 percent conservative, to 32 to 40 percent moderate. Subtitle: same leads, no extra ad spend.',
@@ -248,7 +247,7 @@ export const blogPosts = {
         metaDescription: 'Slow response, missed calls and after-hours enquiries quietly drain revenue every month. Here is where the money leaks.',
         author: 'David Taylor',
         authorRole: 'CTO',
-        date: '2026-05-05',
+        date: '2026-04-21',
         readTime: '6 min',
         heroImage: '/blog/blog-5-revenue-leak-waterfall-visual-1.webp',
         heroImageAlt: 'Waterfall diagram showing 100 leads of full revenue potential draining through three leaks (slow response, missed calls, after-hours unanswered), leaving a small captured remainder labelled Revenue you actually capture.',
@@ -295,11 +294,131 @@ export const blogPosts = {
             'Lead Connect. "First Responder Advantage Study," 2020.',
             'CallRail / Ringba. Aggregated inbound call-tracking data.'
         ]
+    },
+
+    'rising-cost-of-scaling-a-human-team': {
+        slug: 'rising-cost-of-scaling-a-human-team',
+        category: 'Cost / Operations',
+        vertical: 'All industries',
+        title: 'The Rising Cost of Scaling a Human Team (And the Smarter Way to Grow)',
+        dek: 'Every rep you add costs more than salary: ~6 months to ramp, 35% annual turnover, and up to $115k to replace. Here is the real cost of scaling people, and how AI lets you redeploy your team to pure selling.',
+        metaDescription: 'Every rep you add costs more than salary: ~6 months to ramp, 35% annual turnover, and up to $115k to replace. Here is the real cost of scaling people.',
+        author: 'Gary Sarco',
+        authorRole: 'CEO',
+        date: '2026-06-02',
+        readTime: '6 min',
+        heroImage: '/blog/blog-6-hero.webp',
+        heroImageAlt: 'Chart comparing a steeply rising stepped cost line for a human team against a flat low cost line for an AI voice agent as lead volume grows.',
+        heroVisual: {
+            label: 'Two ways to grow',
+            description: 'A human team cost line climbs in expensive steps; an AI voice agent line stays flat as lead volume grows.'
+        },
+        sections: [
+            { type: 'p', text: 'Growth is supposed to feel good. So why does every new hire make the business feel heavier, not lighter?' },
+            { type: 'p', text: 'Here is the uncomfortable truth about scaling a team by adding people: the cost rises faster than the output, and most of it is invisible. Salary is the part you see. The ramp time, the turnover, the management drag, and the simple fact that your expensive new salesperson spends most of their week not selling, those are the costs that quietly eat the margin you were trying to grow.' },
+            { type: 'p', text: 'Let us add them up, then look at the alternative.' },
+            { type: 'h2', text: 'Cost 1: They take half a year to pay off' },
+            { type: 'p', text: 'You do not hire a productive salesperson. You hire someone who becomes productive, eventually. The average sales rep takes around 5.7 months to ramp to baseline productivity, and closer to seven months (about 210 days) to fully hit quota. For most of that time you are paying full freight for partial output.' },
+            { type: 'h2', text: 'Cost 2: A third of them leave every year' },
+            { type: 'p', text: 'Then there is churn. Annual sales turnover averages around 35%, so roughly one in three of the people you trained walks out the door each year, taking their ramp investment with them. And replacing them is not cheap: all-in, the cost of replacing a single sales rep lands between $97,000 and $115,000 once you count recruiting, onboarding, lost productivity and the revenue gap during the new person\'s ramp.' },
+            { type: 'p', text: 'So the cycle for many teams is: spend months getting someone productive, keep them for a while, lose a third of them, and start the expensive clock again.' },
+            { type: 'statStrip', image: '/blog/blog-6-stats.webp', imageAlt: 'About 5.7 months to ramp a new rep, 35% annual sales turnover, and 97,000 to 115,000 dollars to replace one rep.', items: [
+                { value: '~5.7 mo', label: 'to ramp a new rep' },
+                { value: '35%', label: 'annual sales turnover' },
+                { value: '$97k-115k', label: 'to replace one rep' }
+            ] },
+            { type: 'h2', text: 'Cost 3: Most of their week is not selling anyway' },
+            { type: 'p', text: 'Here is the part that makes it sting. Even your fully-ramped, fully-retained reps spend the minority of their time actually selling. Across Salesforce and Forrester research (a study of 3,031 reps), salespeople spend under 30% of their time selling. The other 70% goes to admin and CRM data entry, internal meetings, manual prospect research, and follow-up coordination, an estimated 28.8 hours per rep, per week, on non-selling work.' },
+            { type: 'p', text: 'So when you add capacity by hiring, you are not buying 40 hours of selling. You are buying about 12 hours of selling and 28 hours of overhead, then paying to manage it.' },
+            { type: 'visual', image: '/blog/blog-6-rep-week-donut.webp', imageAlt: 'Donut chart of a sales rep\'s week: 30% selling, 20% admin and CRM, 15% internal meetings, 15% prospect research, 10% email, 10% other, with about 28.8 hours a week not selling.', label: 'Where a sales rep\'s week goes', description: 'A donut chart: 30% selling, the rest split across admin, meetings, research and email. About 28.8 hours a week not selling.' },
+            { type: 'h2', text: 'Cost 4: The management tax compounds' },
+            { type: 'p', text: 'Every person you add also adds load above them. More one-on-ones, more pipeline reviews, more coaching, more performance management, more coordination. The team gets harder to run precisely as it gets bigger, and the manager\'s time, your most expensive time, gets consumed by keeping the machine running instead of growing the business.' },
+            { type: 'p', text: 'This is why "just hire more reps" so often produces diminishing returns: headcount goes up, but proportional revenue does not follow, because the overhead scales with the people, not the output.' },
+            { type: 'pullquote', text: 'Adding people adds salary, ramp, turnover risk, and management drag, all at once. Adding an AI agent adds capacity, and nothing else.' },
+            { type: 'h2', text: 'The alternative: scale the work, redeploy the people' },
+            { type: 'p', text: 'This is not an argument for firing your sales team. It is an argument for pointing them at the right work.' },
+            { type: 'p', text: 'An AI voice agent scales the way software scales, not the way people do. It needs no ramp period; it is productive on day one. It does not quit, does not churn, and does not need recruiting or onboarding. It handles 10 leads or 10,000 with the same flat cost and zero added management load. It works nights, weekends and holidays without overtime. And with Stellar, you only pay when it delivers a qualified booking, so capacity stops being a fixed cost you carry and becomes a variable cost tied to results.' },
+            { type: 'p', text: 'What it does best is exactly the work that is currently eating your team\'s week: the instant first call, the qualifying questions, the relentless follow-up, the after-hours coverage, the CRM logging. Hand that to the agent, and something powerful happens to your humans.' },
+            { type: 'h2', text: 'Redeploy your team to the work only humans do' },
+            { type: 'p', text: 'Take the dialling, chasing, qualifying and admin off your salespeople\'s plates, and you do not need to shrink the team. You get to upgrade what the team does.' },
+            { type: 'p', text: 'Instead of spending 28 hours a week on overhead, your reps spend their time on warm, pre-qualified, already-booked conversations, building rapport, handling real objections, structuring the deal, and closing. The human skills that actually move revenue. The AI fills the calendar with qualified appointments; your people show up and win them.' },
+            { type: 'p', text: 'That is the real unlock. You stop paying skilled salespeople to do the work of a dialler, and start getting the full value of why you hired them. Same team, far more selling, no extra ramp, turnover or management cost layered on top.' },
+            { type: 'visual', image: '/blog/blog-6-hire-vs-redeploy.webp', imageAlt: 'Two-panel illustration contrasting scaling by hiring (more cost and overhead) with scaling by AI, which handles chasing and feeds booked appointments to the team, who are redeployed to selling.', label: 'Hire more vs redeploy', description: 'Scale by hiring stacks cost and overhead. Scale with AI: the agent does the chasing while people are redeployed to closing.' },
+            { type: 'takeaway', text: 'Scaling by headcount stacks four rising costs at once: about 6 months to ramp, 35% annual turnover, up to $115k to replace a rep, and reps who spend under 30% of their week selling, plus a management tax that compounds with every hire. An AI voice agent adds capacity with none of that, and frees your existing team to do the one thing humans are irreplaceable at: closing. Scale the work with AI, redeploy the people to selling.' }
+        ],
+        sources: [
+            'Salesforce. "State of Sales" research and 2023/2025 productivity findings (reps spend under 30% of time selling).',
+            'Forrester. Activity study of 3,031 sales reps (time breakdown; ~28.8 hrs/week non-selling).',
+            'Industry aggregates on sales ramp time (~5.7 months / ~210 days to full quota), turnover (~35% annually), and cost to replace a rep ($97k-$115k all-in), 2025-2026.',
+            'Stellar Voice Agents internal model.'
+        ]
+    },
+
+    'your-salespeople-are-stuck-chasing': {
+        slug: 'your-salespeople-are-stuck-chasing',
+        category: 'Productivity / Sales',
+        vertical: 'All industries',
+        title: 'Your Best Salespeople Are Stuck Chasing (Free Them to Sell)',
+        dek: 'Reps spend under 30% of their week selling and waste ~28.8 hours chasing, dialling and doing admin. Top closers sell more simply because they sell more. Here is how to give every rep that time back.',
+        metaDescription: 'Reps spend under 30% of their week selling and waste ~28.8 hours chasing, dialling and doing admin. Here is how to give every rep that time back.',
+        author: 'David Taylor',
+        authorRole: 'CTO',
+        date: '2026-05-26',
+        readTime: '6 min',
+        heroImage: '/blog/blog-7-hero.webp',
+        heroImageAlt: 'Illustration of a salesperson buried under dialling and admin tasks, with a closed-deal icon out of reach, headlined that the best closer spends 70% of the week not closing.',
+        heroVisual: {
+            label: 'The underused closer',
+            description: 'A skilled closer buried under dialling and admin, with a closed-deal icon just out of reach. Under 30% selling.'
+        },
+        sections: [
+            { type: 'p', text: 'You hired your salespeople for their judgement, their rapport, their ability to read a room and close a deal. Then you sat them down and had them spend most of the week doing none of that.' },
+            { type: 'p', text: 'It is the quietest waste in most businesses. Your most expensive, most skilled people, the ones who can actually turn a conversation into revenue, spend the majority of their time on work that does not need a salesperson at all. Dialling numbers that do not pick up. Chasing leads that have gone cold. Updating the CRM. Researching contacts. Coordinating follow-ups. The grind.' },
+            { type: 'p', text: 'Here is what that is costing, and what happens when you give it back.' },
+            { type: 'h2', text: 'The 30% problem' },
+            { type: 'p', text: 'Across Salesforce and Forrester research, salespeople spend under 30% of their time actually selling. A Forrester study of 3,031 reps put hard numbers on the rest of the week: about 20% on admin and CRM data entry, 15% in internal meetings, 15% on manual prospect research, and 10% on email. Add it up and the average rep loses roughly 28.8 hours every week to non-selling work.' },
+            { type: 'p', text: 'Think about what that means. You are paying a closer\'s salary for what amounts to a day and a half of actual closing, and three and a half days of tasks you could hand to almost anyone, or to a system.' },
+            { type: 'statStrip', image: '/blog/blog-7-stats.webp', imageAlt: 'Under 30% of the week spent selling, 28.8 hours lost to non-selling work per rep per week, and 1.3 follow-up attempts made versus an optimal six.', items: [
+                { value: '<30%', label: 'of the week actually selling' },
+                { value: '28.8 hrs', label: 'lost to non-selling work, per rep, per week' },
+                { value: '1.3 vs 6', label: 'follow-up attempts made vs optimal' }
+            ] },
+            { type: 'h2', text: 'Selling more is mostly about selling more' },
+            { type: 'p', text: 'Here is the finding that should change how you think about your team\'s time. When researchers compared top and bottom performers, the gap was not mysterious. Top performers spend about 34% of their time selling. Bottom performers spend about 23%.' },
+            { type: 'p', text: 'That is it. The biggest, most consistent difference between your best and worst reps is how much of their week they actually get to spend in front of customers. Selling time correlates directly with quota attainment.' },
+            { type: 'p', text: 'So if you could lift every rep\'s selling time from 23-30% toward 40%+, you would not need to hire anyone, retrain anyone, or change your product. You would just be letting the people you already have do more of the thing they are good at. The leverage is enormous, and it is sitting in plain sight.' },
+            { type: 'pullquote', text: 'The difference between a top performer and a bottom performer is mostly how many hours they are allowed to spend selling. Give everyone those hours back.' },
+            { type: 'visual', image: '/blog/blog-7-top-vs-bottom.webp', imageAlt: 'Bar chart showing top performers spend 34% of time selling versus 23% for bottom performers.', label: 'Top vs bottom performers', description: 'The only real difference: top performers spend 34% of time selling, bottom performers 23%.' },
+            { type: 'h2', text: 'The chasing trap' },
+            { type: 'p', text: 'The worst offender is the chase itself, and it is a double waste. Not only does it eat your reps\' hours, they are usually bad at it, not because they lack skill, but because chasing rewards relentless, instant, tireless persistence, which is exactly what a human at a desk cannot sustain.' },
+            { type: 'p', text: 'The data makes this painful. The optimal number of follow-up attempts on a lead is around six; the average rep makes about 1.3 before giving up. Meanwhile the average business takes 47 hours to respond to a new lead at all. So your reps are simultaneously spending too many hours chasing and under-chasing the leads that matter, because the grind burns them out and they quit too early on each one.' },
+            { type: 'p', text: 'It is the worst of both worlds: the activity that wastes the most of their time is also the activity they cannot do well. That is a textbook sign the work belongs to a system, not a person.' },
+            { type: 'h2', text: 'Give the chase to the agent, give the time to the closer' },
+            { type: 'p', text: 'This is exactly what an AI voice agent is built for. It does the part of the job that is repetitive, instant and relentless, and it never tires of it.' },
+            { type: 'p', text: 'It responds to every new lead in seconds, calls back the ones who did not pick up, follows up the full six-plus attempts without losing patience or motivation, qualifies each lead against your criteria, and logs every conversation automatically. The cold, low-yield, hour-draining chase, the work your reps least want to do and do least well, simply disappears from their day.' },
+            { type: 'p', text: 'What lands on your salesperson\'s calendar instead is a warm, qualified, already-booked appointment with someone who has been vetted and wants to talk. Your rep opens their day to a list of real conversations, not a list of numbers to dial.' },
+            { type: 'h2', text: 'What your team does with the hours back' },
+            { type: 'p', text: 'Hand the chase to the agent and you do not just save time, you change the shape of the job.' },
+            { type: 'p', text: 'Your reps stop being part-time dialler operators and become full-time closers. They spend their hours building relationships, handling genuine objections, tailoring the offer, and getting people across the line, the high-value, human work that actually compounds revenue. Their selling time climbs toward (and past) the top-performer benchmark, not because they are working harder, but because they are finally working on the right thing.' },
+            { type: 'p', text: 'Same people. Same salaries. Far more selling. That is not a productivity tweak; it is the difference between a team that is busy and a team that is winning.' },
+            { type: 'visual', image: '/blog/blog-7-chase-to-close-flow.webp', imageAlt: 'Flow diagram: cold leads go into an AI agent that responds, follows up six times, qualifies and books, producing a rep\'s calendar of warm booked appointments to close.', label: 'From numbers to closes', description: 'Cold leads flow into the AI agent, which responds, follows up six times, qualifies and books. The rep receives warm appointments to close.' },
+            { type: 'takeaway', text: 'Your salespeople spend under 30% of their week selling and waste around 28.8 hours chasing, dialling and doing admin, and the single biggest difference between top and bottom performers is simply how much they get to sell. Hand the relentless, low-value chase to an AI voice agent and give your closers their hours back. You do not need more people. You need your people doing the work only they can do.' }
+        ],
+        sources: [
+            'Salesforce. "State of Sales" research and 2023/2025 productivity findings (reps spend under 30% of time selling; top vs bottom performer selling time).',
+            'Forrester. Activity study of 3,031 sales reps (time breakdown; ~28.8 hrs/week non-selling).',
+            'Oldroyd, J. (MIT Sloan) / InsideSales, 2007 (optimal ~6 attempts vs avg 1.3).',
+            'Drift. "2018 Lead Response Report" (47-hour average response).',
+            'Stellar Voice Agents internal data and model.'
+        ]
     }
 };
 
 // Publish order — drives the index page and "related posts" rotation.
+// Newest first; posts are spaced one week apart (2026-06-02 back to 2026-04-21).
 export const POST_ORDER = [
+    'rising-cost-of-scaling-a-human-team',
+    'your-salespeople-are-stuck-chasing',
     '5-minute-window-speed-to-lead',
     'every-missed-call-is-a-lost-customer',
     'are-my-clients-too-old-for-ai',
