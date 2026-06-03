@@ -24,12 +24,20 @@ function Section({ section }) {
             return (
                 <figure className="bp-visual">
                     {section.image ? (
-                        <img
-                            src={section.image}
-                            alt={section.imageAlt ?? section.label ?? ''}
-                            className="bp-visual-img"
-                            loading="lazy"
-                        />
+                        // <picture> swaps to a portrait mobile variant when one
+                        // exists (section.mobileImage), else serves the desktop
+                        // image at all sizes.
+                        <picture>
+                            {section.mobileImage && (
+                                <source media="(max-width: 640px)" srcSet={section.mobileImage} />
+                            )}
+                            <img
+                                src={section.image}
+                                alt={section.imageAlt ?? section.label ?? ''}
+                                className="bp-visual-img"
+                                loading="lazy"
+                            />
+                        </picture>
                     ) : (
                         <div className="bp-visual-frame" aria-hidden="true">
                             <span className="bp-visual-marker">Visual</span>
@@ -40,27 +48,31 @@ function Section({ section }) {
                 </figure>
             );
         case 'statStrip':
-            if (section.image) {
-                return (
-                    <figure className="bp-visual bp-stat-figure">
-                        <img
-                            src={section.image}
-                            alt={section.imageAlt ?? section.items.map((i) => `${i.value} ${i.label}`).join('. ')}
-                            className="bp-visual-img"
-                            loading="lazy"
-                        />
-                    </figure>
-                );
-            }
+            // When an image exists, show it on desktop and the responsive
+            // native stat cards on mobile (crisper than any scaled-down image
+            // for 3 big numbers on a narrow screen). With no image, the cards
+            // render at every size.
             return (
-                <div className="bp-stat-strip">
-                    {section.items.map((item, i) => (
-                        <div key={i} className="bp-stat-card">
-                            <p className="bp-stat-value">{item.value}</p>
-                            <p className="bp-stat-label">{item.label}</p>
-                        </div>
-                    ))}
-                </div>
+                <>
+                    {section.image && (
+                        <figure className="bp-visual bp-stat-figure bp-desktop-only">
+                            <img
+                                src={section.image}
+                                alt={section.imageAlt ?? section.items.map((i) => `${i.value} ${i.label}`).join('. ')}
+                                className="bp-visual-img"
+                                loading="lazy"
+                            />
+                        </figure>
+                    )}
+                    <div className={`bp-stat-strip ${section.image ? 'bp-mobile-only' : ''}`}>
+                        {section.items.map((item, i) => (
+                            <div key={i} className="bp-stat-card">
+                                <p className="bp-stat-value">{item.value}</p>
+                                <p className="bp-stat-label">{item.label}</p>
+                            </div>
+                        ))}
+                    </div>
+                </>
             );
         case 'table':
             return (
@@ -176,11 +188,16 @@ export default function BlogPost() {
                         <div className="container">
                             <figure className="bp-hero-visual">
                                 {post.heroImage ? (
-                                    <img
-                                        src={post.heroImage}
-                                        alt={post.heroImageAlt ?? post.heroVisual?.label ?? ''}
-                                        className="bp-hero-img"
-                                    />
+                                    <picture>
+                                        {post.heroMobileImage && (
+                                            <source media="(max-width: 640px)" srcSet={post.heroMobileImage} />
+                                        )}
+                                        <img
+                                            src={post.heroImage}
+                                            alt={post.heroImageAlt ?? post.heroVisual?.label ?? ''}
+                                            className="bp-hero-img"
+                                        />
+                                    </picture>
                                 ) : (
                                     <div className="bp-hero-visual-frame" aria-hidden="true">
                                         <span className="bp-visual-marker">Hero visual</span>
