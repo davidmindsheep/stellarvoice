@@ -48,31 +48,35 @@ function Section({ section }) {
                 </figure>
             );
         case 'statStrip':
-            // When an image exists, show it on desktop and the responsive
-            // native stat cards on mobile (crisper than any scaled-down image
-            // for 3 big numbers on a narrow screen). With no image, the cards
-            // render at every size.
-            return (
-                <>
-                    {section.image && (
-                        <figure className="bp-visual bp-stat-figure bp-desktop-only">
+            // With an image, serve the wide desktop band and swap to a portrait
+            // mobile variant under 640px via <picture>. With no image at all,
+            // fall back to native CSS stat cards (still crisp at any size).
+            if (section.image) {
+                return (
+                    <figure className="bp-visual bp-stat-figure">
+                        <picture>
+                            {section.mobileImage && (
+                                <source media="(max-width: 640px)" srcSet={section.mobileImage} />
+                            )}
                             <img
                                 src={section.image}
                                 alt={section.imageAlt ?? section.items.map((i) => `${i.value} ${i.label}`).join('. ')}
                                 className="bp-visual-img"
                                 loading="lazy"
                             />
-                        </figure>
-                    )}
-                    <div className={`bp-stat-strip ${section.image ? 'bp-mobile-only' : ''}`}>
-                        {section.items.map((item, i) => (
-                            <div key={i} className="bp-stat-card">
-                                <p className="bp-stat-value">{item.value}</p>
-                                <p className="bp-stat-label">{item.label}</p>
-                            </div>
-                        ))}
-                    </div>
-                </>
+                        </picture>
+                    </figure>
+                );
+            }
+            return (
+                <div className="bp-stat-strip">
+                    {section.items.map((item, i) => (
+                        <div key={i} className="bp-stat-card">
+                            <p className="bp-stat-value">{item.value}</p>
+                            <p className="bp-stat-label">{item.label}</p>
+                        </div>
+                    ))}
+                </div>
             );
         case 'table':
             return (

@@ -36,7 +36,7 @@ export const blogPosts = {
             { type: 'p', text: 'A landmark study published in Harvard Business Review examined more than 2,200 US companies and over 100,000 web-generated leads. The finding: firms that responded within five minutes were 100x more likely to connect with a lead and 21x more likely to qualify them, compared to firms that waited just 30 minutes.' },
             { type: 'p', text: 'Not 21 percent more likely. Twenty-one times.' },
             { type: 'p', text: 'The underlying academic work, led by Dr James Oldroyd at MIT, tracked 15,000+ leads over three years and added another number that matters even more: leads contacted within five minutes were 9x more likely to actually convert into customers.' },
-            { type: 'statStrip', image: '/blog/blog-1-stats.webp', imageAlt: '21x more likely to qualify with a 5-minute response, 9x more likely to convert, 100x more likely to connect.', items: [
+            { type: 'statStrip', image: '/blog/blog-1-stats.webp', mobileImage: '/blog/blog-1-stats-mobile.webp', imageAlt: '21x more likely to qualify with a 5-minute response, 9x more likely to convert, 100x more likely to connect.', items: [
                 { value: '21x', label: 'more likely to qualify (5-min response)' },
                 { value: '9x', label: 'more likely to convert' },
                 { value: '100x', label: 'more likely to connect' }
@@ -97,7 +97,7 @@ export const blogPosts = {
             { type: 'p', text: 'According to aggregated call-tracking data, 80% of callers who reach voicemail hang up without leaving a message. They are not going to narrate their needs to a machine.' },
             { type: 'p', text: "Worse: 85% of people whose call goes unanswered will not call back at all. They don't see it as your loss. They see it as their cue to dial the next business on the list. Your competitor." },
             { type: 'p', text: 'So the comforting story, that a missed call becomes a callback, is mostly fiction. A missed call is usually just a customer you handed to someone else.' },
-            { type: 'statStrip', image: '/blog/blog-2-stats.webp', imageAlt: '80% hang up rather than leave a voicemail, 85% never call back if unanswered, 35 to 50% of calls come in after hours.', items: [
+            { type: 'statStrip', image: '/blog/blog-2-stats.webp', mobileImage: '/blog/blog-2-stats-mobile.webp', imageAlt: '80% hang up rather than leave a voicemail, 85% never call back if unanswered, 35 to 50% of calls come in after hours.', items: [
                 { value: '80%', label: 'hang up rather than leave a voicemail' },
                 { value: '85%', label: 'never call back if unanswered' },
                 { value: '35-50%', label: 'of calls come in after hours' }
@@ -154,7 +154,7 @@ export const blogPosts = {
             { type: 'h2', text: 'What the data on over-55s actually says' },
             { type: 'p', text: 'This is where the objection really comes apart. In a 12-week usability study, 90% of adults aged 55 and over found voice-assistant technology easy to learn and use. Just as importantly, initial worries about privacy and monitoring decreased significantly with use. Familiarity bred comfort, not contempt.' },
             { type: 'p', text: 'More context: 55% of adults aged 50+ have already used AI voice technologies like Alexa, Siri or Google Assistant (University of Michigan National Poll on Healthy Aging). Boomers retain the strongest preference for voice calls over messaging of any generation. Only 31% say messaging has replaced most of their calls. Adoption rises sharply when AI is embedded in familiar tools and when usefulness clearly outweighs novelty.' },
-            { type: 'statStrip', image: '/blog/blog-3-stats.webp', imageAlt: '90% of over-55s found voice AI easy to use, 55% of over-50s already use AI voice assistants, 72% of consumers accept AI voice when it works well.', items: [
+            { type: 'statStrip', image: '/blog/blog-3-stats.webp', mobileImage: '/blog/blog-3-stats-mobile.webp', imageAlt: '90% of over-55s found voice AI easy to use, 55% of over-50s already use AI voice assistants, 72% of consumers accept AI voice when it works well.', items: [
                 { value: '90%', label: 'of over-55s found voice AI easy to use' },
                 { value: '55%', label: 'of over-50s already use AI voice assistants' },
                 { value: '72%', label: 'of consumers accept AI voice when it works well' }
@@ -269,7 +269,7 @@ export const blogPosts = {
             { type: 'h2', text: 'Leak 2: Missed calls' },
             { type: 'p', text: "Phone calls are your highest-intent leads, and they're brutally unforgiving. 80% of callers won't leave a voicemail. 85% won't call back if they don't get through. They simply move to the next business." },
             { type: 'p', text: "So every unanswered ring isn't a callback in waiting; it's a high-intent buyer leaving in real time. For most businesses this leak runs all day, every day, in the background." },
-            { type: 'statStrip', image: '/blog/blog-5-stats.webp', imageAlt: '47 hours average response time when it should be 5 minutes, 85% of unanswered callers never call back, 35 to 50% of enquiries arrive after hours.', items: [
+            { type: 'statStrip', image: '/blog/blog-5-stats.webp', mobileImage: '/blog/blog-5-stats-mobile.webp', imageAlt: '47 hours average response time when it should be 5 minutes, 85% of unanswered callers never call back, 35 to 50% of enquiries arrive after hours.', items: [
                 { value: '47 hrs', label: 'average response time (should be 5 min)' },
                 { value: '85%', label: 'of unanswered callers never call back' },
                 { value: '35-50%', label: 'of enquiries arrive after hours' }
@@ -328,7 +328,7 @@ export const blogPosts = {
             { type: 'h2', text: 'Cost 2: A third of them leave every year' },
             { type: 'p', text: 'Then there is churn. Annual sales turnover averages around 35%, so roughly one in three of the people you trained walks out the door each year, taking their ramp investment with them. And replacing them is not cheap: all-in, the cost of replacing a single sales rep lands between $97,000 and $115,000 once you count recruiting, onboarding, lost productivity and the revenue gap during the new person\'s ramp.' },
             { type: 'p', text: 'So the cycle for many teams is: spend months getting someone productive, keep them for a while, lose a third of them, and start the expensive clock again.' },
-            { type: 'statStrip', image: '/blog/blog-6-stats.webp', imageAlt: 'About 5.7 months to ramp a new rep, 35% annual sales turnover, and 97,000 to 115,000 dollars to replace one rep.', items: [
+            { type: 'statStrip', image: '/blog/blog-6-stats.webp', mobileImage: '/blog/blog-6-stats-mobile.webp', imageAlt: 'About 5.7 months to ramp a new rep, 35% annual sales turnover, and 97,000 to 115,000 dollars to replace one rep.', items: [
                 { value: '~5.7 mo', label: 'to ramp a new rep' },
                 { value: '35%', label: 'annual sales turnover' },
                 { value: '$97k-115k', label: 'to replace one rep' }
@@ -385,7 +385,7 @@ export const blogPosts = {
             { type: 'h2', text: 'The 30% problem' },
             { type: 'p', text: 'Across Salesforce and Forrester research, salespeople spend under 30% of their time actually selling. A Forrester study of 3,031 reps put hard numbers on the rest of the week: about 20% on admin and CRM data entry, 15% in internal meetings, 15% on manual prospect research, and 10% on email. Add it up and the average rep loses roughly 28.8 hours every week to non-selling work.' },
             { type: 'p', text: 'Think about what that means. You are paying a closer\'s salary for what amounts to a day and a half of actual closing, and three and a half days of tasks you could hand to almost anyone, or to a system.' },
-            { type: 'statStrip', image: '/blog/blog-7-stats.webp', imageAlt: 'Under 30% of the week spent selling, 28.8 hours lost to non-selling work per rep per week, and 1.3 follow-up attempts made versus an optimal six.', items: [
+            { type: 'statStrip', image: '/blog/blog-7-stats.webp', mobileImage: '/blog/blog-7-stats-mobile.webp', imageAlt: 'Under 30% of the week spent selling, 28.8 hours lost to non-selling work per rep per week, and 1.3 follow-up attempts made versus an optimal six.', items: [
                 { value: '<30%', label: 'of the week actually selling' },
                 { value: '28.8 hrs', label: 'lost to non-selling work, per rep, per week' },
                 { value: '1.3 vs 6', label: 'follow-up attempts made vs optimal' }
