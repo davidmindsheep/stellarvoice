@@ -267,17 +267,31 @@ export default async function handler(req, res) {
 
     const [internalRes, clientRes] = await Promise.allSettled([internalSend, clientSend]);
 
-    if (internalRes.status === 'rejected') {
-        console.error('[calculator/submit] internal email failed', String(internalRes.reason));
-    }
-    if (clientRes.status === 'rejected') {
-        console.error('[calculator/submit] client email failed', String(clientRes.reason));
-    }
+    // The Resend SDK RESOLVES with { data, error } rather than throwing on API
+    // errors (invalid key, unverified domain/sender, etc.), so a fulfilled
+    // promise can still be a FAILED send. Inspect both the rejection and the
+    // resolved error, and surface the real reason in the logs.
+    const outcome = (settled, label) => {
+        if (settled.status === 'rejected') {
+            console.error(`[calculator/submit] ${label} threw:`, String(settled.reason));
+            return false;
+        }
+        const error = settled.value?.error;
+        if (error) {
+            console.error(`[calculator/submit] ${label} Resend error:`, JSON.stringify(error));
+            return false;
+        }
+        console.log(`[calculator/submit] ${label} sent id=${settled.value?.data?.id ?? 'n/a'}`);
+        return true;
+    };
+
+    const internalEmailSent = outcome(internalRes, 'internal');
+    const clientEmailSent = contactKind === 'email' ? outcome(clientRes, 'client') : false;
 
     return res.status(200).json({
         ok: true,
-        internalEmailSent: internalRes.status === 'fulfilled',
-        clientEmailSent: clientRes.status === 'fulfilled' && contactKind === 'email',
+        internalEmailSent,
+        clientEmailSent,
         contactKind
     });
 }
