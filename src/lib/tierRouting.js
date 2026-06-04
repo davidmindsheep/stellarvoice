@@ -15,7 +15,7 @@
 // Enterprise overlay: $15,000+ value, 500+ leads/mo, or 100+ missed/wk
 // flips the prospect to enterprise (custom call) regardless of tier.
 
-import { QUESTIONS } from '../calculator/questions';
+import { QUESTIONS } from '../calculator/questions.js';
 
 function meta(answers, qid) {
     const q = QUESTIONS[qid];

@@ -9,9 +9,9 @@
 // retainer"). The plan object still carries the tier-routed details so
 // the quote screen can show the matching tier's per-booking fee.
 
-import { QUESTIONS } from './questions';
-import { routeTier, isEnterpriseAnswers } from '../lib/tierRouting';
-import { TIERS } from '../lib/pricingConfig';
+import { QUESTIONS } from './questions.js';
+import { routeTier, isEnterpriseAnswers } from '../lib/tierRouting.js';
+import { TIERS } from '../lib/pricingConfig.js';
 
 // Anchor for ROI display. Starter base retainer.
 const SVA_MONTHLY_FEE = 497;
