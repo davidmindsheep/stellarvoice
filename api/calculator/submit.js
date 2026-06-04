@@ -271,17 +271,14 @@ export default async function handler(req, res) {
     // errors (invalid key, unverified domain/sender, etc.), so a fulfilled
     // promise can still be a FAILED send. Inspect both the rejection and the
     // resolved error, and surface the real reason in the logs.
-    let firstError = null;
     const outcome = (settled, label) => {
         if (settled.status === 'rejected') {
             console.error(`[calculator/submit] ${label} threw:`, String(settled.reason));
-            firstError = firstError ?? { label, thrown: String(settled.reason) };
             return false;
         }
         const error = settled.value?.error;
         if (error) {
             console.error(`[calculator/submit] ${label} Resend error:`, JSON.stringify(error));
-            firstError = firstError ?? { label, ...error };
             return false;
         }
         console.log(`[calculator/submit] ${label} sent id=${settled.value?.data?.id ?? 'n/a'}`);
@@ -291,16 +288,10 @@ export default async function handler(req, res) {
     const internalEmailSent = outcome(internalRes, 'internal');
     const clientEmailSent = contactKind === 'email' ? outcome(clientRes, 'client') : false;
 
-    // TEMP DIAGNOSTIC: surface the Resend error when a debug header is sent, so
-    // we can read the real reason without leaking it to normal callers. Remove
-    // once the email pipeline is confirmed working.
-    const diag = req.headers['x-sva-debug'] === '1' ? { resendError: firstError } : {};
-
     return res.status(200).json({
         ok: true,
         internalEmailSent,
         clientEmailSent,
-        contactKind,
-        ...diag
+        contactKind
     });
 }
