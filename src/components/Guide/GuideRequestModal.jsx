@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
 import './GuideRequestModal.css';
 import { GUIDE_INDUSTRIES, guideForIndustryId } from '../../data/guides';
 import { track } from '../../lib/analytics';
@@ -67,7 +66,7 @@ export default function GuideRequestModal({ initialIndustryId = '', onClose }) {
         }
     };
 
-    return createPortal(
+    return (
         <div className="gm-overlay" role="dialog" aria-modal="true" aria-label="Get your industry guide" onClick={onClose}>
             <div className="gm-modal" onClick={(e) => e.stopPropagation()}>
                 <button className="gm-close" onClick={onClose} aria-label="Close">&times;</button>
