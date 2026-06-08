@@ -1,0 +1,150 @@
+/* Guide request popup. */
+.gm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 0, 60, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    z-index: 1000;
+}
+
+.gm-modal {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    max-height: 92vh;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 20px;
+    padding: 2.25rem 1.75rem 1.75rem;
+    box-shadow: 0 24px 70px rgba(37, 0, 93, 0.35);
+}
+
+.gm-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.9rem;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    line-height: 1;
+    color: #999;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+.gm-close:hover { color: var(--deep-purple, #25005D); }
+
+.gm-eyebrow {
+    margin: 0 0 0.5rem;
+    color: var(--violet-text, #5040C7);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+}
+.gm-title {
+    margin: 0 0 0.5rem;
+    color: var(--deep-purple, #25005D);
+    font-size: 1.4rem;
+    line-height: 1.25;
+    font-weight: 800;
+    text-transform: none;
+    letter-spacing: -0.01em;
+}
+.gm-sub {
+    margin: 0 0 1.4rem;
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.gm-label {
+    display: block;
+    margin-bottom: 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--deep-purple, #25005D);
+}
+.gm-optional { color: #999; font-weight: 500; }
+
+.gm-input {
+    display: block;
+    width: 100%;
+    margin-top: 0.35rem;
+    padding: 0.8rem 0.9rem;
+    border: 1.5px solid #E0DAF0;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--near-black, #1A1A1A);
+    background: #fff;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.gm-input:focus {
+    outline: none;
+    border-color: var(--electric-violet, #7868F8);
+    box-shadow: 0 0 0 3px rgba(120, 104, 248, 0.16);
+}
+select.gm-input { appearance: none; -webkit-appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237868F8' d='M6 8 0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.2rem; }
+
+.gm-error {
+    margin: -0.5rem 0 0.85rem;
+    color: #C0264B;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+.gm-error-form { margin: 0 0 0.85rem; text-align: center; }
+
+.gm-btn {
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.95rem 1.25rem;
+    background: var(--electric-violet, #7868F8);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+.gm-btn:hover:not(:disabled) { background: var(--violet-hover, #6A5AF5); transform: translateY(-1px); }
+.gm-btn:disabled { opacity: 0.65; cursor: default; }
+
+.gm-fineprint {
+    margin: 0.9rem 0 0;
+    text-align: center;
+    color: #999;
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+/* Success state */
+.gm-success { text-align: center; padding: 0.5rem 0.25rem; }
+.gm-success-icon {
+    font-size: 2.6rem;
+    margin-bottom: 0.5rem;
+}
+.gm-success h2 {
+    margin: 0 0 0.75rem;
+    color: var(--deep-purple, #25005D);
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: none;
+}
+.gm-success p { margin: 0 0 0.85rem; color: #444; font-size: 0.98rem; line-height: 1.55; }
+.gm-success-sub { font-size: 0.88rem !important; color: #777 !important; }
+.gm-success-sub a { color: var(--electric-violet, #7868F8); font-weight: 700; }
+.gm-success .gm-btn { max-width: 200px; margin: 1.25rem auto 0; }
+
+@media (max-width: 480px) {
+    .gm-modal { padding: 2rem 1.25rem 1.5rem; border-radius: 16px; }
+    .gm-title { font-size: 1.25rem; }
+}

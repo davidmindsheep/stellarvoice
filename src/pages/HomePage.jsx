@@ -6,6 +6,7 @@ import SoundsReal from '../components/SoundsReal';
 import { FeaturedDemo, IndustriesStrip, TeamTeaser, FAQTeaser } from '../components/HomepageTeasers';
 import CalculatorCTA from '../components/Calculator/CalculatorCTA';
 import Calculator from '../components/Calculator/Calculator';
+import LeadMagnet from '../components/Guide/LeadMagnet';
 import Products from '../components/Products';
 import CTABanner from '../components/CTABanner';
 import Footer from '../components/Footer';
@@ -36,6 +37,7 @@ export default function HomePage() {
                 <FeaturedDemo />
                 <CalculatorCTA onOpen={() => setCalcOpen(true)} />
                 <Products />
+                <LeadMagnet />
                 <IndustriesStrip />
                 {/* Plan-finder CTA in the former pricing slot.
                     Anchored at #pricing so existing nav links still land here. */}

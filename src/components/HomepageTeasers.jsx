@@ -4,7 +4,7 @@
 
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Home, Sun, Stethoscope, DollarSign, Scale, Shield, Play, Pause } from 'lucide-react';
+import { Home, Sun, Stethoscope, DollarSign, Play, Pause } from 'lucide-react';
 import useScrollReveal from '../hooks/useScrollReveal';
 import { track } from '../lib/analytics';
 import './HomepageTeasers.css';
@@ -67,14 +67,13 @@ export function FeaturedDemo() {
     );
 }
 
-// INDUSTRIES STRIP — flat horizontal list of the 6 verticals, no separate page.
+// INDUSTRIES STRIP — the high-value verticals we lead with. Insurance + Legal
+// retired (no guide); the broader guide library lives at /guides.
 const industryItems = [
     { name: 'Real Estate', Icon: Home },
     { name: 'Solar Energy', Icon: Sun },
     { name: 'Healthcare', Icon: Stethoscope },
-    { name: 'Finance', Icon: DollarSign },
-    { name: 'Legal', Icon: Scale },
-    { name: 'Insurance', Icon: Shield }
+    { name: 'Finance', Icon: DollarSign }
 ];
 
 export function IndustriesStrip() {

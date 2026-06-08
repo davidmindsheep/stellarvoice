@@ -383,6 +383,45 @@
     text-decoration: underline;
     font-weight: 600;
 }
+
+/* Post-quiz free-guide lead magnet (lighter than the deep-purple book CTA). */
+.quote-guide {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--pale-lavender, #F5F2FF);
+    border: 1.5px solid #E0DAF0;
+    border-radius: 14px;
+    margin-bottom: 1rem;
+}
+.quote-guide-eyebrow {
+    margin: 0 0 0.5rem;
+    color: var(--violet-text, #5040C7);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.72rem;
+}
+.quote-guide-text {
+    margin: 0 auto 1rem;
+    max-width: 420px;
+    color: var(--deep-purple, #25005D);
+    font-size: 0.98rem;
+    line-height: 1.5;
+}
+.quote-guide-btn {
+    display: inline-block;
+    padding: 0.85rem 1.75rem;
+    background: var(--deep-purple, #25005D);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+.quote-guide-btn:hover { background: var(--royal-purple, #473D92); transform: translateY(-1px); }
+
 .quote-print-url {
     display: none; /* visible only when printed */
     color: rgba(255,255,255,0.7);

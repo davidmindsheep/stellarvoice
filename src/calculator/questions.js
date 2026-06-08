@@ -144,6 +144,7 @@ export const QUESTIONS = {
         prompt: 'Where should we send your results?',
         helper: 'Email or mobile, whichever you check more.',
         placeholder: 'you@company.com or 555-0123',
-        inputType: 'text'
+        inputType: 'text',
+        validateAs: 'emailOrPhone'
     }
 };

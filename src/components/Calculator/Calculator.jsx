@@ -69,8 +69,15 @@ function QuestionCard({ question, onSelect }) {
     );
 }
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function isPhoneish(s) {
+    const digits = s.replace(/\D/g, '');
+    return digits.length >= 6 && digits.length <= 15;
+}
+
 function TextInputCard({ question, onSubmit }) {
     const [value, setValue] = useState('');
+    const [error, setError] = useState('');
     const inputRef = useRef(null);
 
     useEffect(() => {
@@ -79,8 +86,16 @@ function TextInputCard({ question, onSubmit }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (value.trim().length < 2) return;
-        onSubmit(value.trim());
+        const v = value.trim();
+        if (v.length < 2) return;
+        // The contact field accepts an email or a phone, but must be a real one.
+        if (question.validateAs === 'emailOrPhone' && !EMAIL_RE.test(v) && !isPhoneish(v)) {
+            setError(v.includes('@')
+                ? 'That email does not look right. Please check for typos.'
+                : 'Please enter a valid email address or mobile number.');
+            return;
+        }
+        onSubmit(v);
     };
 
     return (
@@ -91,10 +106,12 @@ function TextInputCard({ question, onSubmit }) {
                 ref={inputRef}
                 type={question.inputType ?? 'text'}
                 value={value}
-                onChange={(e) => setValue(e.target.value)}
+                onChange={(e) => { setValue(e.target.value); if (error) setError(''); }}
                 placeholder={question.placeholder}
                 className="calc-input"
+                aria-invalid={error ? 'true' : undefined}
             />
+            {error && <p className="calc-input-error">{error}</p>}
             <button type="submit" className="calc-continue" disabled={value.trim().length < 2}>
                 Continue
             </button>
@@ -191,9 +208,9 @@ export default function Calculator({ onClose }) {
                             return (
                                 <div className="calc-slide calc-slide-quote" key="result">
                                     {result.enterprise ? (
-                                        <EnterpriseQuoteScreen result={result} businessName={businessName} />
+                                        <EnterpriseQuoteScreen result={result} businessName={businessName} industry={state.answers.industry} />
                                     ) : (
-                                        <QuoteScreen result={result} businessName={businessName} />
+                                        <QuoteScreen result={result} businessName={businessName} industry={state.answers.industry} />
                                     )}
                                 </div>
                             );

@@ -197,6 +197,17 @@
     border-color: var(--electric-violet);
     box-shadow: 0 0 0 3px rgba(120, 104, 248, 0.18);
 }
+.calc-input[aria-invalid="true"] {
+    border-color: #E0567E;
+    box-shadow: 0 0 0 3px rgba(224, 86, 126, 0.16);
+}
+.calc-input-error {
+    margin: 10px 2px 0;
+    color: #C0264B;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: left;
+}
 
 .calc-continue {
     width: 100%;

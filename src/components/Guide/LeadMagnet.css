@@ -1,0 +1,81 @@
+/* Lead-magnet industry picker section. */
+.lm {
+    background: linear-gradient(135deg, var(--deep-purple, #25005D) 0%, var(--royal-purple, #473D92) 55%, var(--electric-violet, #7868F8) 100%);
+    padding: 4.5rem 0;
+    color: #fff;
+}
+.lm-inner { text-align: center; max-width: 980px; }
+
+.lm-eyebrow {
+    margin: 0 0 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.78rem;
+}
+.lm-headline {
+    margin: 0 0 1rem;
+    color: #fff;
+    font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+    line-height: 1.15;
+    font-weight: 800;
+    text-transform: none;
+    letter-spacing: -0.01em;
+}
+.lm-sub {
+    margin: 0 auto 2.5rem;
+    max-width: 620px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    line-height: 1.6;
+}
+
+.lm-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.lm-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 1.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    min-width: 0;
+}
+.lm-tile:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.45);
+}
+.lm-tile-icon { font-size: 2rem; line-height: 1; }
+.lm-tile-label {
+    font-size: 0.98rem;
+    font-weight: 800;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+.lm-tile-cta {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.78);
+    letter-spacing: 0.02em;
+}
+
+@media (max-width: 640px) {
+    .lm { padding: 3.25rem 0; }
+    .lm-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .lm-tile { padding: 1.25rem 0.75rem; }
+    .lm-tile-icon { font-size: 1.7rem; }
+}

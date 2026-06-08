@@ -2,11 +2,13 @@
 // Shows 3 tier cards with the recommended tier highlighted + a per-booking
 // commit callout (Brief Sec 2.4 to 2.7).
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Printer, Share2 } from 'lucide-react';
 import { TIERS, TIER_ORDER } from '../../lib/pricingConfig';
 import { openCalendly } from '../../lib/calendly';
 import { track } from '../../lib/analytics';
+import GuideRequestModal from '../Guide/GuideRequestModal';
+import { QUIZ_INDUSTRY_TO_GUIDE } from '../../data/guides';
 import './QuoteScreen.css';
 
 const fmt = (n) =>
@@ -65,7 +67,9 @@ function QuoteTierCard({ tier, isRecommended }) {
     );
 }
 
-export default function QuoteScreen({ result, businessName }) {
+export default function QuoteScreen({ result, businessName, industry }) {
+    const [guideOpen, setGuideOpen] = useState(false);
+    const guidePreselect = QUIZ_INDUSTRY_TO_GUIDE[industry] ?? '';
     const recommendedId = result.plan.id;
     const tier = TIERS[recommendedId];
     const monthlyRevenue = result.monthlyRevenue;
@@ -203,6 +207,22 @@ export default function QuoteScreen({ result, businessName }) {
                 </p>
             </section>
 
+            {/* FREE GUIDE CTA — post-quiz lead magnet */}
+            <section className="quote-guide no-print">
+                <p className="quote-guide-eyebrow">Free industry guide</p>
+                <p className="quote-guide-text">
+                    Want the AI voice playbook for your industry? We will email you a practical guide on
+                    where the revenue leaks and what to fix first.
+                </p>
+                <button
+                    type="button"
+                    className="quote-guide-btn"
+                    onClick={() => { track('quote_guide_clicked', { industry }); setGuideOpen(true); }}
+                >
+                    Email me the guide &rarr;
+                </button>
+            </section>
+
             <button type="button" className="quote-print-btn quote-print-btn-bottom no-print" onClick={handlePrintOrShare}>
                 <Printer size={16} aria-hidden="true" /> Print This Quote
             </button>
@@ -213,6 +233,10 @@ export default function QuoteScreen({ result, businessName }) {
                 Quote valid for 30 days.
                 Stellar Voice Agents · stellarvoiceagents.com
             </footer>
+
+            {guideOpen && (
+                <GuideRequestModal initialIndustryId={guidePreselect} onClose={() => setGuideOpen(false)} />
+            )}
         </div>
     );
 }
