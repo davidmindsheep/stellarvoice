@@ -25,6 +25,7 @@ const Navbar = ({ onOpenCalculator }) => {
                     <span></span><span></span><span></span>
                 </button>
                 <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
+                    <li><Link to="/appointment-engine" onClick={close}>Appointment Engine</Link></li>
                     <li><Link to="/how-it-works" onClick={close}>How It Works</Link></li>
                     <li><Link to="/case-studies" onClick={close}>Case Studies</Link></li>
                     <li><Link to="/guides" onClick={close}>Guides</Link></li>

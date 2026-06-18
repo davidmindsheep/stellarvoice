@@ -67,6 +67,29 @@ export function FeaturedDemo() {
     );
 }
 
+// APPOINTMENT ENGINE TEASER — flagship done-for-you upsell, links to the
+// dedicated /appointment-engine page.
+export function AppointmentEngineTeaser() {
+    const ref = useScrollReveal();
+    return (
+        <section className="hpt-ae">
+            <div className="container">
+                <div ref={ref} className="reveal hpt-ae-card">
+                    <p className="hpt-ae-eyebrow">Done-for-you</p>
+                    <h2 className="hpt-ae-h">Want the whole funnel handled?</h2>
+                    <p className="hpt-ae-sub">
+                        The Appointment Engine runs your ads, calls every lead within 30 seconds, and books qualified
+                        appointments straight into your calendar. Your team just closes. 2-week pilots from $2,500.
+                    </p>
+                    <Link to="/appointment-engine" className="hpt-ae-btn" onClick={() => track('homepage_ae_cta')}>
+                        Explore the Appointment Engine &rarr;
+                    </Link>
+                </div>
+            </div>
+        </section>
+    );
+}
+
 // INDUSTRIES STRIP — the high-value verticals we lead with. Insurance + Legal
 // retired (no guide); the broader guide library lives at /guides.
 const industryItems = [

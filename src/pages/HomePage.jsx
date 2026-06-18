@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import QuoteBar from '../components/QuoteBar';
 import SoundsReal from '../components/SoundsReal';
-import { FeaturedDemo, IndustriesStrip, TeamTeaser, FAQTeaser } from '../components/HomepageTeasers';
+import { FeaturedDemo, IndustriesStrip, TeamTeaser, FAQTeaser, AppointmentEngineTeaser } from '../components/HomepageTeasers';
 import CalculatorCTA from '../components/Calculator/CalculatorCTA';
 import Calculator from '../components/Calculator/Calculator';
 import LeadMagnet from '../components/Guide/LeadMagnet';
@@ -37,6 +37,7 @@ export default function HomePage() {
                 <FeaturedDemo />
                 <CalculatorCTA onOpen={() => setCalcOpen(true)} />
                 <Products />
+                <AppointmentEngineTeaser />
                 <LeadMagnet />
                 <IndustriesStrip />
                 {/* Plan-finder CTA in the former pricing slot.
