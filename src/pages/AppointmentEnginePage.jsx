@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { openCalendly } from '../lib/calendly';
 import { track } from '../lib/analytics';
 import './AppointmentEnginePage.css';
+
+const PAGE_URL = 'https://www.stellarvoiceagents.com/appointment-engine';
 
 const PROBLEMS = [
     {
@@ -25,14 +27,14 @@ const PROBLEMS = [
 
 const STEPS = [
     { n: '1', label: 'Prospect', body: 'We build your ideal-buyer list and target the people most likely to need what you sell.' },
-    { n: '2', label: 'Attract', body: 'Mindsheep runs your Google Ads to capture high-intent buyers actively searching for your service right now.' },
+    { n: '2', label: 'Attract', body: 'We run your Google Ads to capture high-intent buyers actively searching for your service right now.' },
     { n: '3', label: 'Call', body: 'Your AI voice agent calls every lead within 30 seconds. It qualifies, handles objections, and books the appointment.' },
     { n: '4', label: 'Close', body: 'A qualified, booked appointment lands in your calendar. Your team just closes the deal.' }
 ];
 
 const INCLUDED = [
     { title: 'AI Prospecting Agent', body: 'Builds your Ideal Customer Profile, researches target buyers, and generates lead lists for ads and outbound.' },
-    { title: 'Google Ads, fully managed', body: 'Run by Mindsheep: campaign strategy, build, keyword research, ad copy, A/B testing, and ongoing bid optimization.' },
+    { title: 'Google Ads, fully managed', body: 'Fully managed for you: campaign strategy, build, keyword research, ad copy, A/B testing, and ongoing bid optimization.' },
     { title: 'Landing pages and lead magnets', body: 'Built per campaign and designed to pre-qualify the lead before the call ever happens.' },
     { title: 'AI Voice SDR (the core engine)', body: 'Calls within 30 seconds, qualifies on your criteria, handles objections, books the appointment, and stays compliant by region.' },
     { title: 'CRM, automation and follow-up', body: 'Works with your CRM or we set one up. SMS, email and WhatsApp sequences, plus a no-show agent that re-engages misses.' },
@@ -54,6 +56,56 @@ const FAQS = [
 ];
 
 export default function AppointmentEnginePage() {
+    useEffect(() => {
+        const prevTitle = document.title;
+        document.title = 'AI Appointment Engine | Done-For-You Booked Appointments | Stellar Voice Agents';
+
+        const desc = document.querySelector('meta[name="description"]');
+        const prevDesc = desc?.getAttribute('content');
+        const description = 'A done-for-you AI appointment engine: we find your buyers, run your Google Ads, and call every lead within 30 seconds, then book qualified appointments straight into your calendar. 2-week pilots, booked appointments in 14 days or your money back.';
+        if (desc) desc.setAttribute('content', description);
+
+        const tags = [
+            { property: 'og:title', content: 'The SVA Appointment Engine — Done-For-You Booked Appointments' },
+            { property: 'og:description', content: description },
+            { property: 'og:type', content: 'website' },
+            { property: 'og:url', content: PAGE_URL },
+            { property: 'og:image', content: 'https://www.stellarvoiceagents.com/logo.webp' },
+            { name: 'twitter:card', content: 'summary_large_image' },
+            { name: 'twitter:title', content: 'The SVA Appointment Engine' },
+            { name: 'twitter:description', content: description },
+        ];
+        const created = tags.map((t) => {
+            const m = document.createElement('meta');
+            if (t.property) m.setAttribute('property', t.property);
+            if (t.name) m.setAttribute('name', t.name);
+            m.setAttribute('content', t.content);
+            document.head.appendChild(m);
+            return m;
+        });
+
+        const ld = document.createElement('script');
+        ld.type = 'application/ld+json';
+        ld.text = JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'SVA Appointment Engine',
+            serviceType: 'Done-for-you AI appointment setting and lead generation',
+            provider: { '@type': 'Organization', name: 'Stellar Voice Agents', url: 'https://www.stellarvoiceagents.com' },
+            areaServed: 'Worldwide',
+            description,
+            url: PAGE_URL,
+        });
+        document.head.appendChild(ld);
+
+        return () => {
+            document.title = prevTitle;
+            if (desc && prevDesc) desc.setAttribute('content', prevDesc);
+            created.forEach((m) => document.head.removeChild(m));
+            document.head.removeChild(ld);
+        };
+    }, []);
+
     const book = (source) => {
         track('appointment_engine_cta', { source });
         openCalendly(undefined, source);

@@ -25,11 +25,11 @@ const team = [
         role: 'Co-Founder & CTO',
         image: '/davidtaylor.jpg',
         bio: [
-            'David runs the technical engine behind Stellar. As CEO of Mindsheep Marketing and co-founder of AI to the World, he has spent years building AI systems that work at scale across multiple industries.',
+            'David runs the technical engine behind Stellar. A co-founder of AI to the World, he has spent years building AI systems that work at scale across multiple industries.',
             'David built the entire SVA platform from the ground up. He selects and integrates the voice AI stack, designs the conversation logic, and makes sure every deployment sounds natural, connects to your CRM, and never goes down.',
             'His philosophy: "Any time someone needs to call someone, the AI should be calling them first." David\'s job is to make sure that call sounds so good your leads do not realise it is AI.'
         ],
-        credentials: ['Mindsheep Marketing (CEO)', 'AI to the World (Co-Founder)', 'Full-Stack AI Platform Builder']
+        credentials: ['AI to the World (Co-Founder)', 'Full-Stack AI Platform Builder', 'Voice AI Systems Architect']
     }
 ];
 

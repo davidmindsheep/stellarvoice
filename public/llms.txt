@@ -19,7 +19,7 @@ Real Estate · Healthcare · Finance & Insurance · Solar · Trades & Home Servi
 ## Founders
 
 - **Gary Sarco** — CEO & Founder. Background in cybersecurity, IT operations, and 6 years in real estate. Built Stellar after watching leads slip through the cracks because nobody picked up fast enough.
-- **David Taylor** — Co-Founder & CTO. CEO of Mindsheep Marketing, co-founder of AI to the World. Runs the technical engine — voice agents that sound human, integrate with any CRM, and stay live at scale.
+- **David Taylor** — Co-Founder & CTO. Co-founder of AI to the World. Runs the technical engine — voice agents that sound human, integrate with any CRM, and stay live at scale.
 
 ## Key signals & metrics
 
