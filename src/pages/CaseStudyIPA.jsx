@@ -36,14 +36,6 @@ const WHY = [
     { h: 'Even AI sceptics get converted', b: 'Andy, IPA\'s Managing Director, openly admitted he was not an AI fan. After seeing the results, he changed his mind entirely. When a seasoned MD who has worked with dozens of vendors is won over, the technology has crossed a credibility threshold.' },
 ];
 
-const NEXT = [
-    ['UK leads', 'British-accent agent covering UK buyers interested in Bali, Portugal, Spain, Croatia, and Cyprus.'],
-    ['US / Canada leads', 'Agent targeting American and Canadian buyers for Bali, Florida, Georgia, Thailand, and Cambodia.'],
-    ['Currency exchange upsell', 'A currency-exchange option at preferential rates, adding a second revenue stream per lead.'],
-    ['Mortgage / finance qualification', 'The AI now asks cash vs equity, enabling warm handoffs to qualified mortgage brokers.'],
-    ['Masterclass promotion', "AI agents drive registrations for IPA's property investment masterclasses."],
-];
-
 const NAV = [
     { id: 'problem', label: 'The Problem' },
     { id: 'approval', label: 'The Approval' },
@@ -318,17 +310,6 @@ export default function CaseStudyIPA() {
                                 </div>
                             ))}
                         </div>
-                    </div>
-                </section>
-
-                {/* WHAT'S NEXT */}
-                <section className="ipa-section">
-                    <div className="container ipa-prose">
-                        <h2>What happens next</h2>
-                        <p className="ipa-next-lead">IPA and SVA are now scaling the system across IPA's entire global database of aged leads:</p>
-                        <ul className="ipa-next">
-                            {NEXT.map(([k, v]) => <li key={k}><strong>{k}.</strong> {v}</li>)}
-                        </ul>
                     </div>
                 </section>
 
