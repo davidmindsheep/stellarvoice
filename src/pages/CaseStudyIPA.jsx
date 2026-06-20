@@ -219,7 +219,7 @@ export default function CaseStudyIPA() {
                 </nav>
 
                 {/* THE PROBLEM */}
-                <section className="ipa-section" id="problem">
+                <section className="ipa-section ipa-grey" id="problem">
                     <div className="container ipa-prose">
                         <h2>The problem: leads do not expire the way sales teams think</h2>
                         <p>Every property company has the same issue. Leads come in through ads, downloads, and enquiries. The sales team follows up on the fresh ones. Anything older than a few weeks gets pushed down the list. After a few months, those leads are considered dead.</p>
@@ -228,24 +228,11 @@ export default function CaseStudyIPA() {
                     </div>
                 </section>
 
-                {/* THE APPROACH + SCRIPT */}
-                <section className="ipa-section ipa-grey">
-                    <div className="container ipa-prose">
-                        <h2>The approach: an AI named Sophie</h2>
-                        <p>Stellar Voice Agents deployed an AI voice agent named "Sophie" to call through IPA's aged Australian leads. Sophie's job was not to close deals. It was to answer one question: is this person still interested in buying property? If yes, qualify them and hand the lead to a human. If no, move on. The AI handles the volume. The humans handle the selling.</p>
-                        <p>Her opening line was tailored for aged leads, with a natural Australian accent to match the audience:</p>
-                        <blockquote className="ipa-script">
-                            "Hi [Name], it's Sophie from International Property Alerts. A little while back you downloaded our Bali buyer's guide. I just wanted to check in and see if Bali is still on your radar."
-                        </blockquote>
-                        <p>No hard sell. No pressure. On each call Sophie introduced herself, referenced the original download, gauged current intent, and gathered the qualifying detail that matters: whether the buyer was looking at investment or personal use, their budget, their timeline, and cash vs equity. Then she booked a follow-up with IPA's human team for qualified leads. The whole call typically ran 2 to 4 minutes. Long enough to qualify. Short enough to respect the person's time.</p>
-                    </div>
-                </section>
-
                 {/* THE APPROVAL */}
                 <section className="ipa-section" id="approval">
                     <div className="container ipa-prose">
                         <h2>The approval: IPA's best salesperson tested her first</h2>
-                        <p>Before Sophie was let loose on IPA's database, she had to pass a critical test. Phil, IPA's Sales Director and a highly respected figure within the organisation, personally put the AI through a rigorous evaluation. He pushed her with the tough, real-world scenarios experienced sales professionals throw at new hires: objection handling, brand representation, and whether the conversation felt natural rather than robotic.</p>
+                        <p>Before Stellar Voice Agents' AI agent, Sophie, was let loose on IPA's database, she had to pass a critical test. Phil, IPA's Sales Director and a highly respected figure within the organisation, personally put the AI through a rigorous evaluation. He pushed her with the tough, real-world scenarios experienced sales professionals throw at new hires: objection handling, brand representation, and whether the conversation felt natural rather than robotic.</p>
                         <p>This mattered. IPA was trusting an AI to speak on behalf of their brand to real prospects, and Phil's approval was not given lightly. Once he signed off, the doors opened.</p>
                         <p className="ipa-pull">When your best salesperson tests the AI and says "yes, this is good enough to represent us," you know the technology is ready. Getting buy-in from sales leadership is not a hurdle. It is a feature.</p>
                     </div>
