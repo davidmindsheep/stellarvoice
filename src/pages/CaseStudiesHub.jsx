@@ -11,6 +11,15 @@ import './CaseStudiesHub.css';
 // flagged as in production / publishing soon.
 const cards = [
     {
+        slug: 'ipa-lead-reactivation',
+        industry: 'International Real Estate / Lead Reactivation',
+        title: 'From a dead database to a $500K property buyer.',
+        client: 'International Property Alerts (Chris White, Founder)',
+        headline: '6%',
+        headlineLabel: 'reactivation rate on 11-month-old leads',
+        status: 'live'
+    },
+    {
         slug: 'denes-aldott',
         industry: 'Real Estate / New Home Builder',
         title: 'From a 60-lead pilot to a 6-month outbound engine.',
