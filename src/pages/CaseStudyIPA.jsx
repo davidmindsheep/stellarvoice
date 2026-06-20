@@ -281,8 +281,8 @@ export default function CaseStudyIPA() {
                     <div className="container">
                         <h2 className="ipa-h2-center">The reaction from IPA</h2>
                         <div className="ipa-quotes">
-                            <blockquote className="ipa-quote ipa-quote-feature">
-                                <p>&ldquo;I'm not an AI fan, but you have changed my mind. I think you're a game changer for us. We've already got a potential sale from this.&rdquo;</p>
+                            <blockquote className="ipa-quote">
+                                <p>&ldquo;I'm not an AI fan, but you have changed my mind. I think you're a game changer for us.&rdquo;</p>
                                 <cite>Andy &middot; Managing Director, IPA</cite>
                             </blockquote>
                             <blockquote className="ipa-quote">
@@ -290,7 +290,7 @@ export default function CaseStudyIPA() {
                                 <cite>Chris White &middot; Founder, IPA</cite>
                             </blockquote>
                             <blockquote className="ipa-quote">
-                                <p>&ldquo;What sold me was Phil, IPA's toughest closer. He stress-tested Sophie harder than he would any new hire, then turned around and said, &lsquo;she's good enough to represent us.&rsquo; When your hardest critic signs off, you know it is ready.&rdquo;</p>
+                                <p>&ldquo;Phil, IPA's toughest closer, stress-tested Sophie and said, &lsquo;she's good enough to represent us.&rsquo; That's when I knew.&rdquo;</p>
                                 <cite>David Taylor &middot; Co-Founder, Stellar Voice Agents</cite>
                             </blockquote>
                         </div>

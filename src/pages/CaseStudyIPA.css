@@ -207,7 +207,7 @@
 .ipa-uncovered strong { color: var(--deep-purple, #25005D); }
 
 /* Quotes */
-.ipa-quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 960px; margin: 2rem auto 0; }
+.ipa-quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1040px; margin: 2rem auto 0; }
 .ipa-quote {
     background: #fff; border: 1px solid #E6E2F0; border-radius: 18px; padding: 1.75rem; margin: 0;
     box-shadow: 0 8px 24px rgba(37,0,93,0.05);
