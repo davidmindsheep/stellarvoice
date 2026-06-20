@@ -333,7 +333,7 @@ export default function CaseStudyIPA() {
                 <section className="ipa-cta" id="cta">
                     <div className="container ipa-cta-inner">
                         <h2>How many leads are sitting in your database right now?</h2>
-                        <p>Your sales team will never make those calls, the economics do not justify it for humans. For an AI voice agent, every call costs pennies and takes minutes. And it only takes one buyer like this to pay for the whole campaign.</p>
+                        <p>Your sales team will never make those calls, the economics do not justify it for humans. An AI voice agent works through every lead in the database, tirelessly and at scale. And it only takes one buyer like this to make the entire campaign worth it many times over.</p>
                         <button type="button" className="ipa-btn ipa-btn-lg" onClick={() => book('case-ipa-final')}>Book a call to scope yours</button>
                         <ShareRow position="bottom" />
                     </div>
