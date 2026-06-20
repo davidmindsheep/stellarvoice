@@ -286,11 +286,11 @@ export default function CaseStudyIPA() {
                                 <cite>Andy &middot; Managing Director, IPA</cite>
                             </blockquote>
                             <blockquote className="ipa-quote">
-                                <p>&ldquo;That is a brilliant scaling... well done mate... if anyone gives you any roadblocks let me know, so we're gonna go for it.&rdquo;</p>
+                                <p>&ldquo;That is brilliant. We're scaling at a skyrocket rate... well done... We're going to go for it.&rdquo;</p>
                                 <cite>Chris White &middot; Founder, IPA</cite>
                             </blockquote>
                             <blockquote className="ipa-quote">
-                                <p>&ldquo;This is a red hot lead!&rdquo;</p>
+                                <p>&ldquo;What sold me was Phil, IPA's toughest closer. He stress-tested Sophie harder than he would any new hire, then turned around and said, &lsquo;she's good enough to represent us.&rsquo; When your hardest critic signs off, you know it is ready.&rdquo;</p>
                                 <cite>David Taylor &middot; Co-Founder, Stellar Voice Agents</cite>
                             </blockquote>
                         </div>
@@ -309,6 +309,22 @@ export default function CaseStudyIPA() {
                                     <p>{w.b}</p>
                                 </div>
                             ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* ONBOARDING */}
+                <section className="ipa-section" id="onboarding">
+                    <div className="container ipa-prose">
+                        <h2>Getting started is the easy part</h2>
+                        <p>One of the most common worries we hear is that an AI voice system will be complicated to stand up. It is not. Stellar Voice Agents does the heavy lifting. We build the agent, configure it to your business, and test it with your team before it makes a single call. You hand over the leads that have gone cold, approve the agent, and it gets to work. The lift on your side is minimal.</p>
+                    </div>
+                    <div className="container">
+                        <div className="ipa-quotes">
+                            <blockquote className="ipa-quote ipa-quote-feature">
+                                <p>&ldquo;Their onboarding process is second to none.&rdquo;</p>
+                                <cite>Chris White &middot; Founder, International Property Alerts</cite>
+                            </blockquote>
                         </div>
                     </div>
                 </section>
