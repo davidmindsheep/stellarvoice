@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './CaseStudyIPA.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { openCalendly } from '../lib/calendly';
 import { track } from '../lib/analytics';
-import {
-    Linkedin, Twitter, Mail, Link as LinkIcon, Check, X as CloseIcon, Bot, User
-} from 'lucide-react';
+import { Linkedin, Twitter, Mail, Link as LinkIcon, Check, X as CloseIcon } from 'lucide-react';
 
 const PAGE_URL = 'https://www.stellarvoiceagents.com/case-studies/ipa-lead-reactivation';
 const SHARE_TEXT = 'How an AI voice agent turned an 11-month-old dead lead into a confirmed $500K property buyer.';
@@ -28,63 +26,20 @@ const NUMBERS = [
     { value: '$500K', label: 'estimated property value (AUD)' },
 ];
 
-const TRANSCRIPT = [
-    { s: 'sophie', t: "Hi, it's Sophie from International Property Alerts. You downloaded our Bali Buyer's Guide a while ago, and I just wanted to check whether Bali is still something you're considering." },
-    { s: 'mark', t: 'Yes.' },
-    { s: 'sophie', t: "That's great to hear. Whereabouts in Australia are you based, which state?" },
-    { s: 'mark', t: 'Gold Coast, Queensland.' },
-    { s: 'sophie', t: 'Perfect. And are you mainly looking for personal use, investment, or both?' },
-    { s: 'mark', t: 'Mainly investment.' },
-    { s: 'sophie', t: "Got it. And is it specifically Bali you're focused on, or open to other locations as well?" },
-    { s: 'mark', t: 'Bali, and perhaps Lombok and Vietnam.' },
-    { s: 'sophie', t: "Great, Bali sounds like the main focus. And what's the most you'd be looking to spend?" },
-    { s: 'mark', t: 'Half a million.' },
-    { s: 'sophie', t: 'Excellent. Have you bought overseas before, or would Bali be your first...' },
-    { s: 'mark', t: 'Yes. Quite a few properties in Bali.' },
-    { s: 'sophie', t: 'Excellent, so you know how it works. And in terms of timing, next few months, or still in the research stage?' },
-    { s: 'mark', t: 'Yes, visiting Bali early July. The purpose of buying more property.' },
-    { s: 'sophie', t: 'Got it. And are you looking to use cash, or equity?' },
-    { s: 'mark', t: 'Yes.' },
-    { s: 'sophie', t: "And is there anything specific you're looking for, any special requests?" },
-    { s: 'mark', t: "Seminyak, on the way to Canggu, in that area, and Uluwatu. No more than five minutes' walk to the beach and having some sea view." },
-    { s: 'sophie', t: "Listen, based on what you've told me, we've actually got some really strong Bali options that could work well for you. What I'd suggest is jumping on a quick call with one of our specialists, about fifteen to twenty minutes. What does your schedule look like over the next couple of days?" },
-    { s: 'mark', t: "That's fine." },
-];
-
-const UNCOVERED = [
-    { k: 'Location', v: 'Gold Coast, Queensland, Australia' },
-    { k: 'Investment focus', v: 'Primarily Bali, with secondary interest in Lombok and Vietnam' },
-    { k: 'Budget', v: 'Approximately AUD $500,000' },
-    { k: 'Experience', v: 'Has purchased multiple properties in Bali before. Familiar with the process.' },
-    { k: 'Preferred areas', v: 'Seminyak, Canggu, or Uluwatu. Within a 5-minute walk to the beach, preferably a sea view.' },
-    { k: 'Timeline', v: 'Visiting Bali in early July with the intention of buying more property' },
-    { k: 'Status', v: 'Confirmed visit. This is not a "maybe." He is coming.' },
-];
-
 const WHY = [
-    { h: 'Dead leads are not dead', b: 'Leads do not expire the way sales teams think. Mark downloaded a guide 11 months ago. His interest did not disappear. It just was not being tracked. Research shows 63% of people who enquire eventually buy, just not on the timeline the sales team expects.' },
+    { h: 'Dead leads are not dead', b: 'Leads do not expire the way sales teams think. The buyer here had enquired 11 months earlier. His interest did not disappear. It just was not being tracked. Research shows 63% of people who enquire eventually buy, just not on the timeline the sales team expects.' },
     { h: 'AI makes the economics work', b: 'No human team will call through 100 leads that are 11 months old. The expected return is too low. An AI agent makes those calls in hours, at a fraction of the cost, with zero fatigue. Even if 99 calls return nothing, the one $500K sale pays for the campaign many times over.' },
     { h: 'Speed and consistency', b: 'Sophie called every lead with the same energy and the same structured qualifying process. No bad days. No rushing at 4pm on a Friday. No skipping leads because the name looked unfamiliar.' },
-    { h: 'The sales team gets better leads', b: 'IPA\'s team did not waste time on 100 cold calls. They received 6 pre-qualified warm leads, including one red-hot prospect with a confirmed date, budget, and preferences. The AI does the filtering. The humans do the closing.' },
+    { h: 'The sales team gets better leads', b: 'IPA\'s team did not waste time on 100 cold calls. They received 6 pre-qualified warm leads, including one red-hot prospect with a confirmed date and budget. The AI does the filtering. The humans do the closing.' },
     { h: 'Sales leadership can trust the AI', b: 'Phil\'s vetting proved AI voice agents are not a black box. They can be tested, refined, and approved by the same leaders who would evaluate a human hire. Once trust is earned, the AI becomes a scalable extension of the team.' },
-    { h: 'The handoff works', b: 'Mark had no idea he spoke to an AI. When Phil called him back, the transition was seamless. No awkward reveal, no loss of trust. The AI started the relationship. The human deepened it.' },
+    { h: 'The handoff works', b: 'The buyer had no idea he spoke to an AI. When IPA\'s director called him back, the transition was seamless. No awkward reveal, no loss of trust. The AI started the relationship. The human deepened it.' },
     { h: 'Even AI sceptics get converted', b: 'Andy, IPA\'s Managing Director, openly admitted he was not an AI fan. After seeing the results, he changed his mind entirely. When a seasoned MD who has worked with dozens of vendors is won over, the technology has crossed a credibility threshold.' },
-];
-
-const TECH = [
-    ['AI Voice Platform', 'ElevenLabs Conversational AI'],
-    ['Voice', 'Australian female ("Sophie"), natural and warm'],
-    ['Calling Infrastructure', 'Telnyx (Australian numbers for local caller ID)'],
-    ['Dashboard', 'Custom SVA dashboard for batch calling, lead tracking, and status'],
-    ['CRM Integration', 'Lead status synced via Supabase with call tracking'],
-    ['Call Management', 'Batch calling, timezone-aware scheduling, 6-attempt cap, de-duplication'],
-    ['Post-Call Processing', 'Automatic summaries, lead qualification scoring, warm-lead alerts'],
 ];
 
 const NEXT = [
     ['UK leads', 'British-accent agent covering UK buyers interested in Bali, Portugal, Spain, Croatia, and Cyprus.'],
     ['US / Canada leads', 'Agent targeting American and Canadian buyers for Bali, Florida, Georgia, Thailand, and Cambodia.'],
-    ['Currency exchange upsell', 'Integration with First Class Currency for VIP rates, adding a second revenue stream per lead.'],
+    ['Currency exchange upsell', 'A currency-exchange option at preferential rates, adding a second revenue stream per lead.'],
     ['Mortgage / finance qualification', 'The AI now asks cash vs equity, enabling warm handoffs to qualified mortgage brokers.'],
     ['Masterclass promotion', "AI agents drive registrations for IPA's property investment masterclasses."],
 ];
@@ -92,7 +47,7 @@ const NEXT = [
 const NAV = [
     { id: 'problem', label: 'The Problem' },
     { id: 'approval', label: 'The Approval' },
-    { id: 'call', label: 'The Call' },
+    { id: 'call', label: 'The Result' },
     { id: 'handoff', label: 'The Handoff' },
     { id: 'numbers', label: 'The Numbers' },
     { id: 'why', label: 'Why It Matters' },
@@ -160,7 +115,7 @@ export default function CaseStudyIPA() {
         document.title = 'IPA Lead Reactivation: A Dead Lead to a $500K Buyer | Stellar Voice Agents';
         const desc = document.querySelector('meta[name="description"]');
         const prevDesc = desc?.getAttribute('content');
-        const description = 'AI voice agent case study: Stellar Voice Agents called 100 of International Property Alerts\' aged leads. Six came back warm and one became a confirmed $500K Bali property buyer. The buyer had no idea he spoke to an AI.';
+        const description = 'AI voice agent case study: Stellar Voice Agents called 100 of International Property Alerts\' aged leads. Six came back warm and one became a confirmed $500K property buyer who had no idea he spoke to an AI.';
         if (desc) desc.setAttribute('content', description);
         const tags = [
             { property: 'og:title', content: 'From a Dead Database to a $500K Property Buyer' },
@@ -209,7 +164,7 @@ export default function CaseStudyIPA() {
                 {/* HERO */}
                 <section className="ipa-hero">
                     <div className="container ipa-hero-inner">
-                        <p className="ipa-tag">Case Study · 8 min read</p>
+                        <p className="ipa-tag">Case Study · 6 min read</p>
                         <h1>From a dead database to a $500K property buyer.</h1>
                         <p className="ipa-hero-sub">
                             How Stellar Voice Agents reactivated an 11-month-old lead for International Property Alerts.
@@ -238,7 +193,7 @@ export default function CaseStudyIPA() {
                             <dl>
                                 <div><dt>Client</dt><dd>International Property Alerts (IPA)</dd></div>
                                 <div><dt>Challenge</dt><dd>Hundreds of aged leads from Facebook ads sitting untouched for months.</dd></div>
-                                <div><dt>Result</dt><dd>6% reactivation rate from 11-month-old leads. One confirmed $500K buyer visiting Bali in July.</dd></div>
+                                <div><dt>Result</dt><dd>6% reactivation rate from 11-month-old leads. One confirmed $500K buyer with a trip booked.</dd></div>
                             </dl>
                         </div>
                         <div className="ipa-client-card">
@@ -278,11 +233,11 @@ export default function CaseStudyIPA() {
                     <div className="container ipa-prose">
                         <h2>The approach: an AI named Sophie</h2>
                         <p>Stellar Voice Agents deployed an AI voice agent named "Sophie" to call through IPA's aged Australian leads. Sophie's job was not to close deals. It was to answer one question: is this person still interested in buying property? If yes, qualify them and hand the lead to a human. If no, move on. The AI handles the volume. The humans handle the selling.</p>
-                        <p>Her opening line was tailored for aged leads, powered by ElevenLabs' conversational AI with an Australian accent to match the audience:</p>
+                        <p>Her opening line was tailored for aged leads, with a natural Australian accent to match the audience:</p>
                         <blockquote className="ipa-script">
                             "Hi [Name], it's Sophie from International Property Alerts. A little while back you downloaded our Bali buyer's guide. I just wanted to check in and see if Bali is still on your radar."
                         </blockquote>
-                        <p>No hard sell. No pressure. On each call Sophie introduced herself, referenced the original download, gauged current intent, and gathered the qualifying detail that matters: location, investment vs personal use, budget, preferred areas, timeline, and cash vs equity. Then she booked a follow-up with IPA's human team for qualified leads. The whole call typically ran 2 to 4 minutes. Long enough to qualify. Short enough to respect the person's time.</p>
+                        <p>No hard sell. No pressure. On each call Sophie introduced herself, referenced the original download, gauged current intent, and gathered the qualifying detail that matters: whether the buyer was looking at investment or personal use, their budget, their timeline, and cash vs equity. Then she booked a follow-up with IPA's human team for qualified leads. The whole call typically ran 2 to 4 minutes. Long enough to qualify. Short enough to respect the person's time.</p>
                     </div>
                 </section>
 
@@ -322,35 +277,13 @@ export default function CaseStudyIPA() {
                     </div>
                 </section>
 
-                {/* THE CALL + TRANSCRIPT */}
+                {/* THE RESULT */}
                 <section className="ipa-section" id="call">
                     <div className="container ipa-prose">
-                        <h2>The call: Mark Meallin</h2>
-                        <p>Mark Meallin is an experienced property investor based on the Gold Coast, Queensland. He had downloaded IPA's Bali Buyer's Guide through a Facebook campaign roughly 11 months before Sophie's call. Nobody had followed up. When Sophie called, Mark was not only still interested, he was actively planning to buy.</p>
-                        <p>Below is the real transcript. This is an AI talking to a real person about a real half-million-dollar property purchase.</p>
-                    </div>
-                    <div className="container ipa-transcript-wrap">
-                        <div className="ipa-transcript">
-                            <div className="ipa-transcript-head">
-                                <span className="ipa-tx-dot" /> Live call · Sophie (AI) &times; Mark · ~3 min
-                            </div>
-                            {TRANSCRIPT.map((line, i) => (
-                                <div key={i} className={`ipa-bubble-row ipa-${line.s}`}>
-                                    <span className="ipa-bubble-avatar" aria-hidden>
-                                        {line.s === 'sophie' ? <Bot size={16} /> : <User size={16} />}
-                                    </span>
-                                    <div className="ipa-bubble">
-                                        <span className="ipa-bubble-name">{line.s === 'sophie' ? 'Sophie · AI agent' : 'Mark · lead'}</span>
-                                        <p>{line.t}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="container ipa-prose">
-                        <h3>What stands out</h3>
-                        <p>In under three minutes, Sophie confirmed interest, qualified his location, established his intent (investment), found his budget ($500K), uncovered his experience (multiple Bali properties), locked his timeline (a confirmed early-July visit), gathered specific preferences (the Seminyak-to-Canggu corridor and Uluwatu, beachside, sea view), and suggested a follow-up with IPA's specialists.</p>
-                        <p>Was the call perfect? No. The close could have been smoother. But that is not the point. Sophie's job was to find out whether Mark was worth a salesperson's time and gather enough detail to hand over a qualified lead. She did exactly that. The AI is not trying to replace a salesperson. It is trying to find the people worth a salesperson's time.</p>
+                        <h2>The result: a dead lead, reactivated</h2>
+                        <p>One of the leads in that Australian batch was a property investor who had downloaded IPA's Bali Buyer's Guide through a Facebook campaign roughly 11 months earlier. Nobody had followed up. When Sophie called, he was not only still interested, he was actively planning to buy.</p>
+                        <p>In a single call of under three minutes, Sophie confirmed his interest, established that he was buying for investment, learned his budget was around half a million dollars, found he was an experienced overseas buyer, and discovered he had a trip booked within weeks specifically to purchase. She booked him a follow-up with IPA's specialist team.</p>
+                        <p>Was the call perfect? No. The close could have been smoother. But that is not the point. Sophie's job was to find out whether he was worth a salesperson's time and gather enough detail to hand over a qualified lead. She did exactly that. The AI is not trying to replace a salesperson. It is trying to find the people worth a salesperson's time.</p>
                     </div>
                 </section>
 
@@ -358,13 +291,9 @@ export default function CaseStudyIPA() {
                 <section className="ipa-section ipa-grey" id="handoff">
                     <div className="container ipa-prose">
                         <h2>The handoff: the human takes over</h2>
-                        <p>Phil, IPA's Sales Director, personally called Mark back. He walked him through IPA's current Bali portfolio, discussed options matching his criteria, and confirmed the details of his early-July visit. During that conversation, Mark confirmed he had no idea his initial call with Sophie was with an AI. As far as he was concerned, he had spoken to a friendly IPA representative who followed up on his interest. The handoff from AI to human was seamless.</p>
-                        <h3>What the AI uncovered</h3>
-                        <p>Here is what Sophie extracted from that single conversation, ready to hand to the sales team:</p>
-                        <ul className="ipa-uncovered">
-                            {UNCOVERED.map((u) => <li key={u.k}><strong>{u.k}:</strong> {u.v}</li>)}
-                        </ul>
-                        <p>Mark is not a tyre-kicker. He is a repeat investor with a clear budget, specific preferences, and a confirmed travel date. The kind of lead sales teams dream about. And he had been sitting in a spreadsheet for 11 months.</p>
+                        <p>Phil, IPA's Sales Director, personally called the lead back. He walked him through IPA's current Bali portfolio, talked through options that matched what he was after, and confirmed the details of his upcoming visit.</p>
+                        <p>The most telling part: the buyer confirmed he had no idea his first call was with an AI. As far as he was concerned, he had spoken to a friendly IPA representative who followed up on his interest. The handoff from AI to human was seamless.</p>
+                        <p className="ipa-pull">A serious, repeat investor with a clear budget and a confirmed travel date. The kind of lead sales teams dream about. And he had been sitting in a spreadsheet for 11 months.</p>
                     </div>
                 </section>
 
@@ -405,24 +334,14 @@ export default function CaseStudyIPA() {
                     </div>
                 </section>
 
-                {/* TECH + NEXT */}
+                {/* WHAT'S NEXT */}
                 <section className="ipa-section">
-                    <div className="container ipa-twocol">
-                        <div>
-                            <h2>The technology</h2>
-                            <table className="ipa-table">
-                                <tbody>
-                                    {TECH.map(([k, v]) => <tr key={k}><th>{k}</th><td>{v}</td></tr>)}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div>
-                            <h2>What happens next</h2>
-                            <p className="ipa-next-lead">IPA and SVA are now scaling the system across IPA's entire global database of aged leads:</p>
-                            <ul className="ipa-next">
-                                {NEXT.map(([k, v]) => <li key={k}><strong>{k}.</strong> {v}</li>)}
-                            </ul>
-                        </div>
+                    <div className="container ipa-prose">
+                        <h2>What happens next</h2>
+                        <p className="ipa-next-lead">IPA and SVA are now scaling the system across IPA's entire global database of aged leads:</p>
+                        <ul className="ipa-next">
+                            {NEXT.map(([k, v]) => <li key={k}><strong>{k}.</strong> {v}</li>)}
+                        </ul>
                     </div>
                 </section>
 
@@ -430,7 +349,7 @@ export default function CaseStudyIPA() {
                 <section className="ipa-cta" id="cta">
                     <div className="container ipa-cta-inner">
                         <h2>How many leads are sitting in your database right now?</h2>
-                        <p>Your sales team will never make those calls, the economics do not justify it for humans. For an AI voice agent, every call costs pennies and takes minutes. And it only takes one Mark Meallin.</p>
+                        <p>Your sales team will never make those calls, the economics do not justify it for humans. For an AI voice agent, every call costs pennies and takes minutes. And it only takes one buyer like this to pay for the whole campaign.</p>
                         <button type="button" className="ipa-btn ipa-btn-lg" onClick={() => book('case-ipa-final')}>Book a call to scope yours</button>
                         <ShareRow position="bottom" />
                     </div>
