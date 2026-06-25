@@ -1,10 +1,10 @@
-// The quiz result rendered as a printable, shareable quote.
-// Shows 3 tier cards with the recommended tier highlighted + a per-booking
-// commit callout (Brief Sec 2.4 to 2.7).
+// The quiz result rendered as a printable, shareable value snapshot.
+// Per David (June 2026): the quiz shows ONLY the value / lost revenue.
+// Our pricing (tiers, retainer, per-booking fees, ROI-vs-cost) is no longer
+// shown here — pricing is discussed on the call.
 
 import React, { useState } from 'react';
 import { Printer, Share2 } from 'lucide-react';
-import { TIERS, TIER_ORDER } from '../../lib/pricingConfig';
 import { openCalendly } from '../../lib/calendly';
 import { track } from '../../lib/analytics';
 import GuideRequestModal from '../Guide/GuideRequestModal';
@@ -18,14 +18,6 @@ const fmt = (n) =>
         maximumFractionDigits: 0
     }).format(n);
 
-const fmt2 = (n) =>
-    new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    }).format(n);
-
 const today = () =>
     new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
@@ -35,8 +27,8 @@ function handlePrintOrShare() {
     const isMobile = /Mobi|Android|iPhone|iPad/i.test(ua);
     if (isMobile && typeof navigator !== 'undefined' && navigator.share) {
         navigator.share({
-            title: 'My SVA Quote',
-            text: 'My personalised quote from Stellar Voice Agents.',
+            title: 'My SVA Revenue Snapshot',
+            text: 'My personalised revenue snapshot from Stellar Voice Agents.',
             url: typeof window !== 'undefined' ? window.location.href : 'https://www.stellarvoiceagents.com/'
         }).catch(() => {
             if (typeof window !== 'undefined') window.print();
@@ -46,47 +38,25 @@ function handlePrintOrShare() {
     }
 }
 
-// Compact tier card for the quote screen. The recommended tier gets a
-// badge; the others render in a muted layout. The personalised revenue
-// number lives in the leak panel above this row — duplicating it (or
-// showing a hardcoded range that contradicts it) creates confusion.
-function QuoteTierCard({ tier, isRecommended }) {
-    return (
-        <div
-            className={`qts-tier ${isRecommended ? 'is-recommended' : ''}`}
-            style={{ '--tier-accent': tier.accent }}
-        >
-            {isRecommended && <span className="qts-tier-badge">RECOMMENDED FOR YOU</span>}
-            <p className="qts-tier-name">{tier.name}</p>
-            <p className="qts-tier-base">
-                <strong>{fmt(tier.baseRetainer)}</strong>
-                <span>/mo base</span>
-            </p>
-            <p className="qts-tier-fee">+ {fmt(tier.perBooking)}/booking</p>
-        </div>
-    );
-}
+// Generic capability list — no tiers, no prices. What every client gets.
+const WHAT_YOU_GET = [
+    'Speed-to-lead callback in under 60 seconds, every time',
+    'AI voice agents that call, qualify, and book around the clock',
+    'SMS, WhatsApp, and email follow-up until the lead responds',
+    'Every call recorded, transcribed, and scored',
+    'Qualified bookings sent straight to your calendar'
+];
 
 export default function QuoteScreen({ result, businessName, industry }) {
     const [guideOpen, setGuideOpen] = useState(false);
     const guidePreselect = QUIZ_INDUSTRY_TO_GUIDE[industry] ?? '';
-    const recommendedId = result.plan.id;
-    const tier = TIERS[recommendedId];
     const monthlyRevenue = result.monthlyRevenue;
     const annualRevenue = result.annualRevenue;
-    const baseRetainer = tier.baseRetainer;
-    const perBooking = tier.perBooking;
-    const guarantee = tier.guarantee;
-    const performanceFee = guarantee * perBooking;
-    const expectedCost = baseRetainer + performanceFee;
-    const monthlyProfit = monthlyRevenue - expectedCost;
-    const annualProfit = monthlyProfit * 12;
-    const roi = expectedCost > 0 ? monthlyRevenue / expectedCost : 0;
-    const paybackDays = monthlyRevenue > 0 ? expectedCost / (monthlyRevenue / 30) : null;
+    const threeYearRevenue = annualRevenue * 3;
 
     const handleBookDemo = () => {
-        track('book_demo_clicked', { source: 'quote_screen', tier: tier.id, monthly_revenue: monthlyRevenue });
-        openCalendly(undefined, `quote-${tier.id}`);
+        track('book_demo_clicked', { source: 'quote_screen', monthly_revenue: monthlyRevenue });
+        openCalendly(undefined, 'quote-value');
     };
 
     return (
@@ -94,13 +64,13 @@ export default function QuoteScreen({ result, businessName, industry }) {
             {/* HEADER */}
             <header className="quote-header">
                 <img src="/logo.webp" alt="Stellar Voice Agents" className="quote-logo" />
-                <p className="quote-title">Your Custom AI Voice Quote</p>
+                <p className="quote-title">Your Revenue Recovery Snapshot</p>
                 <p className="quote-date">{today()}</p>
             </header>
 
             <button type="button" className="quote-print-btn no-print" onClick={handlePrintOrShare}>
                 <Printer size={16} aria-hidden="true" />
-                <span className="desktop-only">Print This Quote</span>
+                <span className="desktop-only">Print This Snapshot</span>
                 <span className="mobile-only"><Share2 size={16} aria-hidden="true" /> Share</span>
             </button>
 
@@ -113,82 +83,42 @@ export default function QuoteScreen({ result, businessName, industry }) {
                 </p>
             </section>
 
-            {/* TIER CARDS (Brief Sec 2.4 + 2.6) */}
-            <section className="qts-tiers">
-                <h3>Your recommended plan</h3>
-                <div className="qts-tiers-grid">
-                    {TIER_ORDER.map((id) => (
-                        <QuoteTierCard
-                            key={id}
-                            tier={TIERS[id]}
-                            isRecommended={id === recommendedId}
-                        />
-                    ))}
-                </div>
+            {/* THE OPPORTUNITY — value only */}
+            <section className="quote-numbers">
+                <h3>The revenue you could recover</h3>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Per month</td>
+                            <td className="num profit">{fmt(monthlyRevenue)}</td>
+                        </tr>
+                        <tr>
+                            <td>Per year</td>
+                            <td className="num profit">{fmt(annualRevenue)}</td>
+                        </tr>
+                        <tr>
+                            <td>Over three years</td>
+                            <td className="num profit">{fmt(threeYearRevenue)}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
 
             {/* WHAT YOU GET */}
             <section className="quote-features">
-                <h3>What {tier.name} includes</h3>
+                <h3>What you get</h3>
                 <ul>
-                    {tier.headlineFeatures.map((f, i) => (
+                    {WHAT_YOU_GET.map((f, i) => (
                         <li key={i}><span className="check">✓</span> {f}</li>
                     ))}
                 </ul>
             </section>
 
-            {/* THE NUMBERS */}
-            <section className="quote-numbers">
-                <h3>The numbers</h3>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Monthly revenue recovered</td>
-                            <td className="num">{fmt(monthlyRevenue)}</td>
-                        </tr>
-                        <tr>
-                            <td>Annual revenue recovered</td>
-                            <td className="num">{fmt(annualRevenue)}</td>
-                        </tr>
-                        <tr>
-                            <td>Base retainer</td>
-                            <td className="num neg">- {fmt(baseRetainer)}</td>
-                        </tr>
-                        <tr>
-                            <td>Expected per-booking fees</td>
-                            <td className="num neg">- {fmt(performanceFee)}</td>
-                        </tr>
-                        <tr className="row-cost">
-                            <td>Expected monthly cost</td>
-                            <td className="num">{fmt(expectedCost)}</td>
-                        </tr>
-                        <tr className="row-profit">
-                            <td><strong>Monthly profit</strong></td>
-                            <td className="num profit"><strong>{fmt(monthlyProfit)}</strong></td>
-                        </tr>
-                        <tr>
-                            <td>Annual profit</td>
-                            <td className="num profit">{fmt(annualProfit)}</td>
-                        </tr>
-                        <tr className="row-roi">
-                            <td><strong>ROI</strong></td>
-                            <td className="num roi"><strong>{fmt2(roi)}</strong> back per $1 invested</td>
-                        </tr>
-                        {paybackDays !== null && Number.isFinite(paybackDays) && (
-                            <tr>
-                                <td>Payback period</td>
-                                <td className="num">~{Math.max(1, Math.round(paybackDays * 10) / 10)} days</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </section>
-
             {/* PERFORMANCE GUARANTEE NOTE */}
             <section className="quote-pilot">
                 <p>
-                    <strong>Performance guarantee:</strong> Full refund of your first month if we deliver
-                    zero qualified bookings in your first month. That is how confident we are.
+                    <strong>Performance guarantee:</strong> we are measured on the qualified bookings we put on
+                    your calendar. If we do not deliver, you do not pay. That is how confident we are.
                 </p>
             </section>
 
@@ -199,11 +129,10 @@ export default function QuoteScreen({ result, businessName, industry }) {
                     Book a Demo with Gary
                 </button>
                 <p className="quote-cta-secondary">
-                    Or{' '}
-                    <a href={`/pricing?plan=${tier.id}`}>view your full plan details</a>.
+                    We will map exactly how to recover it on the call.
                 </p>
                 <p className="quote-print-url">
-                    Calendar: calendly.com/garysarco1/30min · Plan details: stellarvoiceagents.com/pricing
+                    Calendar: calendly.com/garysarco1/30min
                 </p>
             </section>
 
@@ -224,13 +153,12 @@ export default function QuoteScreen({ result, businessName, industry }) {
             </section>
 
             <button type="button" className="quote-print-btn quote-print-btn-bottom no-print" onClick={handlePrintOrShare}>
-                <Printer size={16} aria-hidden="true" /> Print This Quote
+                <Printer size={16} aria-hidden="true" /> Print This Snapshot
             </button>
 
             <footer className="quote-footer">
-                This quote was generated based on your quiz answers on {today()}.
+                This snapshot was generated based on your quiz answers on {today()}.
                 Figures are estimates based on the information you provided.
-                Quote valid for 30 days.
                 Stellar Voice Agents · stellarvoiceagents.com
             </footer>
 
@@ -254,7 +182,7 @@ export function EnterpriseQuoteScreen({ result, businessName }) {
         <div className="quote-screen quote-enterprise">
             <header className="quote-header">
                 <img src="/logo.webp" alt="Stellar Voice Agents" className="quote-logo" />
-                <p className="quote-title">Your Custom AI Voice Quote</p>
+                <p className="quote-title">Your Revenue Recovery Snapshot</p>
                 <p className="quote-date">{today()}</p>
             </header>
 
@@ -289,7 +217,7 @@ export function EnterpriseQuoteScreen({ result, businessName }) {
             </section>
 
             <footer className="quote-footer">
-                This quote was generated based on your quiz answers on {today()}.
+                This snapshot was generated based on your quiz answers on {today()}.
                 Figures are estimates based on the information you provided.
                 Stellar Voice Agents · stellarvoiceagents.com
             </footer>
