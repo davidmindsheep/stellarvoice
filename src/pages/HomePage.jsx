@@ -19,10 +19,10 @@ import Footer from '../components/Footer';
 //   - 8-card Industries grid -> compressed to a 6-vertical strip here only
 //
 // Homepage flow now:
-//   Hero -> Denes pull quote -> SoundsReal (compressed narrative)
+//   Hero -> IPA case-study quote (+ read link) -> SoundsReal
 //   -> FeaturedDemo (1 real client call + link to all 6)
-//   -> Revenue quiz CTA -> Products (3 cards)
-//   -> Industries strip (6 verticals, no separate page)
+//   -> Free guides (lead magnet) -> Revenue quiz CTA -> Products
+//   -> Appointment Engine teaser -> Industries strip
 //   -> Plan Finder CTA -> Team teaser -> FAQ teaser -> CTABanner
 export default function HomePage() {
     const [calcOpen, setCalcOpen] = useState(false);
@@ -35,10 +35,10 @@ export default function HomePage() {
                 <QuoteBar />
                 <SoundsReal />
                 <FeaturedDemo />
+                <LeadMagnet />
                 <CalculatorCTA onOpen={() => setCalcOpen(true)} />
                 <Products />
                 <AppointmentEngineTeaser />
-                <LeadMagnet />
                 <IndustriesStrip />
                 {/* Plan-finder CTA in the former pricing slot.
                     Anchored at #pricing so existing nav links still land here. */}

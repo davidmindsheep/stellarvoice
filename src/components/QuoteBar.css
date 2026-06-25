@@ -60,6 +60,23 @@
     font-weight: 500;
 }
 
+.pull-quote-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.75rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--violet-text, #5040C7);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.18s ease, border-color 0.18s ease;
+}
+.pull-quote-link:hover {
+    color: var(--violet-hover, #6A5AF5);
+    border-bottom-color: currentColor;
+}
+
 @media (max-width: 640px) {
     .pull-quote { padding: 4rem 0; }
     .pull-quote-mark { top: -2.25rem; }
