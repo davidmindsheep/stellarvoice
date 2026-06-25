@@ -29,7 +29,6 @@ const Navbar = ({ onOpenCalculator }) => {
                     <li><Link to="/case-studies" onClick={close}>Case Studies</Link></li>
                     <li><Link to="/guides" onClick={close}>Guides</Link></li>
                     <li><Link to="/blog" onClick={close}>Insights</Link></li>
-                    <li><Link to="/pricing" onClick={close}>Pricing</Link></li>
                     <li><Link to="/about" onClick={close}>About</Link></li>
                 </ul>
                 <div className="nav-cta">

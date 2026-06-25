@@ -90,9 +90,6 @@ function buildInternalHtml(answers, result, contactKind) {
     const tierName = (result.plan?.name ?? result.tier ?? 'Starter').toUpperCase();
     const tierBadgeColor = result.enterprise ? '#25005D' : '#7868F8';
     const tierLabel = result.enterprise ? 'ENTERPRISE (custom partnership)' : tierName;
-    const planSummary = result.enterprise
-        ? `Custom Enterprise partnership. Route to a direct call with Gary.`
-        : `Base ${fmt(result.plan.baseRetainer)}/mo + ${fmt(result.plan.perBooking)}/booking · expected ~${result.plan.guarantee} qualified bookings/mo`;
 
     return `
 <!DOCTYPE html>
@@ -110,18 +107,11 @@ function buildInternalHtml(answers, result, contactKind) {
       <p style="margin:0 0 4px;font-size:18px;font-weight:800;color:#25005D">${escapeHtml(answers.businessName ?? '(no name)')}</p>
       <p style="margin:0 0 20px;font-size:15px"><a href="${contactHref}" style="color:#7868F8;text-decoration:none">${safeContact}</a> <span style="color:#888;font-size:12px">(${escapeHtml(contactKind)})</span></p>
 
-      <p style="margin:0 0 8px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#473D92;font-weight:800">Recommended plan</p>
-      <p style="margin:0 0 20px;font-size:14px;color:#1A1A1A;line-height:1.55">${escapeHtml(planSummary)}</p>
-
       <p style="margin:0 0 8px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#473D92;font-weight:800">Where the revenue is coming from</p>
       <ul style="margin:0 0 20px;padding-left:18px;font-size:14px;color:#1A1A1A">${breakdownRows || '<li>No primary driver — answers were minimal.</li>'}</ul>
 
       <p style="margin:0 0 8px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#473D92;font-weight:800">All answers</p>
       <table style="width:100%;border-collapse:collapse"><tbody>${answerRows}</tbody></table>
-
-      <div style="margin-top:24px;padding:14px;background:#F5F2FF;border-radius:10px;font-size:13px;color:#473D92">
-        <strong>ROI vs ${escapeHtml(tierLabel)}:</strong> $${result.roiMultiple.toFixed(2)} returned per $1 of SVA spend (vs ${fmt(result.sva.monthlyFee)}/mo expected cost).
-      </div>
     </div>
   </div>
   <p style="text-align:center;margin:16px 0 0;font-size:11px;color:#888">Submitted ${new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })} PT</p>
